@@ -18,6 +18,8 @@ const smallSide = (cw - longSide*2)/9; // po odjęciu 2 szerokości kwadratów w
 const lS = longSide;
 const sS = smallSide;
 
+const smallFont = sS / 10;
+
 
 /*plansza tło */
 let backgroundColor = "palegreen";
@@ -86,3 +88,28 @@ for(let i=0;i<9;i++){
 ctx.fillStyle = 'black';
 ctx.font = lS/5 + "pt Verdana";
 ctx.fillText("START",lS/10, ch-(0.4*lS));
+
+/* 2 pole - pole parking */
+
+/*grafika */
+const parking = new Image();
+parking.src = "images/parking.jpg";
+parking.onload = function() {
+    ctx.drawImage(parking, lS/10, ch-(lS + 1.9*sS), 0.8*sS, 0.8*sS);
+}
+
+/* napis */
+// kolor
+ctx.fillStyle = 'black';
+//zapamiętanie płaszczyzny
+ctx.save();
+//przesunięcie do 90% środka środka 2 pola
+ctx.translate(lS * 0.80, lS+7.5*sS);
+//obrócenie płaszczyzny o 90 stopni
+ctx.rotate(90 * Math.PI/180);
+// czcionka
+ctx.font = smallFont + "pt Verdana";
+//przesunięcie napisu na środek względniając jego długość (7 liter) i szerokość (1 litera)
+ctx.fillText("PARKING",0 - (7*smallFont)/2, 0 + smallFont/2);
+//przywrócenie plaszczyzny
+ctx.restore();
