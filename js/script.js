@@ -49,3 +49,33 @@ ctx.fillStyle = "white";
 ctx.fillRect(cw - lS, ch-lS, lS, lS);
 ctx.strokeRect(cw - lS, ch-lS, lS, lS);
 
+
+/* rysowanie mniejszych pól */
+
+/* górne */
+for(let i=0;i<9;i++){
+	ctx.fillStyle = "white";
+	ctx.fillRect(lS + i*sS, 0, sS, lS);
+	ctx.strokeRect(lS + i*sS, 0, sS, lS);
+}
+
+/* prawe */
+for(let i=0;i<9;i++){
+	ctx.fillStyle = "white";
+	ctx.fillRect(cw - lS, lS + i*sS, lS, sS);
+	ctx.strokeRect(cw - lS, lS + i*sS, lS, sS);
+}
+
+/* dolne */
+for(let i=0;i<9;i++){
+	ctx.fillStyle = "white";
+	ctx.fillRect(lS + i*sS, ch-lS, sS, lS);
+	ctx.strokeRect(lS  + i*sS, ch-lS, sS, lS);
+}
+
+/* lewe */
+for(let i=0;i<9;i++){
+	ctx.fillStyle = "white";
+	ctx.fillRect(0,lS + i*sS, lS, sS);
+	ctx.strokeRect(0,lS +i*sS, lS, sS);
+}
