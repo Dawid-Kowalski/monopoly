@@ -79,3 +79,10 @@ for(let i=0;i<9;i++){
 	ctx.fillRect(0,lS + i*sS, lS, sS);
 	ctx.strokeRect(0,lS +i*sS, lS, sS);
 }
+
+/* napis "START na 1 polu" */
+
+/* wielkość 1/5 pola, przesunięte o 10% w prawo i 40% w dół w stosunku do początku pola */
+ctx.fillStyle = 'black';
+ctx.font = lS/5 + "pt Verdana";
+ctx.fillText("START",lS/10, ch-(0.4*lS));
