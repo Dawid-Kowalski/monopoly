@@ -95,7 +95,7 @@ ctx.fillText("START",lS/10, ch-(0.4*lS));
 const parking = new Image();
 parking.src = "images/parking.jpg";
 parking.onload = function() {
-    ctx.drawImage(parking, lS/10, ch-(lS + 1.9*sS), 0.8*sS, 0.8*sS);
+    ctx.drawImage(parking, lS/10, ch-(lS + 3.9*sS), 0.8*sS, 0.8*sS);
 }
 
 /* napis */
@@ -104,7 +104,7 @@ ctx.fillStyle = 'black';
 //zapamiętanie płaszczyzny
 ctx.save();
 //przesunięcie do 90% środka środka 2 pola
-ctx.translate(lS * 0.80, lS+7.5*sS);
+ctx.translate(lS * 0.80, lS+5.5*sS);
 //obrócenie płaszczyzny o 90 stopni
 ctx.rotate(90 * Math.PI/180);
 // czcionka
