@@ -242,3 +242,8 @@ createFieldTextOnBoard(lS + 2.5*sS, ch - 0.7*lS, 0, "amsterdam", "700" , true);
 createFieldTextOnBoard(lS + 5.5*sS, ch - 0.7*lS, 0, "bonn", "640" , true);
 createFieldTextOnBoard(lS + 7.5*sS, ch - 0.7*lS, 0, "kolonia", "600" , true);
 createFieldTextOnBoard(lS + 8.5*sS, ch - 0.7*lS, 0, "frankfurt", "600" , true);
+
+/* wiezienie */
+createFieldGrafikOnBoard("wiezienie", 0.2*lS, 0.2*lS);
+createFieldTextOnBoard(lS * 0.5, lS*0.8, 0, "wiezienie", "" , false);
+
