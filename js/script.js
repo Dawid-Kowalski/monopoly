@@ -205,3 +205,12 @@ for(i=0; i<9; i++){
 	ctx.fillRect(0.8*lS ,ch - (lS+sS) -  sS * i,0.2*lS, sS);
 }
 
+/* grecja państwa */
+createFieldTextOnBoard(0.7*lS, ch - lS - 0.5*sS, 90, "ateny", "120" , true);
+createFieldTextOnBoard(0.7*lS, ch - lS - 2.5*sS, 90, "saloniki", "120" , true);
+
+/* włochy państwa */
+createFieldTextOnBoard(0.7*lS, ch - lS - 5.5*sS, 90, "neapol", "200" , true);
+createFieldTextOnBoard(0.7*lS, ch - lS - 7.5*sS, 90, "mediolan", "200" , true);
+createFieldTextOnBoard(0.7*lS, ch - lS - 8.5*sS, 90, "rzym", "240" , true);
+
