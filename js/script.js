@@ -116,8 +116,12 @@ function createFieldTextOnBoard(xPos, yPos, rotate, firstTextLine, secondTextLin
 
 /* parking */
 createFieldGrafikOnBoard("parking", lS/10, ch-(lS + 3.9*sS));
-createFieldTextOnBoard(lS * 0.80, lS+5.5*sS, 90, "parking", "" , false);
+createFieldTextOnBoard(lS * 0.8, lS+5.5*sS, 90, "parking", "" , false);
 
 /* koleje południowe */
-createFieldTextOnBoard(lS * 0.80, lS+4.5*sS, 90, "koleje", "południowe" , true);
 createFieldGrafikOnBoard("kolejepoludniowe", lS/10, ch-(lS + 4.9*sS));
+createFieldTextOnBoard(lS * 0.8, lS+4.5*sS, 90, "koleje", "południowe" , true);
+
+/* elektrownia */
+createFieldGrafikOnBoard("elektrownia", lS + 1.1*sS, 0.2*sS);
+createFieldTextOnBoard(lS + 1.45*sS, lS*0.8, 180, "elektrownia", "" , false);
