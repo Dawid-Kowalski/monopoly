@@ -19,10 +19,14 @@ const lS = longSide;
 const sS = smallSide;
 
 const smallFont = sS / 11;
+const veryBigFont = smallSide;
 
 
 /*plansza tło */
 let backgroundColor = "palegreen";
+
+/*znak zapytania kolor drugi */
+let secondQuestionMarkColor = "red";
 
 /* kolory państw */
 let greeceColor = "yellow";
@@ -255,3 +259,18 @@ createFieldTextOnBoard(cw - lS*0.4, lS*0.8, 0, "parking bezplatny", "" , false);
 createFieldGrafikOnBoard("idzieszdowiezienia", cw - 0.8*lS, ch - 0.8*lS);
 createFieldTextOnBoard(cw - lS*0.35, ch - lS*0.2, 0, "idziesz do wiezienia", "" , false);
 
+
+/* znak zapytania na 7 polu: */
+ctx.font = veryBigFont + "pt Arial";
+ctx.fillStyle = secondQuestionMarkColor;
+//zapamiętanie punktu (0,0) jako startowego
+ctx.save();
+//przesunięcie płaszczyzny do współrzędnych środka 7:
+ctx.translate(lS/2, lS + 2.5*sS);
+//obrócenie płaszczyzny o 90 stopni:
+ctx.rotate(90 * Math.PI/180);
+/*ponieważ trzeba uwzględnić jeszcze wielkość znaku (żeby przesunąć wg jego środka) należy odjąć długość i wysokości połowy znaku założyłem że znak zapytania ma 2/3 (szer/wys)
+oraz czcionki rysowane są od lewego dolnego a nie od lewego górnego rogu więc: */
+ctx.fillText("?",0 - (2/3*veryBigFont)/2,0 + veryBigFont - veryBigFont/2);
+//przywrócenie (0,0) jako punkt startowy
+ctx.restore();
