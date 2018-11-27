@@ -271,7 +271,9 @@ function createQuestionmarkOnField(color, xPos, yPos, rotate) {
 	ctx.restore();
 }
 
-
-
-createQuestionmarkOnField(secondQuestionMarkColor, lS/2, lS + 2.5*sS, 90);
 createQuestionmarkOnField(firstQuestionMarkColor, lS/2, lS + 7.5*sS, 90);
+createQuestionmarkOnField(secondQuestionMarkColor, lS/2, lS + 2.5*sS, 90);
+createQuestionmarkOnField(firstQuestionMarkColor, lS + 6.5*sS, lS/2, 180);
+createQuestionmarkOnField(secondQuestionMarkColor, cw-lS/2, lS+1.5*sS, 270);
+createQuestionmarkOnField(firstQuestionMarkColor, lS+6.5*sS, ch - lS/2, 0);
+createQuestionmarkOnField(secondQuestionMarkColor, lS+3.5*sS, ch - lS/2, 0);
