@@ -24,6 +24,16 @@ const smallFont = sS / 11;
 /*plansza tło */
 let backgroundColor = "palegreen";
 
+/* kolory państw */
+let greeceColor = "yellow";
+let italyColor = "red";
+let spainColor = "blue";
+let englandColor = "orange";
+let beneluxColor = "green";
+let swedenColor = "purple";
+let austriaColor = "brown";
+let rfnColor = "black";
+
 /* rysowanie planszy - tło*/
 ctx.fillStyle = backgroundColor;
 ctx.fillRect(0,0,cw,ch);
@@ -145,4 +155,53 @@ createFieldTextOnBoard(lS+4.5*sS, ch - 0.8*lS, 0,  "koleje", "wschodnie" , true)
 /* podatek */
 createFieldGrafikOnBoard("podatek", lS + 1.1*sS, ch - 0.65*lS);
 createFieldTextOnBoard(lS+1.5*sS, ch - 0.8*lS, 0, "podatek", "" , false);
+
+
+/* rysowanie górnych kolorów państw */
+for(i=0; i<9; i++){
+	ctx.fillStyle = spainColor;
+	if(i==1 || i ==4 || i==6){
+		continue;
+	}
+	if(i>4){
+		ctx.fillStyle = englandColor;
+	}
+	ctx.fillRect(lS + sS * i ,0.8*lS, sS, 0.2*lS);
+}
+
+/*rysowanie prawych kolorów państw */
+for(i=0; i<9; i++){
+	ctx.fillStyle = beneluxColor;
+	if(i==1 || i ==4 || i==7){
+		continue;
+	}
+	if(i>4){
+		ctx.fillStyle = swedenColor;
+	}
+	ctx.fillRect(cw - lS,lS + sS * i, 0.2*lS, sS);
+}
+
+/*rysowanie dolnych kolorów państw */
+for(i=0; i<9; i++){
+	ctx.fillStyle = rfnColor;
+	if(i==1 || i ==3 || i==4 || i == 6 ){
+		continue;
+	}
+	if(i>2){
+		ctx.fillStyle = austriaColor;
+	}
+	ctx.fillRect(lS +  sS * i, cw-lS, sS,  0.2*lS);
+}
+
+/*rysowanie prawych kolorów państw */
+for(i=0; i<9; i++){
+	ctx.fillStyle = greeceColor;
+	if(i==1 || i ==3 || i==4 || i == 6 ){
+		continue;
+	}
+	if(i>2){
+		ctx.fillStyle = italyColor;
+	}
+	ctx.fillRect(0.8*lS ,ch - (lS+sS) -  sS * i,0.2*lS, sS);
+}
 
