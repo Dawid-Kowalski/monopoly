@@ -251,3 +251,7 @@ createFieldTextOnBoard(lS * 0.5, lS*0.8, 0, "wiezienie", "" , false);
 createFieldGrafikOnBoard("parkingbezplatny", cw - 0.8*lS, 0.2*lS);
 createFieldTextOnBoard(cw - lS*0.4, lS*0.8, 0, "parking bezplatny", "" , false);
 
+/* idziesz do wiezienia */
+createFieldGrafikOnBoard("idzieszdowiezienia", cw - 0.8*lS, ch - 0.8*lS);
+createFieldTextOnBoard(cw - lS*0.35, ch - lS*0.2, 0, "idziesz do wiezienia", "" , false);
+
