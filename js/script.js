@@ -27,6 +27,7 @@ let backgroundColor = "palegreen";
 
 /*znak zapytania kolor drugi */
 let secondQuestionMarkColor = "red";
+let firstQuestionMarkColor = "blue";
 
 /* kolory państw */
 let greeceColor = "yellow";
@@ -267,6 +268,23 @@ ctx.fillStyle = secondQuestionMarkColor;
 ctx.save();
 //przesunięcie płaszczyzny do współrzędnych środka 7:
 ctx.translate(lS/2, lS + 2.5*sS);
+//obrócenie płaszczyzny o 90 stopni:
+ctx.rotate(90 * Math.PI/180);
+/*ponieważ trzeba uwzględnić jeszcze wielkość znaku (żeby przesunąć wg jego środka) należy odjąć długość i wysokości połowy znaku założyłem że znak zapytania ma 2/3 (szer/wys)
+oraz czcionki rysowane są od lewego dolnego a nie od lewego górnego rogu więc: */
+ctx.fillText("?",0 - (2/3*veryBigFont)/2,0 + veryBigFont - veryBigFont/2);
+//przywrócenie (0,0) jako punkt startowy
+ctx.restore();
+
+// znak zapytania na 2 polu:
+// czcionka wielkości małego boku
+ctx.font = veryBigFont + "pt Arial";
+//niebieska czcionka
+ctx.fillStyle = firstQuestionMarkColor;
+//zapamiętanie punktu (0,0) jako startowego
+ctx.save();
+//przesunięcie płaszczyzny do współrzędnych środka 2 pola:
+ctx.translate(lS/2, lS + 7.5*sS);
 //obrócenie płaszczyzny o 90 stopni:
 ctx.rotate(90 * Math.PI/180);
 /*ponieważ trzeba uwzględnić jeszcze wielkość znaku (żeby przesunąć wg jego środka) należy odjąć długość i wysokości połowy znaku założyłem że znak zapytania ma 2/3 (szer/wys)
