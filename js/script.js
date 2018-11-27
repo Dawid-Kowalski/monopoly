@@ -89,58 +89,35 @@ ctx.fillStyle = 'black';
 ctx.font = lS/5 + "pt Verdana";
 ctx.fillText("START",lS/10, ch-(0.4*lS));
 
-/* 2 pole - pole parking */
 
+/* funkcja do umieszczania obrazków pól */
 function createFieldGrafikOnBoard(imageName, xPos, yPos) {
 	
 	let image = new Image();
 	image.src = 'images/' + imageName + '.jpg';
-	console.log(image.src);
 	image.onload = function() {
 		ctx.drawImage(image, xPos, yPos, 0.8*sS, 0.8*sS)
 	}
 }
 
-createFieldGrafikOnBoard("parking",lS/10, ch-(lS + 3.9*sS));
+/* funkcja do umieszczania tekstów pól */
+function createFieldTextOnBoard(xPos, yPos, rotate, firstTextLine, secondTextLine, isTwoLines) {
+	ctx.fillStyle = 'black';
+	ctx.save();
+	ctx.translate(xPos, yPos);
+	ctx.rotate(rotate * Math.PI/180);
+	ctx.font = smallFont + "pt Verdana";
+	ctx.fillText(firstTextLine.toUpperCase(),0 - (firstTextLine.length*smallFont)/2, 0 + smallFont/2);
+	if(isTwoLines){
+		ctx.fillText(secondTextLine.toUpperCase(),0 - (secondTextLine.length*smallFont)/2, 0 + (smallFont/2)*4);
+	}
+	ctx.restore();
+}
+
+/* parking */
+createFieldGrafikOnBoard("parking", lS/10, ch-(lS + 3.9*sS));
+createFieldTextOnBoard(lS * 0.80, lS+5.5*sS, 90, "parking", "" , false);
+
+/* koleje południowe */
+createFieldTextOnBoard(lS * 0.80, lS+4.5*sS, 90, "koleje", "południowe" , true);
 createFieldGrafikOnBoard("kolejepoludniowe", lS/10, ch-(lS + 4.9*sS));
-
-
-
-
-
-
-/* napis */
-// kolor
-ctx.fillStyle = 'black';
-//zapamiętanie płaszczyzny
-ctx.save();
-//przesunięcie do 90% środka środka 2 pola
-ctx.translate(lS * 0.80, lS+5.5*sS);
-//obrócenie płaszczyzny o 90 stopni
-ctx.rotate(90 * Math.PI/180);
-// czcionka
-ctx.font = smallFont + "pt Verdana";
-//przesunięcie napisu na środek względniając jego długość (7 liter) i szerokość (1 litera)
-ctx.fillText("PARKING",0 - (7*smallFont)/2, 0 + smallFont/2);
-//przywrócenie plaszczyzny
-ctx.restore();
-
-/* 5 pole koleje południowe */
-
-/* napis */
-// kolor
-ctx.fillStyle = 'black';
-//zapamiętanie płaszczyzny
-ctx.save();
-//przesunięcie do 90% środka środka 2 pola
-ctx.translate(lS * 0.80, lS+4.5*sS);
-//obrócenie płaszczyzny o 90 stopni
-ctx.rotate(90 * Math.PI/180);
-// czcionka
-ctx.font = smallFont + "pt Verdana";
-//przesunięcie napisu na środek względniając jego długość (6 liter - dłuższe słowo) i wysokosć (1 litera)
-ctx.fillText("KOLEJE",0 - (6*smallFont)/2, 0 + smallFont/2);
-//przesunięcie napisu na środek względniając jego długość (10 liter - dłuższe słowo), wysokosć (1 litera) oraz położenie pod poprzednim napisem
-ctx.fillText("POŁUDNIOWE",0 - (10*smallFont)/2, 0 + (smallFont/2)*4);
-//przywrócenie plaszczyzny
-ctx.restore();
