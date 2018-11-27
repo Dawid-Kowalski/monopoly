@@ -125,3 +125,7 @@ createFieldTextOnBoard(lS * 0.8, lS+4.5*sS, 90, "koleje", "południowe" , true);
 /* elektrownia */
 createFieldGrafikOnBoard("elektrownia", lS + 1.1*sS, 0.2*sS);
 createFieldTextOnBoard(lS + 1.45*sS, lS*0.8, 180, "elektrownia", "" , false);
+
+/* koleje zachodnie */
+createFieldGrafikOnBoard("kolejezachodnie", lS + 4.1*sS, 0.2*sS);
+createFieldTextOnBoard(lS + 4.45*sS, lS*0.8, 180,  "koleje", "zachodnie" , true);
