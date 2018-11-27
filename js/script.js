@@ -247,3 +247,7 @@ createFieldTextOnBoard(lS + 8.5*sS, ch - 0.7*lS, 0, "frankfurt", "600" , true);
 createFieldGrafikOnBoard("wiezienie", 0.2*lS, 0.2*lS);
 createFieldTextOnBoard(lS * 0.5, lS*0.8, 0, "wiezienie", "" , false);
 
+/* parking bezpłatny */
+createFieldGrafikOnBoard("parkingbezplatny", cw - 0.8*lS, 0.2*lS);
+createFieldTextOnBoard(cw - lS*0.4, lS*0.8, 0, "parking bezplatny", "" , false);
+
