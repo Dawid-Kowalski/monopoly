@@ -91,12 +91,23 @@ ctx.fillText("START",lS/10, ch-(0.4*lS));
 
 /* 2 pole - pole parking */
 
-/*grafika */
-const parkingImage = new Image();
-parkingImage.src = "images/parking.jpg";
-parkingImage.onload = function() {
-    ctx.drawImage(parkingImage, lS/10, ch-(lS + 3.9*sS), 0.8*sS, 0.8*sS);
+function createFieldGrafikOnBoard(imageName, xPos, yPos) {
+	
+	let image = new Image();
+	image.src = 'images/' + imageName + '.jpg';
+	console.log(image.src);
+	image.onload = function() {
+		ctx.drawImage(image, xPos, yPos, 0.8*sS, 0.8*sS)
+	}
 }
+
+createFieldGrafikOnBoard("parking",lS/10, ch-(lS + 3.9*sS));
+createFieldGrafikOnBoard("kolejepoludniowe", lS/10, ch-(lS + 4.9*sS));
+
+
+
+
+
 
 /* napis */
 // kolor
@@ -115,13 +126,6 @@ ctx.fillText("PARKING",0 - (7*smallFont)/2, 0 + smallFont/2);
 ctx.restore();
 
 /* 5 pole koleje południowe */
-
-/*grafika */
-const southRailwaysImage = new Image();
-southRailwaysImage.src = "images/kolejepoludniowe.jpg";
-southRailwaysImage.onload = function() {
-    ctx.drawImage(southRailwaysImage, lS/10, ch-(lS + 4.9*sS), 0.8*sS, 0.8*sS);
-}
 
 /* napis */
 // kolor
