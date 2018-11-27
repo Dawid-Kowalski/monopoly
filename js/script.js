@@ -260,35 +260,18 @@ createFieldTextOnBoard(cw - lS*0.4, lS*0.8, 0, "parking bezplatny", "" , false);
 createFieldGrafikOnBoard("idzieszdowiezienia", cw - 0.8*lS, ch - 0.8*lS);
 createFieldTextOnBoard(cw - lS*0.35, ch - lS*0.2, 0, "idziesz do wiezienia", "" , false);
 
+function createQuestionmarkOnField(color, xPos, yPos, rotate) {
+	ctx.font = veryBigFont + "pt Arial";
+	ctx.fillStyle = color;
+	ctx.save();
+	ctx.translate(xPos, yPos);
+	ctx.rotate(rotate * Math.PI/180);
+	/* uwzględnienie przesunięcia środka - połowa znaku w górę i połowa z 2/3 znaku w lewo) */
+	ctx.fillText("?",0 - (2/3*veryBigFont)/2,0 + veryBigFont - veryBigFont/2);
+	ctx.restore();
+}
 
-/* znak zapytania na 7 polu: */
-ctx.font = veryBigFont + "pt Arial";
-ctx.fillStyle = secondQuestionMarkColor;
-//zapamiętanie punktu (0,0) jako startowego
-ctx.save();
-//przesunięcie płaszczyzny do współrzędnych środka 7:
-ctx.translate(lS/2, lS + 2.5*sS);
-//obrócenie płaszczyzny o 90 stopni:
-ctx.rotate(90 * Math.PI/180);
-/*ponieważ trzeba uwzględnić jeszcze wielkość znaku (żeby przesunąć wg jego środka) należy odjąć długość i wysokości połowy znaku założyłem że znak zapytania ma 2/3 (szer/wys)
-oraz czcionki rysowane są od lewego dolnego a nie od lewego górnego rogu więc: */
-ctx.fillText("?",0 - (2/3*veryBigFont)/2,0 + veryBigFont - veryBigFont/2);
-//przywrócenie (0,0) jako punkt startowy
-ctx.restore();
 
-// znak zapytania na 2 polu:
-// czcionka wielkości małego boku
-ctx.font = veryBigFont + "pt Arial";
-//niebieska czcionka
-ctx.fillStyle = firstQuestionMarkColor;
-//zapamiętanie punktu (0,0) jako startowego
-ctx.save();
-//przesunięcie płaszczyzny do współrzędnych środka 2 pola:
-ctx.translate(lS/2, lS + 7.5*sS);
-//obrócenie płaszczyzny o 90 stopni:
-ctx.rotate(90 * Math.PI/180);
-/*ponieważ trzeba uwzględnić jeszcze wielkość znaku (żeby przesunąć wg jego środka) należy odjąć długość i wysokości połowy znaku założyłem że znak zapytania ma 2/3 (szer/wys)
-oraz czcionki rysowane są od lewego dolnego a nie od lewego górnego rogu więc: */
-ctx.fillText("?",0 - (2/3*veryBigFont)/2,0 + veryBigFont - veryBigFont/2);
-//przywrócenie (0,0) jako punkt startowy
-ctx.restore();
+
+createQuestionmarkOnField(secondQuestionMarkColor, lS/2, lS + 2.5*sS, 90);
+createQuestionmarkOnField(firstQuestionMarkColor, lS/2, lS + 7.5*sS, 90);
