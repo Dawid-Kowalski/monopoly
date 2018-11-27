@@ -214,3 +214,12 @@ createFieldTextOnBoard(0.7*lS, ch - lS - 5.5*sS, 90, "neapol", "200" , true);
 createFieldTextOnBoard(0.7*lS, ch - lS - 7.5*sS, 90, "mediolan", "200" , true);
 createFieldTextOnBoard(0.7*lS, ch - lS - 8.5*sS, 90, "rzym", "240" , true);
 
+/* hiszpania państwa */
+createFieldTextOnBoard(lS + 0.5*sS, 0.7*lS, 180, "barcelona", "280" , true);
+createFieldTextOnBoard(lS + 2.5*sS, 0.7*lS, 180, "sewilla", "280" , true);
+createFieldTextOnBoard(lS + 3.5*sS, 0.7*lS, 180, "madryt", "320" , true);
+
+/* anglia państwa */
+createFieldTextOnBoard(lS + 5.5*sS, 0.7*lS, 180, "liverpool", "360" , true);
+createFieldTextOnBoard(lS + 7.5*sS, 0.7*lS, 180, "glasgow", "360" , true);
+createFieldTextOnBoard(lS + 8.5*sS, 0.7*lS, 180, "londyn", "400" , true);
