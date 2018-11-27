@@ -18,7 +18,7 @@ const smallSide = (cw - longSide*2)/9; // po odjęciu 2 szerokości kwadratów w
 const lS = longSide;
 const sS = smallSide;
 
-const smallFont = sS / 10;
+const smallFont = sS / 11;
 
 
 /*plansza tło */
@@ -92,10 +92,10 @@ ctx.fillText("START",lS/10, ch-(0.4*lS));
 /* 2 pole - pole parking */
 
 /*grafika */
-const parking = new Image();
-parking.src = "images/parking.jpg";
-parking.onload = function() {
-    ctx.drawImage(parking, lS/10, ch-(lS + 3.9*sS), 0.8*sS, 0.8*sS);
+const parkingImage = new Image();
+parkingImage.src = "images/parking.jpg";
+parkingImage.onload = function() {
+    ctx.drawImage(parkingImage, lS/10, ch-(lS + 3.9*sS), 0.8*sS, 0.8*sS);
 }
 
 /* napis */
@@ -111,5 +111,32 @@ ctx.rotate(90 * Math.PI/180);
 ctx.font = smallFont + "pt Verdana";
 //przesunięcie napisu na środek względniając jego długość (7 liter) i szerokość (1 litera)
 ctx.fillText("PARKING",0 - (7*smallFont)/2, 0 + smallFont/2);
+//przywrócenie plaszczyzny
+ctx.restore();
+
+/* 5 pole koleje południowe */
+
+/*grafika */
+const southRailwaysImage = new Image();
+southRailwaysImage.src = "images/kolejepoludniowe.jpg";
+southRailwaysImage.onload = function() {
+    ctx.drawImage(southRailwaysImage, lS/10, ch-(lS + 4.9*sS), 0.8*sS, 0.8*sS);
+}
+
+/* napis */
+// kolor
+ctx.fillStyle = 'black';
+//zapamiętanie płaszczyzny
+ctx.save();
+//przesunięcie do 90% środka środka 2 pola
+ctx.translate(lS * 0.80, lS+4.5*sS);
+//obrócenie płaszczyzny o 90 stopni
+ctx.rotate(90 * Math.PI/180);
+// czcionka
+ctx.font = smallFont + "pt Verdana";
+//przesunięcie napisu na środek względniając jego długość (6 liter - dłuższe słowo) i wysokosć (1 litera)
+ctx.fillText("KOLEJE",0 - (6*smallFont)/2, 0 + smallFont/2);
+//przesunięcie napisu na środek względniając jego długość (10 liter - dłuższe słowo), wysokosć (1 litera) oraz położenie pod poprzednim napisem
+ctx.fillText("POŁUDNIOWE",0 - (10*smallFont)/2, 0 + (smallFont/2)*4);
 //przywrócenie plaszczyzny
 ctx.restore();
