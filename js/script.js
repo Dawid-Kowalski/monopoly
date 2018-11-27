@@ -138,6 +138,11 @@ createFieldTextOnBoard(cw - 0.8*lS, lS + 4.5*sS, 270,  "koleje", "północne" , 
 createFieldGrafikOnBoard("wodociagi", cw - 0.65*lS, lS + 7.1*sS);
 createFieldTextOnBoard(cw - 0.8*lS, lS + 7.5*sS, 270,  "wodociągi", "" , false);
 
-/* koleje  */
+/* koleje  wschodnie */
 createFieldGrafikOnBoard("kolejewschodnie", lS + 4.1*sS, ch - 0.65*lS);
 createFieldTextOnBoard(lS+4.5*sS, ch - 0.8*lS, 0,  "koleje", "wschodnie" , true);
+
+/* podatek */
+createFieldGrafikOnBoard("podatek", lS + 1.1*sS, ch - 0.65*lS);
+createFieldTextOnBoard(lS+1.5*sS, ch - 0.8*lS, 0, "podatek", "" , false);
+
