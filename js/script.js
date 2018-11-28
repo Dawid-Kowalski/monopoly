@@ -1,9 +1,7 @@
 drawBoard();
 
-activePlayer = 1;
+activePlayer = 0;
 
-prepaerPlayers();
-showRoundMainData(activePlayer);
 
 function prepaerPlayers() {
 
@@ -18,9 +16,26 @@ function prepaerPlayers() {
 function changePlayersName(id) {
 	let name = "player" + id + "-name";
 	players[id-1].name = document.getElementById(name).value;
+
+	return players[id-1].name;
 }
 
 function showRoundMainData(player) {
 	document.getElementById("player-name").innerHTML = players[player].name;
 	document.getElementById("player-money").innerHTML = players[player].money;
+}
+
+function nextPlayer() {
+
+	drawBoard();
+	showRoundMainData(activePlayer);
+
+	if(activePlayer<(players.length)-1) {
+		activePlayer++;
+	}
+	else{
+		activePlayer = 0;
+	}
+
+	return activePlayer;
 }
