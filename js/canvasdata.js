@@ -37,8 +37,8 @@ let spainColor = "blue";
 let englandColor = "orange";
 let beneluxColor = "green";
 let swedenColor = "purple";
-let austriaColor = "brown";
-let rfnColor = "black";
+let rfnColor = "brown";
+let austriaColor = "black";
 
 let greece = "GRECJA";
 let italy = "WŁOCHY";

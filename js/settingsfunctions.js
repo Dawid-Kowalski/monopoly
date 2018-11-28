@@ -1,4 +1,9 @@
-drawBoard();
+function changeSettings () {
+	downloadColorSettings();
+	downloadCountrySettings();
+	downloadCitySettings();
+	drawBoard();
+}
 
 function downloadColorSettings () {
 	backgroundColor = document.getElementById("fieldcolor").value;
@@ -48,11 +53,4 @@ function downloadCitySettings () {
 	bonn = document.getElementById("city20name").value;
 	insbruck = document.getElementById("city21name").value;
 	wieden = document.getElementById("city22name").value;
-}
-
-function changeSettings () {
-	downloadColorSettings();
-	downloadCountrySettings();
-	downloadCitySettings();
-	drawBoard();
 }

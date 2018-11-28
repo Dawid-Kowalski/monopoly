@@ -93,12 +93,12 @@ function drawCountrysColors() {
 
 	/*rysowanie dolnych kolorów państw */
 	for(i=0; i<9; i++){
-		ctx.fillStyle = rfnColor;
+		ctx.fillStyle = austriaColor;
 		if(i==1 || i ==3 || i==4 || i == 6 ){
 			continue;
 		}
 		if(i>2){
-			ctx.fillStyle = austriaColor;
+			ctx.fillStyle = rfnColor;
 		}
 		ctx.fillRect(lS +  sS * i, cw-lS, sS,  0.2*lS);
 	}
