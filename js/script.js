@@ -40,6 +40,38 @@ let swedenColor = "purple";
 let austriaColor = "brown";
 let rfnColor = "black";
 
+let greece = "GRECJA";
+let italy = "WŁOCHY";
+let spain = "HISZPANIA";
+let england = "ANGLIA";
+let benelux = "BENELUX";
+let sweden = "SZWECJA";
+let rfn = "RFN";
+let austria = "AUSTRIA";
+
+let saloniki = "SALONIKI";
+let ateny = "ATENY";
+let neapol = "NEAPOL";
+let mediolan = "MEDIOLAN";
+let rzym = "RZYM";
+let barcelona = "BARCELONA";
+let sewilla = "SEWILLA";
+let madryt = "MADRYT";
+let liverpool = "LIVERPOOL";
+let glasgow = "GLASGOW";
+let londyn = "LONDYN";
+let rotterdam = "ROTTERDAM";
+let bruksela = "BRUKSELA";
+let amsterdam = "AMSTERDAM";
+let malmo = "MALMO";
+let goteborg = "GOTEBORG";
+let sztokholm = "SZTOKHOLM";
+let wieden = "WIEDEŃ";
+let insbruck = "INSBRUCK";
+let bonn = "BONN";
+let kolonia = "KOLONIA";
+let frankfurt = "FRANKFURT";
+
 /* rysowanie planszy - tło*/
 ctx.fillStyle = backgroundColor;
 ctx.fillRect(0,0,cw,ch);
@@ -214,42 +246,42 @@ for(i=0; i<9; i++){
 }
 
 /* grecja państwa */
-createTextOnBoard(0.7*lS, ch - lS - 0.5*sS, 90, smallFont, "ateny", "120" , true);
-createTextOnBoard(0.7*lS, ch - lS - 2.5*sS, 90, smallFont, "saloniki", "120" ,true);
+createTextOnBoard(0.7*lS, ch - lS - 0.5*sS, 90, smallFont, ateny, "120" , true);
+createTextOnBoard(0.7*lS, ch - lS - 2.5*sS, 90, smallFont, saloniki, "120" ,true);
 
 /* włochy państwa */
-createTextOnBoard(0.7*lS, ch - lS - 5.5*sS, 90, smallFont, "neapol", "200" , true);
-createTextOnBoard(0.7*lS, ch - lS - 7.5*sS, 90, smallFont, "mediolan", "200" ,true);
-createTextOnBoard(0.7*lS, ch - lS - 8.5*sS, 90, smallFont, "rzym", "240" , true);
+createTextOnBoard(0.7*lS, ch - lS - 5.5*sS, 90, smallFont, neapol, "200" , true);
+createTextOnBoard(0.7*lS, ch - lS - 7.5*sS, 90, smallFont, mediolan, "200" ,true);
+createTextOnBoard(0.7*lS, ch - lS - 8.5*sS, 90, smallFont, rzym, "240" , true);
 
 /* hiszpania państwa */
-createTextOnBoard(lS + 0.5*sS, 0.7*lS, 180, smallFont, "barcelona", "280" , true);
-createTextOnBoard(lS + 2.5*sS, 0.7*lS, 180, smallFont, "sewilla", "280" , true);
-createTextOnBoard(lS + 3.5*sS, 0.7*lS, 180, smallFont, "madryt", "320" , true);
+createTextOnBoard(lS + 0.5*sS, 0.7*lS, 180, smallFont, barcelona, "280" , true);
+createTextOnBoard(lS + 2.5*sS, 0.7*lS, 180, smallFont, sewilla, "280" , true);
+createTextOnBoard(lS + 3.5*sS, 0.7*lS, 180, smallFont, madryt, "320" , true);
 
 /* anglia państwa */
-createTextOnBoard(lS + 5.5*sS, 0.7*lS, 180, smallFont, "liverpool", "360" , true);
-createTextOnBoard(lS + 7.5*sS, 0.7*lS, 180, smallFont, "glasgow", "360" , true);
-createTextOnBoard(lS + 8.5*sS, 0.7*lS, 180, smallFont, "londyn", "400" , true);
+createTextOnBoard(lS + 5.5*sS, 0.7*lS, 180, smallFont, liverpool, "360" , true);
+createTextOnBoard(lS + 7.5*sS, 0.7*lS, 180, smallFont, glasgow, "360" , true);
+createTextOnBoard(lS + 8.5*sS, 0.7*lS, 180, smallFont, londyn, "400" , true);
 
 /* benelux państwa */
-createTextOnBoard(cw - 0.7*lS, lS + 0.5*sS, 270, smallFont, "rotterdam", "440" ,true);
-createTextOnBoard(cw - 0.7*lS, lS + 2.5*sS, 270, smallFont, "bruksela", "440" , true);
-createTextOnBoard(cw - 0.7*lS, lS + 3.5*sS, 270, smallFont, "amsterdam", "480" , true);
+createTextOnBoard(cw - 0.7*lS, lS + 0.5*sS, 270, smallFont, rotterdam, "440" ,true);
+createTextOnBoard(cw - 0.7*lS, lS + 2.5*sS, 270, smallFont, bruksela, "440" , true);
+createTextOnBoard(cw - 0.7*lS, lS + 3.5*sS, 270, smallFont, amsterdam, "480" , true);
 
 /* szwecja państwa */
-createTextOnBoard(cw - 0.7*lS, lS + 5.5*sS, 270, smallFont, "malmo", "520" ,true);
-createTextOnBoard(cw - 0.7*lS, lS + 6.5*sS, 270, smallFont,  "goteborg", "520" ,true);
-createTextOnBoard(cw - 0.7*lS, lS + 8.5*sS, 270, smallFont,  "sztokholm", "520" ,true);
+createTextOnBoard(cw - 0.7*lS, lS + 5.5*sS, 270, smallFont, malmo, "520" ,true);
+createTextOnBoard(cw - 0.7*lS, lS + 6.5*sS, 270, smallFont,  goteborg, "520" ,true);
+createTextOnBoard(cw - 0.7*lS, lS + 8.5*sS, 270, smallFont,  sztokholm, "520" ,true);
 
 /* austria państwa */
-createTextOnBoard(lS + 0.5*sS, ch - 0.7*lS, 0, smallFont, "wiedeń", "800" ,true);
-createTextOnBoard(lS + 2.5*sS, ch - 0.7*lS, 0, smallFont, "amsterdam", "700" ,true);
+createTextOnBoard(lS + 0.5*sS, ch - 0.7*lS, 0, smallFont, wieden, "800" ,true);
+createTextOnBoard(lS + 2.5*sS, ch - 0.7*lS, 0, smallFont, insbruck, "700" ,true);
 
 /* rfn państwa */
-createTextOnBoard(lS + 5.5*sS, ch - 0.7*lS, 0, smallFont, "bonn", "640" ,true);
-createTextOnBoard(lS + 7.5*sS, ch - 0.7*lS, 0, smallFont, "kolonia", "600" ,true);
-createTextOnBoard(lS + 8.5*sS, ch - 0.7*lS, 0, smallFont, "frankfurt", "600" ,true);
+createTextOnBoard(lS + 5.5*sS, ch - 0.7*lS, 0, smallFont, bonn, "640" ,true);
+createTextOnBoard(lS + 7.5*sS, ch - 0.7*lS, 0, smallFont, kolonia, "600" ,true);
+createTextOnBoard(lS + 8.5*sS, ch - 0.7*lS, 0, smallFont, frankfurt, "600" ,true);
 
 /* wiezienie */
 createGrafikOnBoard("wiezienie", 0.2*lS, 0.2*lS);
@@ -283,25 +315,25 @@ createQuestionmarkOnField(secondQuestionMarkColor, lS+3.5*sS, ch - lS/2, 0);
 
 
 /* grecja - napis*/
-createTextOnBoard(lS, lS+7.5*sS, 90, bigFont, "grecja", "" , false);
+createTextOnBoard(lS, lS+7.5*sS, 90, bigFont, greece, "" , false);
 
 /* włochy - napis*/
-createTextOnBoard(lS, lS+2*sS, 90, bigFont, "włochy", "" , false);
+createTextOnBoard(lS, lS+2*sS, 90, bigFont, italy, "" , false);
 
 /* hiszpania - napis*/
-createTextOnBoard(lS+2*sS, lS, 180, bigFont, "hiszpania", "" , false);
+createTextOnBoard(lS+2*sS, lS, 180, bigFont, spain, "" , false);
 
 /* anglia - napis*/
-createTextOnBoard(lS+7*sS, lS, 180, bigFont, "anglia", "" , false);
+createTextOnBoard(lS+7*sS, lS, 180, bigFont, england, "" , false);
 
 /* benelux - napis*/
-createTextOnBoard(cw - lS, lS + 2*sS, 270, bigFont, "benelux", "" , false);
+createTextOnBoard(cw - lS, lS + 2*sS, 270, bigFont, benelux, "" , false);
 
 /* szwecja - napis*/
-createTextOnBoard(cw - lS, lS + 7*sS, 270, bigFont, "szwecja", "" , false);
+createTextOnBoard(cw - lS, lS + 7*sS, 270, bigFont, sweden, "" , false);
 
 /* rfn - napis*/
-createTextOnBoard(lS + 7*sS, lS + 9*sS, 0, bigFont, "rfn", "" , false);
+createTextOnBoard(lS + 7*sS, lS + 9*sS, 0, bigFont, rfn, "" , false);
 
 /* austria - napis*/
-createTextOnBoard(lS + 1.5*sS, lS + 9*sS, 0, bigFont, "austria", "" , false);
+createTextOnBoard(lS + 1.5*sS, lS + 9*sS, 0, bigFont, austria, "" , false);
