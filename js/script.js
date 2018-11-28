@@ -7,5 +7,10 @@ function prepaerPlayers() {
 	showPlayerFields();
 	createPlayers();
 
-	console.log(players);
+	return players;
+}
+
+function changePlayersName(id) {
+	let name = "player" + id + "-name";
+	players[id-1].name = document.getElementById(name).value;
 }
