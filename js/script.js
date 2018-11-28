@@ -18,7 +18,8 @@ const smallSide = (cw - longSide*2)/9; // po odjęciu 2 szerokości kwadratów w
 const lS = longSide;
 const sS = smallSide;
 
-const smallFont = sS / 11;
+const smallFont = smallSide / 11;
+const bigFont = smallSide / 4;
 const veryBigFont = smallSide;
 
 
@@ -106,7 +107,7 @@ ctx.fillText("START",lS/10, ch-(0.4*lS));
 
 
 /* funkcja do umieszczania obrazków pól */
-function createFieldGrafikOnBoard(imageName, xPos, yPos) {
+function createGrafikOnBoard(imageName, xPos, yPos) {
 	
 	let image = new Image();
 	image.src = 'images/' + imageName + '.jpg';
@@ -115,51 +116,53 @@ function createFieldGrafikOnBoard(imageName, xPos, yPos) {
 	}
 }
 
-/* funkcja do umieszczania tekstów pól */
-function createFieldTextOnBoard(xPos, yPos, rotate, firstTextLine, secondTextLine, isTwoLines) {
+	/* funkcja do umieszczania tekstów pól */
+function createTextOnBoard(xPos, yPos, rotate, fontSize, firstTextLine, secondTextLine, isTwoLines) {
 	ctx.fillStyle = 'black';
 	ctx.save();
 	ctx.translate(xPos, yPos);
 	ctx.rotate(rotate * Math.PI/180);
-	ctx.font = smallFont + "pt Verdana";
-	ctx.fillText(firstTextLine.toUpperCase(),0 - (firstTextLine.length*smallFont)/2, 0 + smallFont/2);
+	ctx.font = fontSize + "pt Verdana";
+	ctx.fillText(firstTextLine.toUpperCase(),0 - (firstTextLine.length * fontSize)/2,0);
+
 	if(isTwoLines){
-		ctx.fillText(secondTextLine.toUpperCase(),0 - (secondTextLine.length*smallFont)/2, 0 + (smallFont/2)*4);
+		ctx.fillText(secondTextLine.toUpperCase(),0 - (secondTextLine.length * fontSize)/2, 0 + (fontSize/2)*4);
 	}
+
 	ctx.restore();
 }
 
 /* parking */
-createFieldGrafikOnBoard("parking", lS/10, ch-(lS + 3.9*sS));
-createFieldTextOnBoard(lS * 0.8, lS+5.5*sS, 90, "parking", "" , false);
+createGrafikOnBoard("parking", lS/10, ch-(lS + 3.9*sS));
+createTextOnBoard(lS * 0.8, lS+5.5*sS, 90, smallFont, "parking", "" ,false);
 
 /* koleje południowe */
-createFieldGrafikOnBoard("kolejepoludniowe", lS/10, ch-(lS + 4.9*sS));
-createFieldTextOnBoard(lS * 0.8, lS+4.5*sS, 90, "koleje", "południowe" , true);
+createGrafikOnBoard("kolejepoludniowe", lS/10, ch-(lS + 4.9*sS));
+createTextOnBoard(lS * 0.8, lS+4.5*sS, 90, smallFont, "koleje", "południowe" ,true );
 
 /* elektrownia */
-createFieldGrafikOnBoard("elektrownia", lS + 1.1*sS, 0.2*sS);
-createFieldTextOnBoard(lS + 1.45*sS, lS*0.8, 180, "elektrownia", "" , false);
+createGrafikOnBoard("elektrownia", lS + 1.1*sS, 0.2*sS);
+createTextOnBoard(lS + 1.45*sS, lS*0.8, 180, smallFont, "elektrownia", "" ,false);
 
 /* koleje zachodnie */
-createFieldGrafikOnBoard("kolejezachodnie", lS + 4.1*sS, 0.2*sS);
-createFieldTextOnBoard(lS + 4.45*sS, lS*0.8, 180,  "koleje", "zachodnie" , true);
+createGrafikOnBoard("kolejezachodnie", lS + 4.1*sS, 0.2*sS);
+createTextOnBoard(lS + 4.45*sS, lS*0.8, 180,  smallFont, "koleje", "zachodnie" ,true);
 
 /* koleje północne */
-createFieldGrafikOnBoard("kolejepolnocne", cw - 0.65*lS, lS + 4.1*sS);
-createFieldTextOnBoard(cw - 0.8*lS, lS + 4.5*sS, 270,  "koleje", "północne" , true);
+createGrafikOnBoard("kolejepolnocne", cw - 0.65*lS, lS + 4.1*sS);
+createTextOnBoard(cw - 0.8*lS, lS + 4.5*sS, 270, smallFont, "koleje", "północne" ,true);
 
 /* wodociągi */
-createFieldGrafikOnBoard("wodociagi", cw - 0.65*lS, lS + 7.1*sS);
-createFieldTextOnBoard(cw - 0.8*lS, lS + 7.5*sS, 270,  "wodociągi", "" , false);
+createGrafikOnBoard("wodociagi", cw - 0.65*lS, lS + 7.1*sS);
+createTextOnBoard(cw - 0.8*lS, lS + 7.5*sS, 270,  smallFont, "wodociągi", "" ,false);
 
 /* koleje  wschodnie */
-createFieldGrafikOnBoard("kolejewschodnie", lS + 4.1*sS, ch - 0.65*lS);
-createFieldTextOnBoard(lS+4.5*sS, ch - 0.8*lS, 0,  "koleje", "wschodnie" , true);
+createGrafikOnBoard("kolejewschodnie", lS + 4.1*sS, ch - 0.65*lS);
+createTextOnBoard(lS+4.5*sS, ch - 0.8*lS, 0,  smallFont, "koleje", "wschodnie" ,true);
 
 /* podatek */
-createFieldGrafikOnBoard("podatek", lS + 1.1*sS, ch - 0.65*lS);
-createFieldTextOnBoard(lS+1.5*sS, ch - 0.8*lS, 0, "podatek", "" , false);
+createGrafikOnBoard("podatek", lS + 1.1*sS, ch - 0.65*lS);
+createTextOnBoard(lS+1.5*sS, ch - 0.8*lS, 0, smallFont, "podatek", "" ,false);
 
 
 /* rysowanie górnych kolorów państw */
@@ -211,54 +214,54 @@ for(i=0; i<9; i++){
 }
 
 /* grecja państwa */
-createFieldTextOnBoard(0.7*lS, ch - lS - 0.5*sS, 90, "ateny", "120" , true);
-createFieldTextOnBoard(0.7*lS, ch - lS - 2.5*sS, 90, "saloniki", "120" , true);
+createTextOnBoard(0.7*lS, ch - lS - 0.5*sS, 90, smallFont, "ateny", "120" , true);
+createTextOnBoard(0.7*lS, ch - lS - 2.5*sS, 90, smallFont, "saloniki", "120" ,true);
 
 /* włochy państwa */
-createFieldTextOnBoard(0.7*lS, ch - lS - 5.5*sS, 90, "neapol", "200" , true);
-createFieldTextOnBoard(0.7*lS, ch - lS - 7.5*sS, 90, "mediolan", "200" , true);
-createFieldTextOnBoard(0.7*lS, ch - lS - 8.5*sS, 90, "rzym", "240" , true);
+createTextOnBoard(0.7*lS, ch - lS - 5.5*sS, 90, smallFont, "neapol", "200" , true);
+createTextOnBoard(0.7*lS, ch - lS - 7.5*sS, 90, smallFont, "mediolan", "200" ,true);
+createTextOnBoard(0.7*lS, ch - lS - 8.5*sS, 90, smallFont, "rzym", "240" , true);
 
 /* hiszpania państwa */
-createFieldTextOnBoard(lS + 0.5*sS, 0.7*lS, 180, "barcelona", "280" , true);
-createFieldTextOnBoard(lS + 2.5*sS, 0.7*lS, 180, "sewilla", "280" , true);
-createFieldTextOnBoard(lS + 3.5*sS, 0.7*lS, 180, "madryt", "320" , true);
+createTextOnBoard(lS + 0.5*sS, 0.7*lS, 180, smallFont, "barcelona", "280" , true);
+createTextOnBoard(lS + 2.5*sS, 0.7*lS, 180, smallFont, "sewilla", "280" , true);
+createTextOnBoard(lS + 3.5*sS, 0.7*lS, 180, smallFont, "madryt", "320" , true);
 
 /* anglia państwa */
-createFieldTextOnBoard(lS + 5.5*sS, 0.7*lS, 180, "liverpool", "360" , true);
-createFieldTextOnBoard(lS + 7.5*sS, 0.7*lS, 180, "glasgow", "360" , true);
-createFieldTextOnBoard(lS + 8.5*sS, 0.7*lS, 180, "londyn", "400" , true);
+createTextOnBoard(lS + 5.5*sS, 0.7*lS, 180, smallFont, "liverpool", "360" , true);
+createTextOnBoard(lS + 7.5*sS, 0.7*lS, 180, smallFont, "glasgow", "360" , true);
+createTextOnBoard(lS + 8.5*sS, 0.7*lS, 180, smallFont, "londyn", "400" , true);
 
 /* benelux państwa */
-createFieldTextOnBoard(cw - 0.7*lS, lS + 0.5*sS, 270, "rotterdam", "440" , true);
-createFieldTextOnBoard(cw - 0.7*lS, lS + 2.5*sS, 270, "bruksela", "440" , true);
-createFieldTextOnBoard(cw - 0.7*lS, lS + 3.5*sS, 270, "amsterdam", "480" , true);
+createTextOnBoard(cw - 0.7*lS, lS + 0.5*sS, 270, smallFont, "rotterdam", "440" ,true);
+createTextOnBoard(cw - 0.7*lS, lS + 2.5*sS, 270, smallFont, "bruksela", "440" , true);
+createTextOnBoard(cw - 0.7*lS, lS + 3.5*sS, 270, smallFont, "amsterdam", "480" , true);
 
 /* szwecja państwa */
-createFieldTextOnBoard(cw - 0.7*lS, lS + 5.5*sS, 270, "malmo", "520" , true);
-createFieldTextOnBoard(cw - 0.7*lS, lS + 6.5*sS, 270, "goteborg", "520" , true);
-createFieldTextOnBoard(cw - 0.7*lS, lS + 8.5*sS, 270, "sztokholm", "520" , true);
+createTextOnBoard(cw - 0.7*lS, lS + 5.5*sS, 270, smallFont, "malmo", "520" ,true);
+createTextOnBoard(cw - 0.7*lS, lS + 6.5*sS, 270, smallFont,  "goteborg", "520" ,true);
+createTextOnBoard(cw - 0.7*lS, lS + 8.5*sS, 270, smallFont,  "sztokholm", "520" ,true);
 
 /* austria państwa */
-createFieldTextOnBoard(lS + 0.5*sS, ch - 0.7*lS, 0, "wiedeń", "800" , true);
-createFieldTextOnBoard(lS + 2.5*sS, ch - 0.7*lS, 0, "amsterdam", "700" , true);
+createTextOnBoard(lS + 0.5*sS, ch - 0.7*lS, 0, smallFont, "wiedeń", "800" ,true);
+createTextOnBoard(lS + 2.5*sS, ch - 0.7*lS, 0, smallFont, "amsterdam", "700" ,true);
 
 /* rfn państwa */
-createFieldTextOnBoard(lS + 5.5*sS, ch - 0.7*lS, 0, "bonn", "640" , true);
-createFieldTextOnBoard(lS + 7.5*sS, ch - 0.7*lS, 0, "kolonia", "600" , true);
-createFieldTextOnBoard(lS + 8.5*sS, ch - 0.7*lS, 0, "frankfurt", "600" , true);
+createTextOnBoard(lS + 5.5*sS, ch - 0.7*lS, 0, smallFont, "bonn", "640" ,true);
+createTextOnBoard(lS + 7.5*sS, ch - 0.7*lS, 0, smallFont, "kolonia", "600" ,true);
+createTextOnBoard(lS + 8.5*sS, ch - 0.7*lS, 0, smallFont, "frankfurt", "600" ,true);
 
 /* wiezienie */
-createFieldGrafikOnBoard("wiezienie", 0.2*lS, 0.2*lS);
-createFieldTextOnBoard(lS * 0.5, lS*0.8, 0, "wiezienie", "" , false);
+createGrafikOnBoard("wiezienie", 0.2*lS, 0.2*lS);
+createTextOnBoard(lS * 0.5, lS*0.8, 0, smallFont, "wiezienie", "" , false);
 
 /* parking bezpłatny */
-createFieldGrafikOnBoard("parkingbezplatny", cw - 0.8*lS, 0.2*lS);
-createFieldTextOnBoard(cw - lS*0.4, lS*0.8, 0, "parking bezplatny", "" , false);
+createGrafikOnBoard("parkingbezplatny", cw - 0.8*lS, 0.2*lS);
+createTextOnBoard(cw - lS*0.4, lS*0.8, 0, smallFont, "parking bezplatny", "" , false);
 
 /* idziesz do wiezienia */
-createFieldGrafikOnBoard("idzieszdowiezienia", cw - 0.8*lS, ch - 0.8*lS);
-createFieldTextOnBoard(cw - lS*0.35, ch - lS*0.2, 0, "idziesz do wiezienia", "" , false);
+createGrafikOnBoard("idzieszdowiezienia", cw - 0.8*lS, ch - 0.8*lS);
+createTextOnBoard(cw - lS*0.35, ch - lS*0.2, 0, smallFont, "idziesz do wiezienia", "" , false);
 
 function createQuestionmarkOnField(color, xPos, yPos, rotate) {
 	ctx.font = veryBigFont + "pt Arial";
@@ -277,3 +280,28 @@ createQuestionmarkOnField(firstQuestionMarkColor, lS + 6.5*sS, lS/2, 180);
 createQuestionmarkOnField(secondQuestionMarkColor, cw-lS/2, lS+1.5*sS, 270);
 createQuestionmarkOnField(firstQuestionMarkColor, lS+6.5*sS, ch - lS/2, 0);
 createQuestionmarkOnField(secondQuestionMarkColor, lS+3.5*sS, ch - lS/2, 0);
+
+
+/* grecja - napis*/
+createTextOnBoard(lS, lS+7.5*sS, 90, bigFont, "grecja", "" , false);
+
+/* włochy - napis*/
+createTextOnBoard(lS, lS+2*sS, 90, bigFont, "włochy", "" , false);
+
+/* hiszpania - napis*/
+createTextOnBoard(lS+2*sS, lS, 180, bigFont, "hiszpania", "" , false);
+
+/* anglia - napis*/
+createTextOnBoard(lS+7*sS, lS, 180, bigFont, "anglia", "" , false);
+
+/* benelux - napis*/
+createTextOnBoard(cw - lS, lS + 2*sS, 270, bigFont, "benelux", "" , false);
+
+/* szwecja - napis*/
+createTextOnBoard(cw - lS, lS + 7*sS, 270, bigFont, "szwecja", "" , false);
+
+/* rfn - napis*/
+createTextOnBoard(lS + 7*sS, lS + 9*sS, 0, bigFont, "rfn", "" , false);
+
+/* austria - napis*/
+createTextOnBoard(lS + 1.5*sS, lS + 9*sS, 0, bigFont, "austria", "" , false);
