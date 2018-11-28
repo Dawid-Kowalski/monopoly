@@ -14,7 +14,20 @@ function downloadColorSettings () {
 	austriaColor = document.getElementById("city8color").value;
 }
 
+function downloadCountrySettings () {
+	greece = document.getElementById("country1name").value;
+	italy = document.getElementById("country2name").value;
+	spain = document.getElementById("country3name").value;
+	england = document.getElementById("country4name").value;
+	benelux = document.getElementById("country5name").value;
+	sweden = document.getElementById("country6name").value;
+	rfn = document.getElementById("country7name").value;
+	austria = document.getElementById("country8name").value;
+}
+
+
 function changeSettings () {
 	downloadColorSettings();
+	downloadCountrySettings();
 	drawBoard();
 }
