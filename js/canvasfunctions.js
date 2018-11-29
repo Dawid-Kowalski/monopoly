@@ -1,7 +1,7 @@
 function drawBoard() {
 	drawBackground();
 	drawFields();
-	drawCountrysColors()
+	drawCountrysColors();
 	addGrafikOnBoard();
 	addQuestionsMarktsOnBoard();
 	addTextOnBoard();

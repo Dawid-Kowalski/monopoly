@@ -23,6 +23,7 @@ function changePlayersName(id) {
 function showRoundMainData(player) {
 	document.getElementById("player-name").innerHTML = players[player].name;
 	document.getElementById("player-money").innerHTML = players[player].money;
+	document.getElementById("player-position").innerHTML = players[player].position;
 }
 
 function nextPlayer() {
@@ -39,3 +40,14 @@ function nextPlayer() {
 
 	return activePlayer;
 }
+
+function updatePlayersPosition (player) {
+	players[player].position = players[player].position + sumDice;
+
+	if(players[player].position > 40){
+		players[player].position -= 40;
+	}
+
+	return players[player].position;
+}
+

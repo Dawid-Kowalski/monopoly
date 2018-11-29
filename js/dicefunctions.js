@@ -5,4 +5,7 @@ function throwDice(){
 	document.getElementById("second-dice").innerHTML = secondDice;
 	sumDice = firstDice + secondDice;
 	document.getElementById("sum-dice").innerHTML = sumDice;
+
+	updatePlayersPosition(activePlayer);
+	showRoundMainData(activePlayer);
 }
