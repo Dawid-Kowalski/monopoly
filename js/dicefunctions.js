@@ -6,6 +6,11 @@ function throwDice(){
 	sumDice = firstDice + secondDice;
 	document.getElementById("sum-dice").innerHTML = sumDice;
 
-	updatePlayersPosition(activePlayer);
+	updatePlayerPosition(activePlayer);
+	updatePlayerPawnPosition(activePlayer);
+
 	showRoundMainData(activePlayer);
+
+	drawBoard();
+	drawPlayerPosition();
 }
