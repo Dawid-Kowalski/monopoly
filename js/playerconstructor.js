@@ -3,9 +3,10 @@ function Player () {
 	this.status = "on";
 	this.name = "brak";
 	this.money = 1000;
-	this.position = 0;
+	this.position = 40;
 	this.pawnXposition = 0;
 	this.pawnYposition = 0;
+	this.color = "black";
 	this.goFromPrisonBlue = "niedostępne";
 	this.goFromPrisonRed = "niedostępne";
 	this.houseAll = 0;

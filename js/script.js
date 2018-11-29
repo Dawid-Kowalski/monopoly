@@ -22,6 +22,13 @@ function changePlayersName(id) {
 	return players[id-1].name;
 }
 
+function changePlayerColor(id) {
+	let name = "player" + id + "-color";
+	players[id-1].color = document.getElementById(name).value;
+
+	return players[id-1].color;
+}
+
 function showRoundMainData(player) {
 	document.getElementById("player-name").innerHTML = players[player].name;
 	document.getElementById("player-money").innerHTML = players[player].money;
@@ -32,6 +39,10 @@ function nextPlayer() {
 
 	drawBoard();
 	showRoundMainData(activePlayer);
+
+	for(let i = 0; i<players.length; i++) {
+		drawPlayerPosition(i);
+	}
 
 	if(activePlayer<(players.length)-1) {
 		activePlayer++;
@@ -71,7 +82,7 @@ function drawPlayerPosition(player) {
 
 	ctx.beginPath();
 	ctx.arc(centerOfPawnX, centerOfPawnY , radiusOfPawn, 0, 2*Math.PI);
-	ctx.fillStyle = "red";
+	ctx.fillStyle = players[player].color;
 	ctx.fill();
 	ctx.lineWidth = 2;
     ctx.strokeStyle = "#003300";
