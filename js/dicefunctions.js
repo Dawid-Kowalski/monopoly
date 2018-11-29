@@ -15,4 +15,6 @@ function throwDice(){
 	for(let i = 0; i<players.length; i++) {
 		drawPlayerPosition(i);
 	}
+
+	checkPlayerField(activePlayer);
 }
