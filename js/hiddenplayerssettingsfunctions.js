@@ -27,3 +27,36 @@ function hidePlayersSettings (label, inputText, labelColor, inputColor, ishidden
 			document.getElementById(inputColor).type = "color";
 		}
 }
+
+function hideInfoPanels (isCity, isChance, isRailways, isPowerstation, isWaterworks) {
+	
+	if(isCity) {
+		document.getElementById("city-info-panel").hidden = isCity;
+	} else {
+		document.getElementById("city-info-panel").hidden = false;
+	}
+
+	if(isChance) {
+		document.getElementById("card-info-panel").hidden = isChance;
+	} else {
+		document.getElementById("card-info-panel").hidden = false;
+	}
+
+	if(isRailways) {
+		document.getElementById("railways-info-panel").hidden = isRailways;
+	} else {
+		document.getElementById("railways-info-panel").hidden = false;
+	}
+
+	if(isPowerstation) {
+		document.getElementById("powerstation-info-panel").hidden = isPowerstation;
+	} else {
+		document.getElementById("powerstation-info-panel").hidden = false;
+	}
+
+	if(isWaterworks) {
+		document.getElementById("waterworks-info-panel").hidden = isWaterworks;
+	} else {
+		document.getElementById("waterworks-info-panel").hidden = false;
+	}
+}

@@ -100,7 +100,7 @@ function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "city"){
 
-		console.log(fields[players[player].position - 1].name);
+		hideInfoPanels (false, true, true, true, true);
 
 		document.getElementById('field-city-name-position').innerHTML = fields[players[player].position - 1].name;
 		document.getElementById('field-property').innerHTML = fields[players[player].position - 1].property;
@@ -119,4 +119,6 @@ function checkPlayerField(player) {
 		document.getElementById('pay-4-house').innerHTML = fields[players[player].position - 1].pay4house;
 		document.getElementById('pay-1-hotel').innerHTML = fields[players[player].position - 1].pay1hotel;
 	}
+
+
 }
