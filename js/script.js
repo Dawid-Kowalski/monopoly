@@ -2,6 +2,8 @@ drawBoard();
 
 activePlayer = 0;
 
+drawPlayerPosition();
+
 
 function prepaerPlayers() {
 
@@ -51,3 +53,21 @@ function updatePlayersPosition (player) {
 	return players[player].position;
 }
 
+function drawPlayerPosition() {
+	// wielkość pionka //
+	let radiusOfPawn = 10;
+	// współrzędne środka pionka pionek, musi mieścić się w polu uwzględniając równiez promień pionka (nie może wystawać)
+	let centerOfPawnX = Math.floor(Math.random()*((lS - radiusOfPawn) - (0 + radiusOfPawn)) + (0 + radiusOfPawn));
+	let centerOfPawnY = Math.floor(Math.random() * ((ch -radiusOfPawn) - (ch - lS + radiusOfPawn)) +(ch - lS + radiusOfPawn));
+
+	console.log(centerOfPawnX);
+	console.log(centerOfPawnY);
+
+	ctx.beginPath();
+	ctx.arc(centerOfPawnX, centerOfPawnY , radiusOfPawn, 0, 2*Math.PI);
+	ctx.fillStyle = "red";
+	ctx.fill();
+	ctx.lineWidth = 2;
+    ctx.strokeStyle = "#003300";
+	ctx.stroke();
+}
