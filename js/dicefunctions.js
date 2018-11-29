@@ -12,5 +12,5 @@ function throwDice(){
 	showRoundMainData(activePlayer);
 
 	drawBoard();
-	drawPlayerPosition();
+	drawPlayerPosition(activePlayer);
 }

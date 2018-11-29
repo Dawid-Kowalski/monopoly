@@ -53,15 +53,21 @@ function updatePlayerPosition (player) {
 	return players[player].position;
 }
 
-function drawPlayerPosition() {
+function drawPlayerPosition(player) {
+
+	//pozycja numerowana od 1 tablica pól od zera trzeba odjąć 1 //
+	let position = players[player].position - 1;
+
+	let minXfieldValue = fields[position].minXpos;
+	let maxXfieldValue = fields[position].maxXpos;
+	let minYfieldValue = fields[position].minYpos;
+	let maxYfieldValue = fields[position].maxYpos;
+
 	// wielkość pionka //
 	let radiusOfPawn = 10;
 	// współrzędne środka pionka pionek, musi mieścić się w polu uwzględniając równiez promień pionka (nie może wystawać)
-	centerOfPawnX = Math.floor(Math.random()*((lS - radiusOfPawn) - (0 + radiusOfPawn)) + (0 + radiusOfPawn));
-	centerOfPawnY = Math.floor(Math.random() * ((ch -radiusOfPawn) - (ch - lS + radiusOfPawn)) +(ch - lS + radiusOfPawn));
-
-	console.log(centerOfPawnX);
-	console.log(centerOfPawnY);
+	centerOfPawnX = Math.floor(Math.random()*((maxXfieldValue - radiusOfPawn) - (minXfieldValue + radiusOfPawn)) + (minXfieldValue + radiusOfPawn));
+	centerOfPawnY = Math.floor(Math.random() * ((maxYfieldValue -radiusOfPawn) - (minYfieldValue + radiusOfPawn)) +(minYfieldValue + radiusOfPawn));
 
 	ctx.beginPath();
 	ctx.arc(centerOfPawnX, centerOfPawnY , radiusOfPawn, 0, 2*Math.PI);
