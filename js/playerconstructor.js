@@ -4,6 +4,8 @@ function Player () {
 	this.name = "brak";
 	this.money = 1000;
 	this.position = 0;
+	this.pawnXposition = 0;
+	this.pawnYposition = 0;
 	this.goFromPrisonBlue = "niedostępne";
 	this.goFromPrisonRed = "niedostępne";
 	this.houseAll = 0;
