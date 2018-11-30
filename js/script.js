@@ -41,18 +41,18 @@ function showRoundMainData(player) {
 
 function nextPlayer() {
 
-	drawBoard();
-	showRoundMainData(activePlayer);
-
-	for(let i = 0; i<players.length; i++) {
-		drawPlayerPosition(i);
-	}
-
 	if(activePlayer<(players.length)-1) {
 		activePlayer++;
 	}
 	else{
 		activePlayer = 0;
+	}
+
+	drawBoard();
+	showRoundMainData(activePlayer);
+
+	for(let i = 0; i<players.length; i++) {
+		drawPlayerPosition(i);
 	}
 
 	return activePlayer;
@@ -64,6 +64,9 @@ function updatePlayerPosition (player) {
 	if(players[player].position > 40){
 		players[player].position -= 40;
 	}
+
+	//do testów
+	players[player].position = 4;
 
 	return players[player].position;
 }
@@ -116,6 +119,12 @@ function checkPlayerField(player) {
 		blueCard = blueChance.shift();
 		blueChance.push(blueCard);
 		document.getElementById('chance-text').innerHTML = blueCard.text;
+	}
+
+	if(fields[players[player].position - 1].type == "paid parking") {
+		hideInfoPanels (true, true, true, true, true);
+		updatePlayerMoney(player, -400);
+		showRoundMainData(player);
 	}
 
 
