@@ -11,6 +11,7 @@ let blueCard;
 let redCard;
 
 let cityTable = document.getElementById("city-table");
+let railwaysTable = document.getElementById("railways-table");
 
 
 function prepaerPlayers() {
@@ -582,3 +583,164 @@ function addByerInfoPlayerInventory() {
 		}
 	}
 }
+
+
+function drawInventoryRailways(player) {
+
+	// czyszczenie tabeli koleje w inwentarzu 
+	if(document.getElementById("railways-table-body")){
+		let railwaysTableBodyRemove = document.getElementById("railways-table-body");
+		railwaysTable.removeChild(railwaysTableBodyRemove);
+		let railwaysTableBody = document.createElement("tbody");
+		railwaysTableBody.id = "railways-table-body";
+		railwaysTable.appendChild(railwaysTableBody);		
+	} else {
+		let railwaysTableBody = document.createElement("tbody");
+		railwaysTableBody.id = "railways-table-body";
+		railwaysTable.appendChild(railwaysTableBody);	
+	}
+
+	// dodawanie wierszy koleji w pętli
+	for(let i=1; i<5 ; i++) {
+
+		let railwaysTableBody = document.getElementById("railways-table-body");
+
+		let trRailways = document.createElement("tr");
+		railwaysTableBody.appendChild(trRailways);
+
+		let tdRailwaysId = document.createElement("td");
+		tdRailwaysId.innerHTML = i;
+		trRailways.appendChild(tdRailwaysId);
+
+		let tdRailwaysName = document.createElement("td");
+		tdRailwaysName.id = "railwaysid" + i;
+		tdRailwaysName.innerHTML = " ";
+		trRailways.appendChild(tdRailwaysName);
+
+		let tdRailwaysHave = document.createElement("td");
+		tdRailwaysHave.id = "haverailways" + i;
+		tdRailwaysHave.innerHTML = " ";
+		trRailways.appendChild(tdRailwaysHave);
+
+		let tdRailwaysMortage = document.createElement("td");
+		tdRailwaysMortage.id = "mortagerailways" + i;
+		tdRailwaysMortage.innerHTML = " ";
+		trRailways.appendChild(tdRailwaysMortage);
+
+		let tdRailwaysBuyRailways = document.createElement("td");
+		trRailways.appendChild(tdRailwaysBuyRailways);
+
+		let buttonRailwaysBuyRailways = document.createElement("button");
+		buttonRailwaysBuyRailways.id = "buttonbuyrailways"+i;
+		buttonRailwaysBuyRailways.type = "button";
+		buttonRailwaysBuyRailways.onclick = function () {buyRailways(i);};
+		
+		buttonRailwaysBuyRailways.classList.add("btn", "btn-danger");
+		buttonRailwaysBuyRailways.disabled = true;
+		
+		buttonRailwaysBuyRailways.innerHTML = "kup";
+		tdRailwaysBuyRailways.appendChild(buttonRailwaysBuyRailways);
+
+		let tdRailwaysSellRailways = document.createElement("td");
+		trRailways.appendChild(tdRailwaysSellRailways);
+
+		let label1RailwaysSellRailways = document.createElement("label");
+		label1RailwaysSellRailways.innerHTML = "komu";
+		tdRailwaysSellRailways.appendChild(label1RailwaysSellRailways);
+
+		let br1RailwaysSellRailways = document.createElement("br");
+		tdRailwaysSellRailways.appendChild(br1RailwaysSellRailways);
+
+		let selectRailwaysSellRailways = document.createElement("select");
+		selectRailwaysSellRailways.id = "buyerrailways" + i;
+		tdRailwaysSellRailways.appendChild(selectRailwaysSellRailways);
+		let option1RailwaysSellRailways = document.createElement("option");
+		option1RailwaysSellRailways.id = "railways"+i+"opt1";
+		selectRailwaysSellRailways.appendChild(option1RailwaysSellRailways);
+		let option2RailwaysSellRailways = document.createElement("option");
+		option2RailwaysSellRailways.id = "railways"+i+"opt2";
+		selectRailwaysSellRailways.appendChild(option2RailwaysSellRailways);
+		let option3RailwaysSellRailways = document.createElement("option");
+		option3RailwaysSellRailways.id = "railways"+i+"opt3";
+		selectRailwaysSellRailways.appendChild(option3RailwaysSellRailways);
+		let option4RailwaysSellRailways = document.createElement("option");
+		option4RailwaysSellRailways.id = "railways"+i+"opt4";
+		selectRailwaysSellRailways.appendChild(option4RailwaysSellRailways);
+
+		let br2RailwaysSellRailways = document.createElement("br");
+		tdRailwaysSellRailways.appendChild(br2RailwaysSellRailways);
+
+		let label2RailwaysSellRailways = document.createElement("label");
+		label2RailwaysSellRailways.innerHTML = "za ile";
+		tdRailwaysSellRailways.appendChild(label2RailwaysSellRailways);
+
+		let br3RailwaysSellRailways = document.createElement("br");
+		tdRailwaysSellRailways.appendChild(br3RailwaysSellRailways);
+
+		let inputRailwaysSellRailways = document.createElement("input");
+		inputRailwaysSellRailways.id = "pricerailways" + i;
+		inputRailwaysSellRailways.type = "number";
+		tdRailwaysSellRailways.appendChild(inputRailwaysSellRailways);
+
+		let br4RailwaysSellRailways = document.createElement("br");
+		tdRailwaysSellRailways.appendChild(br4RailwaysSellRailways);
+
+		let br5RailwaysSellRailways = document.createElement("br");
+		tdRailwaysSellRailways.appendChild(br5RailwaysSellRailways);
+
+		let buttonRailwaysSellRailways = document.createElement("button");
+		buttonRailwaysSellRailways.id = "buttonsellrailways"+i;
+		buttonRailwaysSellRailways.type = "button";
+
+		if(players[activePlayer].railways[i-1].have == "tak") {
+			buttonRailwaysSellRailways.classList.add("btn", "btn-success");
+			buttonRailwaysSellRailways.disabled = false;
+		} else {
+			buttonRailwaysSellRailways.classList.add("btn", "btn-danger");
+			buttonRailwaysSellRailways.disabled = true;
+		}
+
+		buttonRailwaysSellRailways.onclick = function () {sellRailways(i);};
+		buttonRailwaysSellRailways.innerHTML = "sprzedaj";
+		tdRailwaysSellRailways.appendChild(buttonRailwaysSellRailways);
+
+		let tdRailwaysMortageAction = document.createElement("td");
+		trRailways.appendChild(tdRailwaysMortageAction);
+
+		let buttonRailwaysMortageAction = document.createElement("button");
+		buttonRailwaysMortageAction.id = "buttonmortagerailways"+i;
+		buttonRailwaysMortageAction.type = "button";
+
+		if(players[player].railways[i-1].have == "tak"  && players[player].railways[i-1].mortage == "nie") {
+			buttonRailwaysMortageAction.classList.add("btn", "btn-success");
+			buttonRailwaysMortageAction.disabled = false;
+		} else {
+			buttonRailwaysMortageAction.classList.add("btn", "btn-danger");
+			buttonRailwaysMortageAction.disabled = true;
+		}
+
+		buttonRailwaysMortageAction.onclick = function () {mortageRailways(i);};
+		buttonRailwaysMortageAction.innerHTML = "zastaw";
+		tdRailwaysMortageAction.appendChild(buttonRailwaysMortageAction);
+
+		let tdRailwaysMortageRemoveAction = document.createElement("td");
+		trRailways.appendChild(tdRailwaysMortageRemoveAction);
+
+		let buttonRailwaysMortageRemoveAction = document.createElement("button");
+		buttonRailwaysMortageRemoveAction.id = "buttonmortageremoverailways"+i;
+		buttonRailwaysMortageRemoveAction.type = "button";
+
+		if(players[player].railways[i-1].mortage == "tak"){
+			buttonRailwaysMortageRemoveAction.classList.add("btn", "btn-success");
+			buttonRailwaysMortageRemoveAction.disabled = false;
+		} else {
+			buttonRailwaysMortageRemoveAction.classList.add("btn", "btn-danger");
+			buttonRailwaysMortageRemoveAction.disabled = true;
+		}
+
+		buttonRailwaysMortageRemoveAction.onclick = function () {mortageRailwaysRemove(i);};
+		buttonRailwaysMortageRemoveAction.innerHTML = "wykup";
+		tdRailwaysMortageRemoveAction.appendChild(buttonRailwaysMortageRemoveAction);
+	}
+}
+

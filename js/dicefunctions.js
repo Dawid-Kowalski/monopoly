@@ -16,6 +16,8 @@ function throwDice(){
 	addCityInfoPlayerInventory(activePlayer);
 	addByerInfoPlayerInventory();
 
+	drawInventoryRailways(activePlayer);
+
 	drawBoard();
 	for(let i = 0; i<players.length; i++) {
 		drawPlayerPosition(i);
