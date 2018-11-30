@@ -66,7 +66,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 30;
+	players[player].position = 38;
 
 	return players[player].position;
 }
@@ -166,7 +166,11 @@ function checkPlayerField(player) {
 		}
 	}
 
-	
+	if(fields[players[player].position - 1].type == "tax to pay") {
+		hideInfoPanels (true, true, true, true, true);
+		updatePlayerMoney(player, -200);
+		showRoundMainData(player);
+	}
 
 
 
