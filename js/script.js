@@ -99,9 +99,14 @@ function updatePlayerPawnPosition(player) {
 function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "city"){
-
 		hideInfoPanels (false, true, true, true, true);
+		showCityInfos(player);
+	}
 
+
+}
+
+function showCityInfos(player) {
 		document.getElementById('field-city-name-position').innerHTML = fields[players[player].position - 1].name;
 		document.getElementById('field-property').innerHTML = fields[players[player].position - 1].property;
 		document.getElementById('is-mortage').innerHTML = fields[players[player].position - 1].isMortage;
@@ -118,7 +123,5 @@ function checkPlayerField(player) {
 		document.getElementById('pay-3-house').innerHTML = fields[players[player].position - 1].pay3house;
 		document.getElementById('pay-4-house').innerHTML = fields[players[player].position - 1].pay4house;
 		document.getElementById('pay-1-hotel').innerHTML = fields[players[player].position - 1].pay1hotel;
-	}
-
-
 }
+
