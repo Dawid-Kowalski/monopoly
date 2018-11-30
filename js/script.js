@@ -334,18 +334,13 @@ function drawInventoryCity(player) {
 		let selectCitySellCity = document.createElement("select");
 		selectCitySellCity.id = "buyer" + i;
 		tdCitySellCity.appendChild(selectCitySellCity);
-		let option1CitySellCity = document.createElement("option");
-		option1CitySellCity.id = "city"+i+"opt1";
-		selectCitySellCity.appendChild(option1CitySellCity);
-		let option2CitySellCity = document.createElement("option");
-		option2CitySellCity.id = "city"+i+"opt2";
-		selectCitySellCity.appendChild(option2CitySellCity);
-		let option3CitySellCity = document.createElement("option");
-		option3CitySellCity.id = "city"+i+"opt3";
-		selectCitySellCity.appendChild(option3CitySellCity);
-		let option4CitySellCity = document.createElement("option");
-		option4CitySellCity.id = "city"+i+"opt4";
-		selectCitySellCity.appendChild(option4CitySellCity);
+
+		for(let j =0; j<players.length; j++){
+			optionCitySellCity = document.createElement("option");
+			optionCitySellCity.id = "city"+i+"opt" + j;
+			selectCitySellCity.appendChild(optionCitySellCity);
+
+		}
 
 		let br2CitySellCity = document.createElement("br");
 		tdCitySellCity.appendChild(br2CitySellCity);
@@ -494,5 +489,96 @@ function drawInventoryCity(player) {
 
 		buttonCityMortageRemoveAction.innerHTML = "wykup";
 		tdCityMortageRemoveAction.appendChild(buttonCityMortageRemoveAction);
+	}
+}
+
+function addCityInfoPlayerInventory(player) {
+	for (let i=1; i<23; i++) {
+		document.getElementById("haveid"+i).innerHTML = players[player].city[i-1].have;
+		document.getElementById("houseid"+i).innerHTML = players[player].city[i-1].house;
+		document.getElementById("hotelid"+i).innerHTML = players[player].city[i-1].hotel;
+		document.getElementById("mortageid"+i).innerHTML = players[player].city[i-1].mortage;
+	}
+}
+
+function addCityNamePlayerInventory(player) {
+
+	document.getElementById("countryid1").innerHTML = greece.toLowerCase();
+	document.getElementById("cityid1").innerHTML = saloniki.toLowerCase();
+
+	document.getElementById("countryid2").innerHTML = greece.toLowerCase();
+	document.getElementById("cityid2").innerHTML = ateny.toLowerCase();
+
+	document.getElementById("countryid3").innerHTML = italy.toLowerCase();
+	document.getElementById("cityid3").innerHTML = neapol.toLowerCase();
+
+	document.getElementById("countryid4").innerHTML = italy.toLowerCase();
+	document.getElementById("cityid4").innerHTML = mediolan.toLowerCase();
+
+	document.getElementById("countryid5").innerHTML = italy.toLowerCase();
+	document.getElementById("cityid5").innerHTML = rzym.toLowerCase();
+
+	document.getElementById("countryid6").innerHTML = spain.toLowerCase();
+	document.getElementById("cityid6").innerHTML = barcelona.toLowerCase();
+
+	document.getElementById("countryid7").innerHTML = spain.toLowerCase();
+	document.getElementById("cityid7").innerHTML = sewilla.toLowerCase();
+
+	document.getElementById("countryid8").innerHTML = spain.toLowerCase();
+	document.getElementById("cityid8").innerHTML = madryt.toLowerCase();
+
+	document.getElementById("countryid9").innerHTML = england.toLowerCase();
+	document.getElementById("cityid9").innerHTML = liverpool.toLowerCase();
+
+	document.getElementById("countryid10").innerHTML = england.toLowerCase();
+	document.getElementById("cityid10").innerHTML = glasgow.toLowerCase();
+
+	document.getElementById("countryid11").innerHTML = england.toLowerCase();
+	document.getElementById("cityid11").innerHTML = londyn.toLowerCase();
+
+	document.getElementById("countryid12").innerHTML = benelux.toLowerCase();
+	document.getElementById("cityid12").innerHTML = rotterdam.toLowerCase();
+
+	document.getElementById("countryid13").innerHTML = benelux.toLowerCase();
+	document.getElementById("cityid13").innerHTML = bruksela.toLowerCase();
+
+	document.getElementById("countryid14").innerHTML = benelux.toLowerCase();
+	document.getElementById("cityid14").innerHTML = amsterdam.toLowerCase();
+
+	document.getElementById("countryid15").innerHTML = sweden.toLowerCase();
+	document.getElementById("cityid15").innerHTML = malmo.toLowerCase();
+
+	document.getElementById("countryid16").innerHTML = sweden.toLowerCase();
+	document.getElementById("cityid16").innerHTML = goteborg.toLowerCase();
+
+	document.getElementById("countryid17").innerHTML = sweden.toLowerCase();
+	document.getElementById("cityid17").innerHTML = sztokholm.toLowerCase();
+
+	document.getElementById("countryid18").innerHTML = rfn.toLowerCase();
+	document.getElementById("cityid18").innerHTML = frankfurt.toLowerCase();
+
+	document.getElementById("countryid19").innerHTML = rfn.toLowerCase();
+	document.getElementById("cityid19").innerHTML = kolonia.toLowerCase();
+
+	document.getElementById("countryid20").innerHTML = rfn.toLowerCase();
+	document.getElementById("cityid20").innerHTML = bonn.toLowerCase();
+
+	document.getElementById("countryid20").innerHTML = rfn.toLowerCase();
+	document.getElementById("cityid20").innerHTML = bonn.toLowerCase();
+
+	document.getElementById("countryid21").innerHTML = austria.toLowerCase();
+	document.getElementById("cityid21").innerHTML = insbruck.toLowerCase();
+
+	document.getElementById("countryid22").innerHTML = austria.toLowerCase();
+	document.getElementById("cityid22").innerHTML = wieden.toLowerCase();
+}
+
+function addByerInfoPlayerInventory() {
+	for (let i=1; i<23; i++) {
+		for(let j=0; j<players.length; j++) {
+			let city = "city"+i+"opt"+j;
+			document.getElementById(city).innerHTML = players[j].name;
+			document.getElementById(city).value = j;
+		}
 	}
 }
