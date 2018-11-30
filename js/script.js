@@ -1,9 +1,13 @@
 drawBoard();
+cardShuffle(blueChance);
+cardShuffle(redChance);
 
 activePlayer = 0;
 
 let centerOfPawnX = 0;
 let centerOfPawnY = 0;
+
+
 
 function prepaerPlayers() {
 
@@ -125,3 +129,21 @@ function showCityInfos(player) {
 		document.getElementById('pay-1-hotel').innerHTML = fields[players[player].position - 1].pay1hotel;
 }
 
+function cardShuffle(array) {
+	for(i=0;i<1000;i++){
+		let firstPosition = Math.floor((Math.random() * 16) + 0);
+		let secondPosition = Math.floor((Math.random() * 16) + 0);
+		let tempId;
+		let firstCardId = array[firstPosition].id;
+		let secondCardId = array[secondPosition].id;
+		tempId = firstCardId;
+		array[firstPosition].id = secondCardId;
+		array[secondPosition].id = tempId;
+		let tempText;
+		let firstCardText = array[firstPosition].text;
+		let secondCardText = array[secondPosition].text;
+		tempText = firstCardText;
+		array[firstPosition].text = secondCardText;
+		array[secondPosition].text = tempText;
+	}
+}
