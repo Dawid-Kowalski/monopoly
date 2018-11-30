@@ -69,7 +69,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 2;
+	players[player].position = 7;
 
 	return players[player].position;
 }
@@ -115,6 +115,9 @@ function checkPlayerField(player) {
 	if(fields[players[player].position - 1].type == "city"){
 		hideInfoPanels (false, true, true, true, true);
 		showCityInfos(player);
+
+		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
+		return;
 	}
 
 	if(fields[players[player].position - 1].type == "blue chance") {
@@ -145,6 +148,10 @@ function checkPlayerField(player) {
 		redCard = redChance.shift();
 		redChance.push(redCard);
 		document.getElementById('chance-text').innerHTML = redCard.text;
+		redCardEffect();
+
+		//zapobiega odpaleniu nizszych if po zmienie pozycji przez red card effect
+		return;
 	}
 
 	if(fields[players[player].position - 1].type == "prison visit") {
@@ -355,6 +362,123 @@ function blueCardEffect() {
 			case 16:
 				// składka ubezpieczeniowa //
 				updatePlayerMoney(activePlayer, -20);
+				break;
+		}
+		showRoundMainData(activePlayer);
+}
+
+function redCardEffect() {
+
+		switch(redCard.id) {
+			case 1:
+				// do madrytu //
+				players[activePlayer].position = 14;
+				drawBoard();
+					for(let i = 0; i<players.length; i++) {
+					drawPlayerPosition(i);
+				}
+				checkPlayerField(activePlayer);
+				hideInfoPanels(false, false, true, true, true);
+				break;
+			case 2:
+				// procenty //
+				updatePlayerMoney(activePlayer, 100);
+				break;
+			case 3:
+				// idziesz do koleji wschodnich //
+				players[activePlayer].position = 35;
+				drawBoard();
+				for(let i = 0; i<players.length; i++) {
+					drawPlayerPosition(i);
+				}
+				checkPlayerField(activePlayer);
+				hideInfoPanels(true, false, false, true, true);
+				break;
+			case 4:
+				// odsetki //
+				updatePlayerMoney(activePlayer, 300);
+				break;
+			case 5:
+				// do brukseli //
+				players[activePlayer].position = 23;
+				drawBoard();
+					for(let i = 0; i<players.length; i++) {
+					drawPlayerPosition(i);
+				}
+				checkPlayerField(activePlayer);
+				hideInfoPanels(false, false, true, true, true);
+				break;
+			case 6:
+				// picie w pracy //
+				updatePlayerMoney(activePlayer, -40);
+				break;
+			case 7:
+				// do neapolu //
+				players[activePlayer].position = 17;
+				drawBoard();
+					for(let i = 0; i<players.length; i++) {
+					drawPlayerPosition(i);
+				}
+				checkPlayerField(activePlayer);
+				hideInfoPanels(false, false, true, true, true);
+				break;
+			case 8:
+				// opłata za szkołe //
+				updatePlayerMoney(activePlayer, -300);
+				break;
+			case 9:
+				// karta wychodzisz z wiezienia //
+				players[activePlayer].goFromPrisonRed = "dostępna"; 
+// dorobić panel
+//				document.getElementById("gofromprisonblue").innerHTML = players[player].goFromPrisonBlue;
+				break;
+			case 10:
+				// idziesz do więzienia //
+				players[activePlayer].position = 10;
+				drawBoard();
+				for(let i = 0; i<players.length; i++) {
+					drawPlayerPosition(i);
+				}
+				checkPlayerField(activePlayer);
+				hideInfoPanels(true, false, true, true, true);
+				break;
+			case 11:
+				// krzyżówka //
+				updatePlayerMoney(activePlayer, 200);
+				break;
+			case 12:
+				// na start //
+				players[activePlayer].position = 40;
+				drawBoard();
+					for(let i = 0; i<players.length; i++) {
+					drawPlayerPosition(i);
+				}
+				checkPlayerField(activePlayer);
+				hideInfoPanels(true, true, true, true, true);
+				break;
+			case 13:
+				// remont domów //
+				let payRenovation = players[activePlayer].houseAll * 50 + players[activePlayer].hotelAll * 200;
+				updatePlayerMoney(activePlayer, -payRenovation);
+				break;
+			case 14:
+				// cofnięcie o 3 pola //
+				players[activePlayer].position = players[activePlayer].position - 3;
+				drawBoard();
+				for(let i = 0; i<players.length; i++) {
+					drawPlayerPosition(i);
+				}
+				checkPlayerField(activePlayer);
+				hideInfoPanels(true, false, true, true, true);			
+				break;
+			case 15:
+				// modernizacja //
+				let payModernization = players[activePlayer].houseAll * 80 + players[activePlayer].hotelAll * 230;
+				updatePlayerMoney(activePlayer, -payModernization);			
+				break;
+			case 16:
+				// szybka jazda //
+				updatePlayerMoney(activePlayer, -30);
 				break;
 		}
 		showRoundMainData(activePlayer);
