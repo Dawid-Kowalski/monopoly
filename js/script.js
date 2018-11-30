@@ -66,7 +66,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 7;
+	players[player].position = 10;
 
 	return players[player].position;
 }
@@ -139,6 +139,9 @@ function checkPlayerField(player) {
 		document.getElementById('chance-text').innerHTML = redCard.text;
 	}
 
+	if(fields[players[player].position - 1].type == "prison visit") {
+			hideInfoPanels (true, true, true, true, true);
+	}
 
 
 
