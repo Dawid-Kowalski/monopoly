@@ -107,6 +107,13 @@ function checkPlayerField(player) {
 		showCityInfos(player);
 	}
 
+	if(fields[players[player].position - 1].type == "blue chance") {
+		hideInfoPanels (true, false, true, true, true);
+		blueCard = blueChance.shift();
+		blueChance.push(blueCard);
+		document.getElementById('chance-text').innerHTML = blueCard.text;
+	}
+
 
 }
 
