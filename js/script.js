@@ -66,7 +66,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 20;
+	players[player].position = 28;
 
 	return players[player].position;
 }
@@ -152,6 +152,11 @@ function checkPlayerField(player) {
 		hideInfoPanels (true, true, true, true, true);
 	}
 
+	if(fields[players[player].position - 1].type == "waterworks") {
+		hideInfoPanels (true, true, true, true, false);
+		showWaterworksInfos(player);
+	}
+
 
 
 
@@ -195,6 +200,14 @@ function showPowerStationInfos(player) {
 		document.getElementById('cost-powerstation').innerHTML = fields[players[player].position - 1].cost;
 		document.getElementById('mortage-powerstation-price').innerHTML = fields[players[player].position - 1].mortage;
 		document.getElementById('mortage-remove-powerstation').innerHTML = fields[players[player].position - 1].mortageRemove;
+}
+
+function showWaterworksInfos(player) {
+		document.getElementById('field-waterworks-property').innerHTML = fields[players[player].position - 1].property;
+		document.getElementById('is-mortage-waterworks').innerHTML = fields[players[player].position - 1].isMortage;
+		document.getElementById('cost-waterworks').innerHTML = fields[players[player].position - 1].cost;
+		document.getElementById('mortage-waterworks-price').innerHTML = fields[players[player].position - 1].mortage;
+		document.getElementById('mortage-remove-waterworks').innerHTML = fields[players[player].position - 1].mortageRemove;
 }
 
 function cardShuffle(array) {
