@@ -66,7 +66,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 5;
+	players[player].position = 7;
 
 	return players[player].position;
 }
@@ -116,7 +116,7 @@ function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "blue chance") {
 		hideInfoPanels (true, false, true, true, true);
-		blueCard = blueChance.shift();
+		let blueCard = blueChance.shift();
 		blueChance.push(blueCard);
 		document.getElementById('chance-text').innerHTML = blueCard.text;
 	}
@@ -130,6 +130,13 @@ function checkPlayerField(player) {
 	if(fields[players[player].position - 1].type == "railways") {
 		hideInfoPanels (true, true, false, true, true);
 		showRailwaysInfos(player);
+	}
+
+	if(fields[players[player].position - 1].type == "red chance") {
+		hideInfoPanels (true, false, true, true, true);
+		let redCard = redChance.shift();
+		redChance.push(redCard);
+		document.getElementById('chance-text').innerHTML = redCard.text;
 	}
 
 
