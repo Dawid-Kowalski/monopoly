@@ -66,7 +66,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 38;
+	players[player].position = 40;
 
 	return players[player].position;
 }
@@ -170,6 +170,10 @@ function checkPlayerField(player) {
 		hideInfoPanels (true, true, true, true, true);
 		updatePlayerMoney(player, -200);
 		showRoundMainData(player);
+	}
+
+	if(fields[players[player].position - 1].type == "start") {
+		hideInfoPanels (true, true, true, true, true);
 	}
 
 
