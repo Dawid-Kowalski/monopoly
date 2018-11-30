@@ -12,6 +12,7 @@ let redCard;
 
 let cityTable = document.getElementById("city-table");
 let railwaysTable = document.getElementById("railways-table");
+let buldingsTable = document.getElementById("buldings-table");
 
 
 function prepaerPlayers() {
@@ -765,5 +766,310 @@ function addByerRailwaysPlayerInventory() {
 			document.getElementById(railways).innerHTML = players[j].name;
 			document.getElementById(railways).value = j;
 		}
+	}
+}
+
+function drawInventoryBuldings(player){
+
+//czyszczenie tabeli z budynkami (elektrownia i wodociągi)
+	if(document.getElementById("buldings-table-body")){
+		let buldingsTableBodyRemove = document.getElementById("buldings-table-body");
+		buldingsTable.removeChild(buldingsTableBodyRemove);
+		let buldingsTableBody = document.createElement("tbody");
+		buldingsTableBody.id = "buldings-table-body";
+		buldingsTable.appendChild(buldingsTableBody);		
+	} else {
+		let buldingsTableBody = document.createElement("tbody");
+		buldingsTableBody.id = "buldings-table-body";
+		buldingsTable.appendChild(buldingsTableBody);	
+	}
+
+// dodawanie wierszy
+	let buldingsTableBody = document.getElementById("buldings-table-body");
+
+	let tr2Buldings = document.createElement("tr");
+	buldingsTableBody.appendChild(tr2Buldings);
+
+	let tdPowerStationId = document.createElement("td");
+	tdPowerStationId.innerHTML = 1;
+	tr2Buldings.appendChild(tdPowerStationId);
+
+
+	let tdPowerStationName = document.createElement("td");
+	tdPowerStationName.id = "powerstation";
+	tdPowerStationName.innerHTML = "elektrownia";
+	tr2Buldings.appendChild(tdPowerStationName);
+
+	let tdPowerStationHave = document.createElement("td");
+	tdPowerStationHave.id = "havepowerstation";
+	tdPowerStationHave.innerHTML = " ";
+	tr2Buldings.appendChild(tdPowerStationHave);
+
+	let tdPowerStationMortage = document.createElement("td");
+	tdPowerStationMortage.id = "mortagepowerstation";
+	tdPowerStationMortage.innerHTML = " ";
+	tr2Buldings.appendChild(tdPowerStationMortage);
+
+	let tdPowerStatioBuyPowerStation= document.createElement("td");
+	tr2Buldings.appendChild(tdPowerStatioBuyPowerStation);
+
+	let buttonPowerStatioBuyPowerStation = document.createElement("button");
+	buttonPowerStatioBuyPowerStation.id = "buttonbuypowerstation";
+	buttonPowerStatioBuyPowerStation.type = "button";
+//  przenieść funkcje
+//	buttonPowerStatioBuyPowerStation.onclick = buyPowerStation;
+	buttonPowerStatioBuyPowerStation.classList.add("btn", "btn-danger");
+	buttonPowerStatioBuyPowerStation.disabled = true;
+	buttonPowerStatioBuyPowerStation.innerHTML = "kup";
+	tdPowerStatioBuyPowerStation.appendChild(buttonPowerStatioBuyPowerStation);
+
+	let tdPowerStatioSellPowerStation = document.createElement("td");
+	tr2Buldings.appendChild(tdPowerStatioSellPowerStation);
+
+	let label1PowerStatioSellPowerStation = document.createElement("label");
+	label1PowerStatioSellPowerStation.innerHTML = "komu";
+	tdPowerStatioSellPowerStation.appendChild(label1PowerStatioSellPowerStation);
+
+	let br1PowerStatioSellPowerStation = document.createElement("br");
+	tdPowerStatioSellPowerStation.appendChild(br1PowerStatioSellPowerStation);
+
+	let selectPowerStatioSellPowerStation = document.createElement("select");
+	selectPowerStatioSellPowerStation.id = "buyerpowerstation";
+	tdPowerStatioSellPowerStation.appendChild(selectPowerStatioSellPowerStation);
+
+	for(let j =0; j<players.length; j++){
+		let optionPowerStatioSellPowerStation = document.createElement("option");
+		optionPowerStatioSellPowerStation.id = "powerstationopt" + (j+1);
+		selectPowerStatioSellPowerStation.appendChild(optionPowerStatioSellPowerStation);
+	}
+
+	let br2PowerStatioSellPowerStation = document.createElement("br");
+	tdPowerStatioSellPowerStation.appendChild(br2PowerStatioSellPowerStation);
+
+	let label2PowerStatioSellPowerStation = document.createElement("label");
+	label2PowerStatioSellPowerStation.innerHTML = "za ile";
+	tdPowerStatioSellPowerStation.appendChild(label2PowerStatioSellPowerStation);
+
+	let br3PowerStatioSellPowerStation = document.createElement("br");
+	tdPowerStatioSellPowerStation.appendChild(br3PowerStatioSellPowerStation);
+
+	let inputPowerStatioSellPowerStation = document.createElement("input");
+	inputPowerStatioSellPowerStation.id = "pricepowerstation";
+	inputPowerStatioSellPowerStation.type = "number";
+	tdPowerStatioSellPowerStation.appendChild(inputPowerStatioSellPowerStation);
+
+	let buttonPowerStatioSellPowerStation = document.createElement("button");
+	buttonPowerStatioSellPowerStation.id = "buttonsellpowerstation";
+	buttonPowerStatioSellPowerStation.type = "button";
+
+	let br4PowerStatioSellPowerStation = document.createElement("br");
+	tdPowerStatioSellPowerStation.appendChild(br4PowerStatioSellPowerStation);
+
+	let br5PowerStatioSellPowerStation = document.createElement("br");
+	tdPowerStatioSellPowerStation.appendChild(br5PowerStatioSellPowerStation);
+
+	if(players[player].powerStation.have == "tak") {
+		buttonPowerStatioSellPowerStation.classList.add("btn", "btn-success");
+		buttonPowerStatioSellPowerStation.disabled = false;
+	} else {
+		buttonPowerStatioSellPowerStation.classList.add("btn", "btn-danger");
+		buttonPowerStatioSellPowerStation.disabled = true;
+	}
+
+//  przenieść funkcje
+//	buttonPowerStatioSellPowerStation.onclick = sellPowerStation;
+	buttonPowerStatioSellPowerStation.innerHTML = "sprzedaj";
+	tdPowerStatioSellPowerStation.appendChild(buttonPowerStatioSellPowerStation);
+
+	let tdPowerStationMortageAction = document.createElement("td");
+	tr2Buldings.appendChild(tdPowerStationMortageAction);
+
+	let buttonPowerStationMortageAction = document.createElement("button");
+	buttonPowerStationMortageAction.id = "buttonmortagepowerstation";
+	buttonPowerStationMortageAction.type = "button";
+
+	if(players[player].powerStation.have == "tak" && players[player].powerStation.mortage == "nie") {
+		buttonPowerStationMortageAction.classList.add("btn", "btn-success");
+		buttonPowerStationMortageAction.disabled = false;
+	} else {
+		buttonPowerStationMortageAction.classList.add("btn", "btn-danger");
+		buttonPowerStationMortageAction.disabled = true;
+	}
+// przenieść funkcje
+//	buttonPowerStationMortageAction.onclick = mortagePowerStation;
+	buttonPowerStationMortageAction.innerHTML = "zastaw";
+	tdPowerStationMortageAction.appendChild(buttonPowerStationMortageAction);
+
+	let tdPowerStationMortageRemoveAction = document.createElement("td");
+	tr2Buldings.appendChild(tdPowerStationMortageRemoveAction);
+
+	let buttonPowerStationMortageRemoveAction = document.createElement("button");
+	buttonPowerStationMortageRemoveAction.id = "buttonmortageremovepowerstation";
+	buttonPowerStationMortageRemoveAction.type = "button";
+
+	if(players[player].powerStation.mortage == "tak"){
+		buttonPowerStationMortageRemoveAction.classList.add("btn", "btn-success");
+		buttonPowerStationMortageRemoveAction.disabled = false;
+	} else {
+		buttonPowerStationMortageRemoveAction.classList.add("btn", "btn-danger");
+		buttonPowerStationMortageRemoveAction.disabled = true;
+	}
+// przenieść funkcje
+//	buttonPowerStationMortageRemoveAction.onclick = mortageRemovePowerStation;
+	buttonPowerStationMortageRemoveAction.innerHTML = "wykup";
+	tdPowerStationMortageRemoveAction.appendChild(buttonPowerStationMortageRemoveAction);
+
+	let trBuldings = document.createElement("tr");
+	buldingsTableBody.appendChild(trBuldings);
+
+	let tdWaterworksId = document.createElement("td");
+	tdWaterworksId.innerHTML = 2;
+	trBuldings.appendChild(tdWaterworksId);
+
+	let tdWaterworksName = document.createElement("td");
+	tdWaterworksName.id = "waterworks";
+	tdWaterworksName.innerHTML = "wodociągi";
+	trBuldings.appendChild(tdWaterworksName);
+
+	let tdWaterworksHave = document.createElement("td");
+	tdWaterworksHave.id = "havewaterworks";
+	tdWaterworksHave.innerHTML = " ";
+	trBuldings.appendChild(tdWaterworksHave);
+
+	let tdWaterworksMortage = document.createElement("td");
+	tdWaterworksMortage.id = "mortagewaterworks";
+	tdWaterworksMortage.innerHTML = " ";
+	trBuldings.appendChild(tdWaterworksMortage);
+
+	let tdWaterworksBuyWaterworks = document.createElement("td");
+	trBuldings.appendChild(tdWaterworksBuyWaterworks);
+
+	let buttonWaterworksBuyWaterworks = document.createElement("button");
+	buttonWaterworksBuyWaterworks.id = "buttonbuywaterworks";
+	buttonWaterworksBuyWaterworks.type = "button";
+//przenieść funkcje	
+//	buttonWaterworksBuyWaterworks.onclick = buyWaterworks;
+	buttonWaterworksBuyWaterworks.classList.add("btn", "btn-danger");
+	buttonWaterworksBuyWaterworks.disabled = true;
+	buttonWaterworksBuyWaterworks.innerHTML = "kup";
+	tdWaterworksBuyWaterworks.appendChild(buttonWaterworksBuyWaterworks);
+
+	let tdWaterworksSellWaterworks = document.createElement("td");
+	trBuldings.appendChild(tdWaterworksSellWaterworks);
+
+	let label1WaterworksSellWaterworks = document.createElement("label");
+	label1WaterworksSellWaterworks.innerHTML = "komu";
+	tdWaterworksSellWaterworks.appendChild(label1WaterworksSellWaterworks);
+
+	let br1WaterworksSellWaterworks = document.createElement("br");
+	tdWaterworksSellWaterworks.appendChild(br1WaterworksSellWaterworks);
+
+	let selectWaterworksSellWaterworks = document.createElement("select");
+	selectWaterworksSellWaterworks.id = "buyerwaterworks";
+	tdWaterworksSellWaterworks.appendChild(selectWaterworksSellWaterworks);
+
+	for(let j =0; j<players.length; j++){
+		let optionWaterworksSellWaterworks = document.createElement("option");
+		optionWaterworksSellWaterworks.id = "waterworksopt" + (j+1);
+		selectWaterworksSellWaterworks.appendChild(optionWaterworksSellWaterworks);
+	}
+
+	let br2WaterworksSellWaterworks = document.createElement("br");
+	tdWaterworksSellWaterworks.appendChild(br2WaterworksSellWaterworks);
+
+	let label2WaterworksSellWaterworks = document.createElement("label");
+	label2WaterworksSellWaterworks.innerHTML = "za ile";
+	tdWaterworksSellWaterworks.appendChild(label2WaterworksSellWaterworks);
+
+	let br3WaterworksSellWaterworks = document.createElement("br");
+	tdWaterworksSellWaterworks.appendChild(br3WaterworksSellWaterworks);
+
+	let inputWaterworksSellWaterworks = document.createElement("input");
+	inputWaterworksSellWaterworks.id = "pricewaterworks";
+	inputWaterworksSellWaterworks.type = "number";
+	tdWaterworksSellWaterworks.appendChild(inputWaterworksSellWaterworks);
+
+	let br4WaterworksSellWaterworks = document.createElement("br");
+	tdWaterworksSellWaterworks.appendChild(br4WaterworksSellWaterworks);
+
+	let br5WaterworksSellWaterworks = document.createElement("br");
+	tdWaterworksSellWaterworks.appendChild(br5WaterworksSellWaterworks);
+
+	let buttonWaterworksSellWaterworks = document.createElement("button");
+	buttonWaterworksSellWaterworks.id = "buttonsellwaterworks";
+	buttonWaterworksSellWaterworks.type = "button";
+
+	if(players[player].waterworks.have == "tak") {
+		buttonWaterworksSellWaterworks.classList.add("btn", "btn-success");
+		buttonWaterworksSellWaterworks.disabled = false;
+	} else {
+		buttonWaterworksSellWaterworks.classList.add("btn", "btn-danger");
+		buttonWaterworksSellWaterworks.disabled = true;
+	}
+//przenieść funkcje
+//	buttonWaterworksSellWaterworks.onclick = sellWaterworks;;
+	buttonWaterworksSellWaterworks.innerHTML = "sprzedaj";
+	tdWaterworksSellWaterworks.appendChild(buttonWaterworksSellWaterworks);
+
+	let tdWaterworksMortageAction = document.createElement("td");
+	trBuldings.appendChild(tdWaterworksMortageAction);
+
+	let buttonWaterworksMortageAction = document.createElement("button");
+	buttonWaterworksMortageAction.id = "buttonmortagewaterworks";
+	buttonWaterworksMortageAction.type = "button";
+
+	if(players[player].waterworks.have == "tak" && players[player].waterworks.mortage == "nie") {
+		buttonWaterworksMortageAction.classList.add("btn", "btn-success");
+		buttonWaterworksMortageAction.disabled = false;
+	} else {
+		buttonWaterworksMortageAction.classList.add("btn", "btn-danger");
+		buttonWaterworksMortageAction.disabled = true;
+	}
+//przenieść funkcje
+//	buttonWaterworksMortageAction.onclick = mortageWaterworks;;
+	buttonWaterworksMortageAction.innerHTML = "zastaw";
+	tdWaterworksMortageAction.appendChild(buttonWaterworksMortageAction);
+
+	let tdWaterworksMortageRemoveAction = document.createElement("td");
+	trBuldings.appendChild(tdWaterworksMortageRemoveAction);
+
+	let buttonWaterworksMortageRemoveAction = document.createElement("button");
+	buttonWaterworksMortageRemoveAction.id = "buttonmortageremovewaterworks";
+	buttonWaterworksMortageRemoveAction.type = "button";
+
+	if(players[player].waterworks.mortage == "tak"){
+		buttonWaterworksMortageRemoveAction.classList.add("btn", "btn-success");
+		buttonWaterworksMortageRemoveAction.disabled = false;
+	} else {
+		buttonWaterworksMortageRemoveAction.classList.add("btn", "btn-danger");
+		buttonWaterworksMortageRemoveAction.disabled = true;
+	}
+//przenieść funkcje
+//	buttonWaterworksMortageRemoveAction.onclick = mortageRemoveWaterworks;
+	buttonWaterworksMortageRemoveAction.innerHTML = "wykup";
+	tdWaterworksMortageRemoveAction.appendChild(buttonWaterworksMortageRemoveAction);
+}
+
+function addBuldingsInfoPlayerInventory(player) {
+	document.getElementById("havepowerstation").innerHTML = players[player].powerStation.have;
+	document.getElementById("mortagepowerstation").innerHTML = players[player].powerStation.mortage;
+
+	document.getElementById("havewaterworks").innerHTML = players[player].waterworks.have;
+	document.getElementById("mortagewaterworks").innerHTML = players[player].waterworks.mortage;
+}
+
+function addByerPowerstationPlayerInventory() {
+	for (let i=1; i<players.length+1; i++) {
+		let powerstation = "powerstationopt"+i;
+		document.getElementById(powerstation).innerHTML = players[i-1].name;
+		document.getElementById(powerstation).value = i-1;
+	}
+}
+
+function addByerWaterworksPlayerInventory() {
+	for (let i=1; i<players.length+1; i++) {
+		let waterworks = "waterworksopt"+i;
+		document.getElementById(waterworks).innerHTML = players[i-1].name;
+		document.getElementById(waterworks).value = i-1;
 	}
 }

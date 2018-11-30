@@ -21,6 +21,11 @@ function throwDice(){
 	addRailwaysInfoPlayerInventory(activePlayer);
 	addByerRailwaysPlayerInventory();
 
+	drawInventoryBuldings(activePlayer);
+	addBuldingsInfoPlayerInventory(activePlayer);
+	addByerPowerstationPlayerInventory();
+	addByerWaterworksPlayerInventory();
+
 	drawBoard();
 	for(let i = 0; i<players.length; i++) {
 		drawPlayerPosition(i);
