@@ -7,6 +7,9 @@ activePlayer = 0;
 let centerOfPawnX = 0;
 let centerOfPawnY = 0;
 
+let blueCard;
+let redCard;
+
 
 
 function prepaerPlayers() {
@@ -66,7 +69,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 40;
+	players[player].position = 2;
 
 	return players[player].position;
 }
@@ -115,10 +118,15 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "blue chance") {
+		console.log("odkrywasz szanse");
 		hideInfoPanels (true, false, true, true, true);
-		let blueCard = blueChance.shift();
+		blueCard = blueChance.shift();
 		blueChance.push(blueCard);
 		document.getElementById('chance-text').innerHTML = blueCard.text;
+		blueCardEffect();
+
+		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue card effect
+		return;
 	}
 
 	if(fields[players[player].position - 1].type == "paid parking") {
@@ -134,7 +142,7 @@ function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "red chance") {
 		hideInfoPanels (true, false, true, true, true);
-		let redCard = redChance.shift();
+		redCard = redChance.shift();
 		redChance.push(redCard);
 		document.getElementById('chance-text').innerHTML = redCard.text;
 	}
@@ -246,4 +254,108 @@ function cardShuffle(array) {
 		array[firstPosition].text = secondCardText;
 		array[secondPosition].text = tempText;
 	}
+}
+
+function blueCardEffect() {
+
+		switch(blueCard.id) {
+			case 1:
+				// powrót na start //
+				players[activePlayer].position = 40;
+				drawBoard();
+					for(let i = 0; i<players.length; i++) {
+					drawPlayerPosition(i);
+				}
+				checkPlayerField(activePlayer);
+				hideInfoPanels(true, false, true, true, true);
+				break;
+			case 2:
+				// pomyłka banku //
+				updatePlayerMoney(activePlayer, 400);
+				break;
+			case 3:
+				// idziesz do więzienia //
+				players[activePlayer].position = 10;
+				drawBoard();
+				for(let i = 0; i<players.length; i++) {
+					drawPlayerPosition(i);
+				}
+				checkPlayerField(activePlayer);
+				hideInfoPanels(true, false, true, true, true);
+				break;
+			case 4:
+				// urodziny //
+				//dodać 20$ * ilosć graczy minus 1 - od siebie nie dostaje //
+				updatePlayerMoney(activePlayer, 20*(players.length-1));
+				// odjąć wszystkim pozostałym graczom 20$ //
+				for(let i=0; i<players.length; i++){
+					if(i == activePlayer){
+						continue;
+					}
+					updatePlayerMoney(i, -20);
+				}
+				break;
+			case 5:
+				// spadek //
+				updatePlayerMoney(activePlayer, 200);
+				break;
+			case 6:
+				// opłata za szpital //
+				updatePlayerMoney(activePlayer, -400);
+				break;
+			case 7:
+				// odsetki //
+				updatePlayerMoney(activePlayer, 50);
+				break;
+			case 8:
+				// choroba //
+				updatePlayerMoney(activePlayer, -20);
+				break;
+			case 9:
+				// zwrot podatku //
+				updatePlayerMoney(activePlayer, 40);
+				break;
+			case 10:
+				// konkurs //
+				updatePlayerMoney(activePlayer, 200);
+				break;
+			case 11:
+				// do wiednia //
+				players[activePlayer].position = 39;
+				drawBoard();
+				for(let i = 0; i<players.length; i++) {
+					drawPlayerPosition(i);
+				}
+				checkPlayerField(activePlayer);
+				hideInfoPanels(false, false, true, true, true);
+				break;
+			case 12:
+				// nowa szansa //
+				let newCard = confirm("Ciągnij kartę z 2 zestawu - naciśnij ok\n\n lub \n\nZapłać 20$ - naciśnij anuluj");
+				if(newCard == false){
+					updatePlayerMoney(activePlayer, -20);
+					showRoundMainData(activePlayer);
+				}
+// dorobić ciągnięcie z czerwonej talii
+				break;
+			case 13:
+				// renta //
+				updatePlayerMoney(activePlayer, 200);
+				break;
+			case 14:
+				// karta wychodzisz z wiezienia //
+				players[activePlayer].goFromPrisonBlue = "dostępna"; 
+// dorobić panel
+//				document.getElementById("gofromprisonblue").innerHTML = players[player].goFromPrisonBlue;
+				break;
+			case 15:
+				// rabat //
+				updatePlayerMoney(activePlayer, 20);
+				break;
+			case 16:
+				// składka ubezpieczeniowa //
+				updatePlayerMoney(activePlayer, -20);
+				break;
+		}
+		showRoundMainData(activePlayer);
 }
