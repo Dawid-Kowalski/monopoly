@@ -66,7 +66,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 12;
+	players[player].position = 20;
 
 	return players[player].position;
 }
@@ -148,7 +148,9 @@ function checkPlayerField(player) {
 		showPowerStationInfos(player);
 	}
 
-
+	if(fields[players[player].position - 1].type == "free parking") {
+		hideInfoPanels (true, true, true, true, true);
+	}
 
 
 
