@@ -66,7 +66,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 28;
+	players[player].position = 30;
 
 	return players[player].position;
 }
@@ -156,6 +156,17 @@ function checkPlayerField(player) {
 		hideInfoPanels (true, true, true, true, false);
 		showWaterworksInfos(player);
 	}
+
+	if(fields[players[player].position - 1].type == "go to prison") {
+		hideInfoPanels (true, true, true, true, true);
+		players[player].position = 10;
+		drawBoard();
+		for(let i = 0; i<players.length; i++) {
+			drawPlayerPosition(i);
+		}
+	}
+
+	
 
 
 
