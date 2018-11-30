@@ -100,6 +100,10 @@ function updatePlayerPawnPosition(player) {
 	return players[player];
 }
 
+function updatePlayerMoney(player, money) {
+		players[player].money = players[player].money + money;
+}
+
 function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "city"){
