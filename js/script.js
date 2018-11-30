@@ -66,7 +66,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 4;
+	players[player].position = 5;
 
 	return players[player].position;
 }
@@ -127,6 +127,15 @@ function checkPlayerField(player) {
 		showRoundMainData(player);
 	}
 
+	if(fields[players[player].position - 1].type == "railways") {
+		hideInfoPanels (true, true, false, true, true);
+		showRailwaysInfos(player);
+	}
+
+
+
+
+
 
 }
 
@@ -147,6 +156,19 @@ function showCityInfos(player) {
 		document.getElementById('pay-3-house').innerHTML = fields[players[player].position - 1].pay3house;
 		document.getElementById('pay-4-house').innerHTML = fields[players[player].position - 1].pay4house;
 		document.getElementById('pay-1-hotel').innerHTML = fields[players[player].position - 1].pay1hotel;
+}
+
+function showRailwaysInfos(player) {
+		document.getElementById('field-railways-name-position').innerHTML = fields[players[player].position - 1].name;
+		document.getElementById('field-railways-property').innerHTML = fields[players[player].position - 1].property;
+		document.getElementById('is-mortage-railways').innerHTML = fields[players[player].position - 1].isMortage;
+		document.getElementById('cost-railways').innerHTML = fields[players[player].position - 1].cost;
+		document.getElementById('mortage-railways').innerHTML = fields[players[player].position - 1].mortage;
+		document.getElementById('mortage-remove-railways').innerHTML = fields[players[player].position - 1].mortageRemove;
+		document.getElementById('pay-1-line').innerHTML = fields[players[player].position - 1].pay1line;
+		document.getElementById('pay-2-line').innerHTML = fields[players[player].position - 1].pay2line;
+		document.getElementById('pay-3-line').innerHTML = fields[players[player].position - 1].pay3line;
+		document.getElementById('pay-4-line').innerHTML = fields[players[player].position - 1].pay4line;
 }
 
 function cardShuffle(array) {
