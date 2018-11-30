@@ -11,6 +11,8 @@ function throwDice(){
 
 	showRoundMainData(activePlayer);
 
+	drawInventoryCity(0);
+
 	drawBoard();
 	for(let i = 0; i<players.length; i++) {
 		drawPlayerPosition(i);

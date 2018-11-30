@@ -10,6 +10,7 @@ let centerOfPawnY = 0;
 let blueCard;
 let redCard;
 
+let cityTable = document.getElementById("city-table");
 
 
 function prepaerPlayers() {
@@ -199,10 +200,6 @@ function checkPlayerField(player) {
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
 		return;
 	}
-
-
-
-
 }
 
 function showCityInfos(player) {
@@ -254,3 +251,248 @@ function showWaterworksInfos(player) {
 }
 
 
+
+function drawInventoryCity(player) {
+
+	// czyszczenie tabeli miasta w inwentarzu 
+	if(document.getElementById("city-table-body")){
+		let cityTableBodyRemove = document.getElementById("city-table-body");
+		cityTable.removeChild(cityTableBodyRemove);
+		let cityTableBody = document.createElement("tbody");
+		cityTableBody.id = "city-table-body";
+		cityTable.appendChild(cityTableBody);		
+	} else {
+		let cityTableBody = document.createElement("tbody");
+		cityTableBody.id = "city-table-body";
+		cityTable.appendChild(cityTableBody);
+	}
+
+	// dodawanie wierszy w pętli
+	for(let i=1; i<23 ; i++) {
+
+		let cityTableBody = document.getElementById("city-table-body");
+
+		let trCity = document.createElement("tr");
+		cityTableBody.appendChild(trCity);
+			
+		let tdCityId = document.createElement("td");
+		tdCityId.innerHTML = i;
+		trCity.appendChild(tdCityId);
+			
+		let tdCityCountryName = document.createElement("td");
+		tdCityCountryName.id = "countryid" + i;
+		tdCityCountryName.innerHTML = " ";
+		trCity.appendChild(tdCityCountryName);
+
+		let tdCityCityName = document.createElement("td");
+		tdCityCityName.id = "cityid" + i;
+		tdCityCityName.innerHTML = " ";
+		trCity.appendChild(tdCityCityName);
+
+		let tdCityHave = document.createElement("td");
+		tdCityHave.id = "haveid" + i;
+		tdCityHave.innerHTML = " ";
+		trCity.appendChild(tdCityHave);
+
+		let tdCityHouse = document.createElement("td");
+		tdCityHouse.id = "houseid" + i;
+		tdCityHouse.innerHTML = " ";
+		trCity.appendChild(tdCityHouse);
+
+		let tdCityHotel = document.createElement("td");
+		tdCityHotel.id = "hotelid" + i;
+		tdCityHotel.innerHTML = " ";
+		trCity.appendChild(tdCityHotel);
+
+		let tdCityMortage = document.createElement("td");
+		tdCityMortage.id = "mortageid" + i;
+		tdCityMortage.innerHTML = " ";
+		trCity.appendChild(tdCityMortage);
+
+		let tdCityBuyCity = document.createElement("td");
+		trCity.appendChild(tdCityBuyCity);
+
+		let buttonCityBuyCity = document.createElement("button");
+		buttonCityBuyCity.id = "buttonbuycity"+i;
+		buttonCityBuyCity.type = "button";
+		buttonCityBuyCity.onclick = function () {buyCity(i);};
+		buttonCityBuyCity.classList.add("btn", "btn-danger");
+		buttonCityBuyCity.disabled = true;
+		buttonCityBuyCity.innerHTML = "kup";
+		tdCityBuyCity.appendChild(buttonCityBuyCity);
+
+		let tdCitySellCity = document.createElement("td");
+		trCity.appendChild(tdCitySellCity);
+
+		let label1CitySellCity = document.createElement("label");
+		label1CitySellCity.innerHTML = "komu";
+		tdCitySellCity.appendChild(label1CitySellCity);
+
+		let br1CitySellCity = document.createElement("br");
+		tdCitySellCity.appendChild(br1CitySellCity);
+
+		let selectCitySellCity = document.createElement("select");
+		selectCitySellCity.id = "buyer" + i;
+		tdCitySellCity.appendChild(selectCitySellCity);
+		let option1CitySellCity = document.createElement("option");
+		option1CitySellCity.id = "city"+i+"opt1";
+		selectCitySellCity.appendChild(option1CitySellCity);
+		let option2CitySellCity = document.createElement("option");
+		option2CitySellCity.id = "city"+i+"opt2";
+		selectCitySellCity.appendChild(option2CitySellCity);
+		let option3CitySellCity = document.createElement("option");
+		option3CitySellCity.id = "city"+i+"opt3";
+		selectCitySellCity.appendChild(option3CitySellCity);
+		let option4CitySellCity = document.createElement("option");
+		option4CitySellCity.id = "city"+i+"opt4";
+		selectCitySellCity.appendChild(option4CitySellCity);
+
+		let br2CitySellCity = document.createElement("br");
+		tdCitySellCity.appendChild(br2CitySellCity);
+
+		let label2CitySellCity = document.createElement("label");
+		label2CitySellCity.innerHTML = "za ile";
+		tdCitySellCity.appendChild(label2CitySellCity);
+
+		let inputCitySellCity = document.createElement("input");
+		inputCitySellCity.id = "price" + i;
+		inputCitySellCity.type = "number";
+		tdCitySellCity.appendChild(inputCitySellCity);
+
+		let br3CitySellCity = document.createElement("br");
+		tdCitySellCity.appendChild(br3CitySellCity);
+
+		let br4CitySellCity = document.createElement("br");
+		tdCitySellCity.appendChild(br4CitySellCity);
+
+		let buttonCitySellCity = document.createElement("button");
+		buttonCitySellCity.id = "buttonsellcity"+i;
+		buttonCitySellCity.type = "button";
+		buttonCitySellCity.onclick = function () {sellCity(i);};
+			
+		if(players[player].city[i-1].have == "tak"){
+			buttonCitySellCity.classList.add("btn", "btn-success");
+			buttonCitySellCity.disabled = false;
+		} else {
+			buttonCitySellCity.classList.add("btn", "btn-danger");
+			buttonCitySellCity.disabled = true;
+		}
+			
+		buttonCitySellCity.innerHTML = "sprzedaj";
+		tdCitySellCity.appendChild(buttonCitySellCity);
+
+		let tdCityBuyHouse = document.createElement("td");
+		trCity.appendChild(tdCityBuyHouse);
+
+		let buttonCityBuyHouse = document.createElement("button");
+		buttonCityBuyHouse.type = "button";
+		buttonCityBuyHouse.id = "buttonbuyhouse"+i;
+		buttonCityBuyHouse.onclick = function () {buyHouse(i);};
+			
+		if(players[player].city[i-1].have == "tak" && players[player].city[i-1].mortage == "nie"){
+			buttonCityBuyHouse.classList.add("btn", "btn-success");
+			buttonCityBuyHouse.disabled = false;
+		} else {
+			buttonCityBuyHouse.classList.add("btn", "btn-danger");
+			buttonCityBuyHouse.disabled = true;
+		}
+
+		buttonCityBuyHouse.innerHTML = "kup domek";
+		tdCityBuyHouse.appendChild(buttonCityBuyHouse);
+
+		let tdCityBuyHotel = document.createElement("td");
+		trCity.appendChild(tdCityBuyHotel);
+
+		let buttonCityBuyHotel = document.createElement("button");
+		buttonCityBuyHotel.type = "button";
+		buttonCityBuyHotel.id = "buttonbuyhotel"+i;
+		buttonCityBuyHotel.onclick = function () {buyHotel(i);};
+
+		if(players[player].city[i-1].have == "tak" && players[player].city[i-1].mortage == "nie"){
+			buttonCityBuyHotel.classList.add("btn", "btn-success");
+			buttonCityBuyHotel.disabled = false;
+		} else {
+			buttonCityBuyHotel.classList.add("btn", "btn-danger");
+			buttonCityBuyHotel.disabled = true;
+		}
+
+		buttonCityBuyHotel.innerHTML = "kup hotel";
+		tdCityBuyHotel.appendChild(buttonCityBuyHotel);
+
+		let tdCitySellHouse = document.createElement("td");
+		trCity.appendChild(tdCitySellHouse);
+
+		let buttonCitySellHouse = document.createElement("button");
+		buttonCitySellHouse.id = "buttonsellhouse"+i;
+		buttonCitySellHouse.type = "button";
+		buttonCitySellHouse.onclick = function () {sellHouse(i);};
+
+		if(players[player].city[i-1].house > 0) {
+			buttonCitySellHouse.classList.add("btn", "btn-success");
+			buttonCitySellHouse.disabled = false;
+		} else {
+			buttonCitySellHouse.classList.add("btn", "btn-danger");
+			buttonCitySellHouse.disabled = true;
+		}
+
+		buttonCitySellHouse.innerHTML = "sprzedaj domek";
+		tdCitySellHouse.appendChild(buttonCitySellHouse);
+
+		let tdCitySellHotel = document.createElement("td");
+		trCity.appendChild(tdCitySellHotel);
+
+		let buttonCitySellHotel = document.createElement("button");
+		buttonCitySellHotel.id = "buttonsellhotel"+i;
+		buttonCitySellHotel.type = "button";
+		buttonCitySellHotel.onclick = function () {sellHotel(i);};
+
+		if(players[activePlayer].city[i-1].hotel > 0) {
+			buttonCitySellHotel.classList.add("btn", "btn-success");
+			buttonCitySellHotel.disabled = false;
+		} else {
+			buttonCitySellHotel.classList.add("btn", "btn-danger");
+			buttonCitySellHotel.disabled = true;
+		}
+
+		buttonCitySellHotel.innerHTML = "sprzedaj hotel";
+		tdCitySellHotel.appendChild(buttonCitySellHotel);
+
+		let tdCityMortageAction = document.createElement("td");
+		trCity.appendChild(tdCityMortageAction);
+
+		let buttonCityMortageAction = document.createElement("button");
+		buttonCityMortageAction.id = "buttonmortage"+i;
+		buttonCityMortageAction.type = "button";
+		buttonCityMortageAction.onclick = function () {mortage(i);};
+
+		if(players[player].city[i-1].have == "tak" && players[player].city[i-1].mortage == "nie"){
+			buttonCityMortageAction.classList.add("btn", "btn-success");
+			buttonCityMortageAction.disabled = false;
+		} else {
+			buttonCityMortageAction.classList.add("btn", "btn-danger");
+			buttonCityMortageAction.disabled = true;
+		}
+
+		buttonCityMortageAction.innerHTML = "zastaw";
+		tdCityMortageAction.appendChild(buttonCityMortageAction);
+
+		let tdCityMortageRemoveAction = document.createElement("td");
+		trCity.appendChild(tdCityMortageRemoveAction);
+
+		let buttonCityMortageRemoveAction = document.createElement("button");
+		buttonCityMortageRemoveAction.id = "buttonmortageremove"+i;
+		buttonCityMortageRemoveAction.type = "button";
+		buttonCityMortageRemoveAction.onclick = function () {mortageRemove(i);};
+			
+		if(players[player].city[i-1].mortage == "tak"){
+			buttonCityMortageRemoveAction.classList.add("btn", "btn-success");
+			buttonCityMortageRemoveAction.disabled = false;
+		} else {
+			buttonCityMortageRemoveAction.classList.add("btn", "btn-danger");
+			buttonCityMortageRemoveAction.disabled = true;
+		}
+
+		buttonCityMortageRemoveAction.innerHTML = "wykup";
+		tdCityMortageRemoveAction.appendChild(buttonCityMortageRemoveAction);
+	}
+}
