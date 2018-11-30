@@ -340,7 +340,6 @@ function drawInventoryCity(player) {
 			optionCitySellCity = document.createElement("option");
 			optionCitySellCity.id = "city"+i+"opt" + j;
 			selectCitySellCity.appendChild(optionCitySellCity);
-
 		}
 
 		let br2CitySellCity = document.createElement("br");
@@ -574,7 +573,7 @@ function addCityNamePlayerInventory(player) {
 	document.getElementById("cityid22").innerHTML = wieden.toLowerCase();
 }
 
-function addByerInfoPlayerInventory() {
+function addByerCityPlayerInventory(){
 	for (let i=1; i<23; i++) {
 		for(let j=0; j<players.length; j++) {
 			let city = "city"+i+"opt"+j;
@@ -654,18 +653,12 @@ function drawInventoryRailways(player) {
 		let selectRailwaysSellRailways = document.createElement("select");
 		selectRailwaysSellRailways.id = "buyerrailways" + i;
 		tdRailwaysSellRailways.appendChild(selectRailwaysSellRailways);
-		let option1RailwaysSellRailways = document.createElement("option");
-		option1RailwaysSellRailways.id = "railways"+i+"opt1";
-		selectRailwaysSellRailways.appendChild(option1RailwaysSellRailways);
-		let option2RailwaysSellRailways = document.createElement("option");
-		option2RailwaysSellRailways.id = "railways"+i+"opt2";
-		selectRailwaysSellRailways.appendChild(option2RailwaysSellRailways);
-		let option3RailwaysSellRailways = document.createElement("option");
-		option3RailwaysSellRailways.id = "railways"+i+"opt3";
-		selectRailwaysSellRailways.appendChild(option3RailwaysSellRailways);
-		let option4RailwaysSellRailways = document.createElement("option");
-		option4RailwaysSellRailways.id = "railways"+i+"opt4";
-		selectRailwaysSellRailways.appendChild(option4RailwaysSellRailways);
+
+		for(let j =0; j<players.length; j++){
+			optionRailwaysSellRailways = document.createElement("option");
+			optionRailwaysSellRailways.id = "railways"+i+"opt" + j;
+			selectRailwaysSellRailways.appendChild(optionRailwaysSellRailways);
+		}
 
 		let br2RailwaysSellRailways = document.createElement("br");
 		tdRailwaysSellRailways.appendChild(br2RailwaysSellRailways);
@@ -744,3 +737,33 @@ function drawInventoryRailways(player) {
 	}
 }
 
+function addRailwaysNamePlayerInventory() {
+	document.getElementById("railwaysid1").innerHTML = "koleje południowe";
+	document.getElementById("railwaysid2").innerHTML = "koleje zachodnie";
+	document.getElementById("railwaysid3").innerHTML = "koleje północne";	
+	document.getElementById("railwaysid4").innerHTML = "koleje wschodnie";
+}
+
+function addRailwaysInfoPlayerInventory(player) {
+	document.getElementById("haverailways1").innerHTML = players[player].railways[0].have;
+	document.getElementById("mortagerailways1").innerHTML = players[player].railways[0].mortage;
+
+	document.getElementById("haverailways2").innerHTML = players[player].railways[1].have;
+	document.getElementById("mortagerailways2").innerHTML = players[player].railways[1].mortage;
+
+	document.getElementById("haverailways3").innerHTML = players[player].railways[2].have;
+	document.getElementById("mortagerailways3").innerHTML = players[player].railways[2].mortage;
+
+	document.getElementById("haverailways4").innerHTML = players[player].railways[3].have;
+	document.getElementById("mortagerailways4").innerHTML = players[player].railways[3].mortage;
+}
+
+function addByerRailwaysPlayerInventory() {
+	for (let i=1; i<5; i++) {
+		for(let j=0; j<players.length; j++) {
+			let railways = "railways"+i+"opt"+j;
+			document.getElementById(railways).innerHTML = players[j].name;
+			document.getElementById(railways).value = j;
+		}
+	}
+}

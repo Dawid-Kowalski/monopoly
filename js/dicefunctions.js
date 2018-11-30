@@ -12,11 +12,14 @@ function throwDice(){
 	showRoundMainData(activePlayer);
 
 	drawInventoryCity(activePlayer);
-	addCityNamePlayerInventory(activePlayer);
+	addCityNamePlayerInventory();
 	addCityInfoPlayerInventory(activePlayer);
-	addByerInfoPlayerInventory();
+	addByerCityPlayerInventory();
 
 	drawInventoryRailways(activePlayer);
+	addRailwaysNamePlayerInventory();
+	addRailwaysInfoPlayerInventory(activePlayer);
+	addByerRailwaysPlayerInventory();
 
 	drawBoard();
 	for(let i = 0; i<players.length; i++) {
