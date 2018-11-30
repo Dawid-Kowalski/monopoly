@@ -66,7 +66,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 10;
+	players[player].position = 12;
 
 	return players[player].position;
 }
@@ -140,8 +140,14 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "prison visit") {
-			hideInfoPanels (true, true, true, true, true);
+		hideInfoPanels (true, true, true, true, true);
 	}
+
+	if(fields[players[player].position - 1].type == "power station") {
+		hideInfoPanels (true, true, true, false, true);
+		showPowerStationInfos(player);
+	}
+
 
 
 
@@ -179,6 +185,14 @@ function showRailwaysInfos(player) {
 		document.getElementById('pay-2-line').innerHTML = fields[players[player].position - 1].pay2line;
 		document.getElementById('pay-3-line').innerHTML = fields[players[player].position - 1].pay3line;
 		document.getElementById('pay-4-line').innerHTML = fields[players[player].position - 1].pay4line;
+}
+
+function showPowerStationInfos(player) {
+		document.getElementById('field-powerstation-property').innerHTML = fields[players[player].position - 1].property;
+		document.getElementById('is-mortage-powerstation').innerHTML = fields[players[player].position - 1].isMortage;
+		document.getElementById('cost-powerstation').innerHTML = fields[players[player].position - 1].cost;
+		document.getElementById('mortage-powerstation-price').innerHTML = fields[players[player].position - 1].mortage;
+		document.getElementById('mortage-remove-powerstation').innerHTML = fields[players[player].position - 1].mortageRemove;
 }
 
 function cardShuffle(array) {
