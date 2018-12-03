@@ -1,7 +1,5 @@
 function throwDice(){
 
-	showRoundMainData(activePlayer);
-
 	firstDice = Math.floor((Math.random()*6)+1);
 	document.getElementById("first-dice").innerHTML = firstDice;
 	secondDice = Math.floor((Math.random()*6)+1);

@@ -1467,3 +1467,33 @@ function buyHouse (id) {
 			}
 		}
 }
+
+function buyHotel (id) {
+	let player = activePlayer;
+	let fieldId = players[player].city[id-1].idField;
+
+	if(players[player].money < fields[fieldId].cost1hotel) { 
+		alert("masz za mało pieniędzy");
+	} else {
+		if(players[player].city[id-1].house < 4){
+			alert("najpierw musisz mieć min 4 domki")
+		} else {
+			players[player].city[id-1].hotel++;
+			players[player].hotelAll++;
+			players[player].city[id-1].house = players[player].city[id-1].house - 4;
+			players[player].houseAll = players[player].houseAll - 4;
+
+			document.getElementById("hotelid"+id).innerHTML = players[player].city[id-1].hotel;
+			document.getElementById("houseid"+id).innerHTML = players[player].city[id-1].house;
+
+			fields[fieldId].hotel++;
+			fields[fieldId].house = fields[fieldId].house - 4;
+
+			updatePlayerMoney(player, - fields[fieldId].cost1hotel);
+			showRoundMainData(player);
+
+			buttonEnabled("buttonsellhotel"+id);
+			buttonDisabled("buttonsellhouse"+id);
+		}
+	}
+}

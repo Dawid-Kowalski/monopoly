@@ -196,6 +196,10 @@
 					</tbody>
 				</table>
 			</div>
+			<div id="card-info-panel" class="text-center" hidden>
+				<h3>Tekst z karty szansa:</h3>
+				<h4 id="chance-text">...</h4>
+			</div>
 			<div id="city-info-panel" class="text-center" hidden>
 				<table class="table table-bordered table-striped">
 					<tr>
@@ -273,10 +277,6 @@
 						<td id="pay-1-hotel">...</td>
 					</tr>
 				</table>
-			</div>
-			<div id="card-info-panel" class="text-center" hidden>
-				<h3>Tekst z karty szansa:</h3>
-				<h4 id="chancetext">...</h4>
 			</div>
 			<div id="railways-info-panel" class="text-center" hidden>
 				<table class="table table-bordered table-striped">
@@ -406,12 +406,96 @@
 						<td>10 x ilość wyrzuconych oczek, jeżeli gracz posiada również elektrownie oplata jest podwójna</td>
 				</table>
 			</div>
+
+
+			<div>
+				<h3 class="text-center">Nieruchomości:</h3>
+				<table id="city-table" class="table table-bordered table-striped text-center">
+					<thead>
+						<tr>
+							<td>Id</td>
+							<td>Państwo</td>
+							<td>Miasto</td>
+							<td>Posiada</td>
+							<td>Ilość domków</td>
+							<td>Ilość hoteli</td>
+							<td>Hipoteka</td>
+							<td>kup</td>
+							<td>sprzedaj</td>
+							<td>kup domek</td>
+							<td>kup hotel</td>
+							<td>sprzedaj domek</td>
+							<td>sprzedaj hotel</td>
+							<td>zastaw</td>
+							<td>wykup</td>
+						</tr>
+					</thead>
+				</table>
+				<h3 class="text-center">Koleje</h3>
+				<table id="railways-table" class="table table-bordered table-striped text-center">
+					<thead>
+						<tr>
+							<td>Id</td>
+							<td>Nazwa</td>
+							<td>Posiada</td>
+							<td>Hipoteka</td>
+							<td>kup</td>
+							<td>sprzedaj</td>
+							<td>zastaw</td>
+							<td>wykup</td>
+						</tr>
+					</thead>
+				</table>
+				<h3 class="text-center">Elektrownia i wodociągi</h3>
+				<table id="buldings-table" class="table table-bordered table-striped text-center">
+					<thead>
+						<tr>
+							<td>Id</td>
+							<td>Nazwa</td>
+							<td>Posiada</td>
+							<td>Hipoteka</td>
+							<td>kup</td>
+							<td>sprzedaj</td>
+							<td>zastaw</td>
+							<td>wykup</td>
+						</tr>
+					</thead>
+				</table>
+				<h3 class="text-center">Dodatkowe karty</h3>
+				<table class="table table-bordered table-striped text-center">
+					<tr>
+						<td>Id</td>
+						<td>Nazwa</td>
+						<td>Posiada</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>wychodzisz wolny w więzienia niebieska</td>
+						<td id="go-from-prison-blue"></td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>wychodzisz wolny w więzienia czerwona</td>
+						<td id="go-from-prison-red"></td>
+					</tr>
+				</table>
+			</div>
+
+
+
+
+
+
+
+
 		</div>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="js/canvasdata.js"></script>
 		<script type="text/javascript" src="js/playerdata.js"></script>
+		<script type="text/javascript" src="js/bluecarddata.js"></script>
+		<script type="text/javascript" src="js/redcarddata.js"></script>
 		<script type="text/javascript" src="js/fieldsdata.js"></script>
 		<script type="text/javascript" src="js/dicedata.js"></script>
 		<script type="text/javascript" src="js/playerconstructor.js"></script>
@@ -419,6 +503,7 @@
 		<script type="text/javascript" src="js/canvasfunctions.js"></script>
 		<script type="text/javascript" src="js/settingsfunctions.js"></script>
 		<script type="text/javascript" src="js/hiddenplayerssettingsfunctions.js"></script>
+		<script type="text/javascript" src="js/cardfunctions.js"></script>
 		<script type="text/javascript" src="js/dicefunctions.js"></script>
 		<script type="text/javascript" src="js/script.js"></script>
 	</body>
