@@ -1073,3 +1073,15 @@ function addByerWaterworksPlayerInventory() {
 		document.getElementById(waterworks).value = i-1;
 	}
 }
+
+function buttonDisabled(buttonId) {
+	document.getElementById(buttonId).disabled = true;
+	document.getElementById(buttonId).classList.remove("btn", "btn-success");
+	document.getElementById(buttonId).classList.add("btn", "btn-danger");
+}
+
+function buttonEnabled(buttonId) {
+	document.getElementById(buttonId).disabled = false;
+	document.getElementById(buttonId).classList.remove("btn", "btn-danger");
+	document.getElementById(buttonId).classList.add("btn", "btn-success");
+}
