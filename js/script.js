@@ -72,7 +72,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 7;
+	//players[player].position = 7;
 
 	return players[player].position;
 }
@@ -118,6 +118,15 @@ function checkPlayerField(player) {
 	if(fields[players[player].position - 1].type == "city"){
 		hideInfoPanels (false, true, true, true, true);
 		showCityInfos(player);
+
+		alert("Jeżeli nie chcesz kupić nieruchomości za podaną cenę każdy z graczy może ją kupić po licytacji użyjcie przycisku sprzedaj wybierając cenę i gracza");
+
+		//id pola miasto na ktorym stoi gracz
+		let field = fields[players[player].position - 1].idCity;
+		console.log(field);
+
+		buttonEnabled("buttonbuycity"+field);
+		buttonEnabled("buttonsellcity"+field);
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
 		return;
@@ -1084,4 +1093,80 @@ function buttonEnabled(buttonId) {
 	document.getElementById(buttonId).disabled = false;
 	document.getElementById(buttonId).classList.remove("btn", "btn-danger");
 	document.getElementById(buttonId).classList.add("btn", "btn-success");
+}
+
+function buyCity(id) {
+	let player = activePlayer;
+	let fieldId = players[player].city[id-1].idField;
+
+	buttonEnabled("next-player");
+
+	if(players[player].money < fields[fieldId].cost) { 
+		alert("masz za mało pieniędzy");
+	} else {
+		players[player].city[id-1].have = "tak";
+		document.getElementById("haveid"+id).innerHTML = players[player].city[id-1].have;
+
+		fields[fieldId].property = players[player].name;
+		fields[fieldId].propertyId = player;
+
+		if(fields[fieldId].country == "greece") {
+			players[player].greeceCity++;
+			if(players[player].greeceCity == 2) {
+				players[player].greeceComplete = "tak";
+			}
+
+		}
+		if(fields[fieldId].country == "italy") {
+			players[player].italyCity++;
+			if(players[player].italyCity == 3) {
+				players[player].italyComplete = "tak";
+			}
+		}
+		if(fields[fieldId].country == "spain") {
+			players[player].spainCity++;
+			if(players[player].spainCity == 3) {
+				players[player].spainComplete = "tak";
+			}
+		}
+		if(fields[fieldId].country == "england") {
+			players[player].englandCity++;
+			if(players[player].englandCity == 3) {
+				players[player].englandComplete = "tak";
+			}
+		}
+		if(fields[fieldId].country == "benelux") {
+			players[player].beneluxCity++;
+			if(players[player].beneluxCity == 3) {
+				players[player].beneluxComplete = "tak";
+			}
+		}
+		if(fields[fieldId].country == "sweden") {
+			players[player].swedenCity++;
+			if(players[player].swedenCity == 3) {
+				players[player].swedenComplete = "tak";
+			}
+		}
+		if(fields[fieldId].country == "rfn") {
+			players[player].rfnCity++;
+			if(players[player].rfnCity == 3) {
+				players[player].rfnComplete = "tak";
+			}
+		}
+		if(fields[fieldId].country == "austria") {
+			players[player].austriaCity++;
+			if(players[player].austriaCity == 2) {
+				players[player].austriaComplete = "tak";
+			}
+		}
+
+		updatePlayerMoney(player, -fields[fieldId].cost);
+		showRoundMainData(player);
+
+		buttonDisabled("buttonbuycity"+id);
+		buttonEnabled("buttonsellcity"+id);
+		buttonEnabled("buttonbuyhouse"+id);
+		buttonEnabled("buttonbuyhotel"+id);
+		buttonEnabled("buttonmortage"+id);
+	}
 }
