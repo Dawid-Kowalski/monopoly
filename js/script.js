@@ -54,8 +54,25 @@ function nextPlayer() {
 		activePlayer = 0;
 	}
 
+	console.log("gracz" + activePlayer);
+
 	drawBoard();
 	showRoundMainData(activePlayer);
+
+	drawInventoryCity(activePlayer);
+	addCityNamePlayerInventory();
+	addCityInfoPlayerInventory(activePlayer);
+	addByerCityPlayerInventory();
+
+	drawInventoryRailways(activePlayer);
+	addRailwaysNamePlayerInventory();
+	addRailwaysInfoPlayerInventory(activePlayer);
+	addByerRailwaysPlayerInventory();
+
+	drawInventoryBuldings(activePlayer);
+	addBuldingsInfoPlayerInventory(activePlayer);
+	addByerPowerstationPlayerInventory();
+	addByerWaterworksPlayerInventory();
 
 	for(let i = 0; i<players.length; i++) {
 		drawPlayerPosition(i);
@@ -1169,4 +1186,40 @@ function buyCity(id) {
 		buttonEnabled("buttonbuyhotel"+id);
 		buttonEnabled("buttonmortage"+id);
 	}
+}
+
+function sellCity (id) {
+
+//funkcja obsługuje zarówno normalną sprzedaż jak i sprzedaż gdy po stanięciu na pole gracz nie chce kupić
+	buttonEnabled("next-player");
+
+	let player = activePlayer;
+	let whoBuy = document.getElementById("buyer"+id).value;
+	let fieldId = players[player].city[id-1].idField;
+	let price = parseInt(document.getElementById("price"+id).value);
+
+	if(players[player].city[id-1].have == "tak") {
+		updatePlayerMoney(player, -price);
+		updatePlayerMoney(whoBuy, -price);
+	}
+	else {
+		updatePlayerMoney(whoBuy, -price);
+	}
+
+	players[player].city[id-1].have = "nie";
+	players[whoBuy].city[id-1].have = "tak";
+	players[whoBuy].city[id-1].mortage = players[player].city[id-1].mortage;
+
+	fields[fieldId].property = players[whoBuy].name;
+	fields[fieldId].propertyId = player;
+
+	document.getElementById("haveid"+id).innerHTML = players[player].city[id-1].have;
+	showRoundMainData(player);
+
+	buttonDisabled("buttonbuycity"+id);
+	buttonDisabled("buttonsellcity"+id);
+	buttonDisabled("buttonbuyhouse"+id);
+	buttonDisabled("buttonbuyhotel"+id);
+	buttonDisabled("buttonmortage"+id);
+	buttonDisabled("buttonmortageremove"+id);
 }
