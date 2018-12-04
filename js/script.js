@@ -1559,3 +1559,26 @@ function mortage (id) {
 		buttonEnabled("buttonmortageremove"+id);
 	}
 }
+
+function mortageRemove (id) {
+	let player = activePlayer;
+	let fieldId = players[player].city[id-1].idField;
+
+	if(players[player].money < fields[fieldId].mortageRemove) { 
+		alert("masz za mało pieniędzy");
+	} else {
+		let player = activePlayer;
+		players[player].city[id-1].mortage = "nie";
+		document.getElementById("mortageid"+id).innerHTML = players[player].city[id-1].mortage;
+
+		fields[fieldId].isMortage = "nie";
+
+		updatePlayerMoney(player, -fields[fieldId].mortageRemove);
+		showRoundMainData(player);
+
+		buttonEnabled("buttonbuyhouse"+id);
+		buttonEnabled("buttonbuyhotel"+id);
+		buttonEnabled("buttonmortage"+id);
+		buttonDisabled("buttonmortageremove"+id);
+	}
+}
