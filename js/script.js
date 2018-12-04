@@ -140,7 +140,6 @@ function checkPlayerField(player) {
 
 		//id pola miasto na ktorym stoi gracz
 		let field = fields[players[player].position - 1].idCity;
-		console.log(field);
 
 		buttonEnabled("buttonbuycity"+field);
 		buttonEnabled("buttonsellcity"+field);
@@ -170,6 +169,12 @@ function checkPlayerField(player) {
 	if(fields[players[player].position - 1].type == "railways") {
 		hideInfoPanels (true, true, false, true, true);
 		showRailwaysInfos(player);
+
+		//id pola koleje na ktorym stoi gracz
+		let field = fields[players[player].position - 1].idRailways;
+
+		buttonEnabled("buttonbuyrailways"+field);
+		buttonEnabled("buttonsellrailways"+field);
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
 		return;
@@ -1111,3 +1116,32 @@ function buttonEnabled(buttonId) {
 	document.getElementById(buttonId).classList.remove("btn", "btn-danger");
 	document.getElementById(buttonId).classList.add("btn", "btn-success");
 }
+
+function buyRailways (id) {
+
+	buttonEnabled("next-player");
+
+	let player = activePlayer;
+	let fieldId = players[player].position - 1;
+
+	if(players[player].money < fields[fieldId].cost) { 
+		alert("masz za mało pieniędzy");
+	} else {
+		players[player].railways[id-1].have = "tak";
+		players[player].railwaysAll++;
+		document.getElementById("haverailways"+id).innerHTML = players[player].railways[id-1].have;
+
+		let fieldId = players[player].railways[id-1].idField;
+
+		fields[fieldId].property = players[player].name;
+		fields[fieldId].propertyId = player;
+
+		updatePlayerMoney(player, -fields[fieldId].cost);
+		showRoundMainData(player);
+
+		buttonDisabled("buttonbuyrailways"+id);
+		buttonEnabled("buttonsellrailways"+id);
+		buttonEnabled("buttonmortagerailways"+id);
+	}
+}
+
