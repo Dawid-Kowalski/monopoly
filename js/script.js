@@ -1497,3 +1497,23 @@ function buyHotel (id) {
 		}
 	}
 }
+
+function sellHotel (id) {
+	let player = activePlayer;
+	players[player].city[id-1].hotel--;
+	players[player].hotelAll--;
+	document.getElementById("hotelid"+id).innerHTML = players[player].city[id-1].hotel;
+
+	let fieldId = players[player].city[id-1].idField;
+
+	fields[fieldId].hotel--;
+
+	let hotelPrice = 2 * fields[fieldId].cost1house + 0.5 * fields[fieldId].cost1hotel;
+
+	updatePlayerMoney(player, hotelPrice);
+	showRoundMainData(player);
+
+	if(players[player].city[id-1].hotel < 1) {
+		buttonDisabled("buttonsellhotel"+id);
+	}
+}

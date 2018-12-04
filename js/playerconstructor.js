@@ -9,12 +9,12 @@ function Player () {
 	this.color = "black";
 	this.goFromPrisonBlue = "niedostępne";
 	this.goFromPrisonRed = "niedostępne";
-	this.houseAll = 0;
-	this.hotelAll = 0;
+	this.houseAll = 2;
+	this.hotelAll = 2;
 	this.railwaysAll = 0;
 	this.powerStationAndWaterworks = 0;
-	this.greeceCity = 0;
-	this.greeceComplete = "nie";
+	this.greeceCity = 2;
+	this.greeceComplete = "tak";
 	this.italyCity = 0;
 	this.italyComplete = "nie";
 	this.spainCity = 0;
@@ -33,15 +33,15 @@ function Player () {
 				{
 					idField: 0,
 					have: "nie",	
-					house: 0,
-					hotel: 0,
+					house: 1,
+					hotel: 1,
 					mortage: "nie"
 				},
 				{
 					idField: 2,
 					have: "nie",	
-					house: 0,
-					hotel: 0,
+					house: 1,
+					hotel: 1,
 					mortage: "nie"
 				},
 				{
