@@ -1517,3 +1517,24 @@ function sellHotel (id) {
 		buttonDisabled("buttonsellhotel"+id);
 	}
 }
+
+function sellHouse (id) {
+	let player = activePlayer;
+	players[player].city[id-1].house--;
+	players[player].houseAll--;
+	document.getElementById("houseid"+id).innerHTML = players[player].city[id-1].house;
+
+	let fieldId = players[player].city[id-1].idField;
+
+	fields[fieldId].house--;
+
+	let housePrice = 0.5  * fields[fieldId].cost1house;
+
+	updatePlayerMoney(player, housePrice);
+	showRoundMainData(player);
+
+	if(players[player].city[id-1].house < 1) {
+		buttonDisabled("buttonsellhouse"+id);
+	}
+}
+
