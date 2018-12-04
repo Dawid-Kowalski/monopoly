@@ -1538,3 +1538,24 @@ function sellHouse (id) {
 	}
 }
 
+function mortage (id) {
+	let player = activePlayer;
+	let fieldId = players[player].city[id-1].idField;
+
+	if(players[player].city[id-1].house >0 || players[player].city[id-1].hotel >0) { 
+		alert("nie możesz zastawić zabudowanego terenu");
+	} else {
+		players[player].city[id-1].mortage = "tak";
+		document.getElementById("mortageid"+id).innerHTML = players[player].city[id-1].mortage;
+
+		let fieldId = players[player].city[id-1].idField;
+
+		updatePlayerMoney(player, fields[fieldId].mortage);
+		showRoundMainData(player);
+
+		buttonDisabled("buttonbuyhouse"+id);
+		buttonDisabled("buttonbuyhotel"+id);
+		buttonDisabled("buttonmortage"+id);
+		buttonEnabled("buttonmortageremove"+id);
+	}
+}
