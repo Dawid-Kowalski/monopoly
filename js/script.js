@@ -89,7 +89,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	//players[player].position = 7;
+	players[player].position = 12;
 
 	return players[player].position;
 }
@@ -198,6 +198,9 @@ function checkPlayerField(player) {
 	if(fields[players[player].position - 1].type == "power station") {
 		hideInfoPanels (true, true, true, false, true);
 		showPowerStationInfos(player);
+
+		buttonEnabled("buttonbuypowerstation");
+		buttonEnabled("buttonsellpowerstation");
 	}
 
 	if(fields[players[player].position - 1].type == "free parking") {
@@ -847,8 +850,8 @@ function drawInventoryBuldings(player){
 	let buttonPowerStatioBuyPowerStation = document.createElement("button");
 	buttonPowerStatioBuyPowerStation.id = "buttonbuypowerstation";
 	buttonPowerStatioBuyPowerStation.type = "button";
-//  przenieść funkcje
-//	buttonPowerStatioBuyPowerStation.onclick = buyPowerStation;
+
+	buttonPowerStatioBuyPowerStation.onclick = buyPowerStation;
 	buttonPowerStatioBuyPowerStation.classList.add("btn", "btn-danger");
 	buttonPowerStatioBuyPowerStation.disabled = true;
 	buttonPowerStatioBuyPowerStation.innerHTML = "kup";
@@ -1117,6 +1120,24 @@ function buttonEnabled(buttonId) {
 	document.getElementById(buttonId).classList.add("btn", "btn-success");
 }
 
+function buyPowerStation () {
 
+	buttonEnabled("next-player");
+
+	let player = activePlayer;
+	players[player].powerStation.have = "tak";
+	players[player].powerStationAndWaterworks++;
+	document.getElementById("havepowerstation").innerHTML = players[player].powerStation.have;
+
+	fields[11].property = players[player].name;
+	fields[11].propertyId = player;
+
+	updatePlayerMoney(player, -fields[11].cost);
+	showRoundMainData(player);
+
+	buttonDisabled("buttonbuypowerstation");
+	buttonEnabled("buttonsellpowerstation");
+	buttonEnabled("buttonmortagepowerstation");
+}
 
 
