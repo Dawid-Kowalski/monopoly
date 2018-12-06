@@ -1181,3 +1181,19 @@ function sellRailways (id) {
 	buttonDisabled("buttonmortagerailways"+id);
 	buttonDisabled("buttonmortageremoverailways"+id);
 }
+
+function mortageRailways (id) {
+	let player = activePlayer;
+	players[player].railways[id-1].mortage = "tak";
+	document.getElementById("mortagerailways"+id).innerHTML = players[player].railways[id-1].mortage;
+
+	let fieldId = players[player].railways[id-1].idField;
+
+	fields[fieldId].isMortage = "tak";
+
+	updatePlayerMoney(player, fields[fieldId].mortage);
+	showRoundMainData(player);
+
+	buttonDisabled("buttonmortagerailways"+id);
+	buttonEnabled("buttonmortageremoverailways"+id);
+}
