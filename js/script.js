@@ -910,8 +910,7 @@ function drawInventoryBuldings(player){
 		buttonPowerStatioSellPowerStation.disabled = true;
 	}
 
-//  przenieść funkcje
-//	buttonPowerStatioSellPowerStation.onclick = sellPowerStation;
+	buttonPowerStatioSellPowerStation.onclick = sellPowerStation;
 	buttonPowerStatioSellPowerStation.innerHTML = "sprzedaj";
 	tdPowerStatioSellPowerStation.appendChild(buttonPowerStatioSellPowerStation);
 
@@ -1138,6 +1137,41 @@ function buyPowerStation () {
 	buttonDisabled("buttonbuypowerstation");
 	buttonEnabled("buttonsellpowerstation");
 	buttonEnabled("buttonmortagepowerstation");
+}
+
+function sellPowerStation () {
+
+	buttonDisabled("buttonsellpowerstation");
+
+	let player = activePlayer;
+	let whoBuy = document.getElementById("buyerpowerstation").value;
+	let price = parseInt(document.getElementById("pricepowerstation").value);
+
+	if(players[player].powerStation.have == "tak") {
+		updatePlayerMoney(player, price);
+		updatePlayerMoney(whoBuy, -price);
+		players[player].powerStationAndWaterworks--;
+		players[whoBuy].powerStationAndWaterworks++;
+	}
+	else {
+		updatePlayerMoney(whoBuy, -price);
+		players[whoBuy].powerStationAndWaterworks++;
+	}
+
+	players[player].powerStation.have = "nie";
+	players[whoBuy].powerStation.have = "tak";
+
+	players[whoBuy].powerStation.mortage = players[player].powerStation.mortage;
+
+	fields[11].property = players[whoBuy].name;
+
+	document.getElementById("havepowerstation").innerHTML = players[player].powerStation.have;
+	showRoundMainData(player);
+
+	buttonDisabled("buttonbuypowerstation");
+	buttonDisabled("buttonsellpowerstation");
+	buttonDisabled("buttonmortagepowerstation");
+	buttonDisabled("buttonmortageremovepowerstation");
 }
 
 
