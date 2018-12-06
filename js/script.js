@@ -1197,3 +1197,20 @@ function mortageRailways (id) {
 	buttonDisabled("buttonmortagerailways"+id);
 	buttonEnabled("buttonmortageremoverailways"+id);
 }
+
+function mortageRailwaysRemove (id) {
+	let player = activePlayer;
+	players[player].railways[id-1].mortage = "nie";
+	document.getElementById("mortagerailways"+id).innerHTML = players[player].railways[id-1].mortage;
+
+	let fieldId = players[player].railways[id-1].idField;
+
+	fields[fieldId].isMortage = "nie";
+
+	updatePlayerMoney(player, -fields[fieldId].mortageRemove);
+	showRoundMainData(player);
+
+	buttonEnabled("buttonmortagerailways"+id);
+	buttonDisabled("buttonmortageremoverailways"+id);
+}
+
