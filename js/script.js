@@ -928,8 +928,8 @@ function drawInventoryBuldings(player){
 		buttonPowerStationMortageAction.classList.add("btn", "btn-danger");
 		buttonPowerStationMortageAction.disabled = true;
 	}
-// przenieść funkcje
-//	buttonPowerStationMortageAction.onclick = mortagePowerStation;
+
+	buttonPowerStationMortageAction.onclick = mortagePowerStation;
 	buttonPowerStationMortageAction.innerHTML = "zastaw";
 	tdPowerStationMortageAction.appendChild(buttonPowerStationMortageAction);
 
@@ -1174,4 +1174,16 @@ function sellPowerStation () {
 	buttonDisabled("buttonmortageremovepowerstation");
 }
 
+function mortagePowerStation () {
+	let player = activePlayer;
+	players[player].powerStation.mortage = "tak";
+	document.getElementById("mortagepowerstation").innerHTML = players[player].powerStation.mortage;
 
+	fields[11].isMortage = "tak";
+
+	updatePlayerMoney(player, fields[11].mortage);
+	showRoundMainData(player);
+
+	buttonDisabled("buttonmortagepowerstation");
+	buttonEnabled("buttonmortageremovepowerstation");
+}
