@@ -1042,8 +1042,8 @@ function drawInventoryBuldings(player){
 		buttonWaterworksSellWaterworks.classList.add("btn", "btn-danger");
 		buttonWaterworksSellWaterworks.disabled = true;
 	}
-//przenieść funkcje
-//	buttonWaterworksSellWaterworks.onclick = sellWaterworks;;
+
+	buttonWaterworksSellWaterworks.onclick = sellWaterworks;;
 	buttonWaterworksSellWaterworks.innerHTML = "sprzedaj";
 	tdWaterworksSellWaterworks.appendChild(buttonWaterworksSellWaterworks);
 
@@ -1141,4 +1141,39 @@ function buyWaterworks () {
 	buttonDisabled("buttonbuywaterworks");
 	buttonEnabled("buttonsellwaterworks");
 	buttonEnabled("buttonmortagewaterworks");
+}
+
+function sellWaterworks () {
+
+	buttonEnabled("next-player");
+
+	let player = activePlayer;
+	let whoBuy = document.getElementById("buyerwaterworks").value;
+	let price = parseInt(document.getElementById("pricewaterworks").value);
+
+	if(players[player].waterworks.have == "tak") {
+		updatePlayerMoney(player, price);
+		updatePlayerMoney(whoBuy, -price);
+		players[player].powerStationAndWaterworks--;
+		players[whoBuy].powerStationAndWaterworks++;
+	}
+	else {
+		updatePlayerMoney(whoBuy, -price);
+		players[whoBuy].powerStationAndWaterworks++;
+	}
+
+	players[player].waterworks.have = "nie";
+	players[whoBuy].waterworks.have = "tak";
+
+	players[whoBuy].waterworks.mortage = players[player].waterworks.mortage;
+
+	fields[27].property = players[whoBuy].name;
+
+	document.getElementById("havewaterworks").innerHTML = players[player].waterworks.have;
+	showRoundMainData(player);
+
+	buttonDisabled("buttonbuywaterworks");
+	buttonDisabled("buttonsellwaterworks");
+	buttonDisabled("buttonmortagewaterworks");
+	buttonDisabled("buttonmortageremovewaterworks");
 }
