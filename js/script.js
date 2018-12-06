@@ -89,7 +89,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 12;
+	players[player].position = 28;
 
 	return players[player].position;
 }
@@ -210,6 +210,9 @@ function checkPlayerField(player) {
 	if(fields[players[player].position - 1].type == "waterworks") {
 		hideInfoPanels (true, true, true, true, false);
 		showWaterworksInfos(player);
+
+		buttonEnabled("buttonbuywaterworks");
+		buttonEnabled("buttonsellwaterworks");
 	}
 
 	if(fields[players[player].position - 1].type == "go to prison") {
@@ -980,8 +983,8 @@ function drawInventoryBuldings(player){
 	let buttonWaterworksBuyWaterworks = document.createElement("button");
 	buttonWaterworksBuyWaterworks.id = "buttonbuywaterworks";
 	buttonWaterworksBuyWaterworks.type = "button";
-//przenieść funkcje	
-//	buttonWaterworksBuyWaterworks.onclick = buyWaterworks;
+
+	buttonWaterworksBuyWaterworks.onclick = buyWaterworks;
 	buttonWaterworksBuyWaterworks.classList.add("btn", "btn-danger");
 	buttonWaterworksBuyWaterworks.disabled = true;
 	buttonWaterworksBuyWaterworks.innerHTML = "kup";
@@ -1119,85 +1122,23 @@ function buttonEnabled(buttonId) {
 	document.getElementById(buttonId).classList.add("btn", "btn-success");
 }
 
-function buyPowerStation () {
+function buyWaterworks () {
 
 	buttonEnabled("next-player");
 
 	let player = activePlayer;
-	players[player].powerStation.have = "tak";
+	players[player].waterworks.have = "tak";
 	players[player].powerStationAndWaterworks++;
-	document.getElementById("havepowerstation").innerHTML = players[player].powerStation.have;
+	document.getElementById("havewaterworks").innerHTML = players[player].waterworks.have;
 
-	fields[11].property = players[player].name;
-	fields[11].propertyId = player;
+	fields[27].property = players[player].name;
+	fields[27].propertyId = player;
 
-	updatePlayerMoney(player, -fields[11].cost);
+	updatePlayerMoney(player, -fields[27].cost);
 	showRoundMainData(player);
 
-	buttonDisabled("buttonbuypowerstation");
-	buttonEnabled("buttonsellpowerstation");
-	buttonEnabled("buttonmortagepowerstation");
-}
-
-function sellPowerStation () {
-
-	buttonDisabled("buttonsellpowerstation");
-
-	let player = activePlayer;
-	let whoBuy = document.getElementById("buyerpowerstation").value;
-	let price = parseInt(document.getElementById("pricepowerstation").value);
-
-	if(players[player].powerStation.have == "tak") {
-		updatePlayerMoney(player, price);
-		updatePlayerMoney(whoBuy, -price);
-		players[player].powerStationAndWaterworks--;
-		players[whoBuy].powerStationAndWaterworks++;
-	}
-	else {
-		updatePlayerMoney(whoBuy, -price);
-		players[whoBuy].powerStationAndWaterworks++;
-	}
-
-	players[player].powerStation.have = "nie";
-	players[whoBuy].powerStation.have = "tak";
-
-	players[whoBuy].powerStation.mortage = players[player].powerStation.mortage;
-
-	fields[11].property = players[whoBuy].name;
-
-	document.getElementById("havepowerstation").innerHTML = players[player].powerStation.have;
-	showRoundMainData(player);
-
-	buttonDisabled("buttonbuypowerstation");
-	buttonDisabled("buttonsellpowerstation");
-	buttonDisabled("buttonmortagepowerstation");
-	buttonDisabled("buttonmortageremovepowerstation");
-}
-
-function mortagePowerStation () {
-	let player = activePlayer;
-	players[player].powerStation.mortage = "tak";
-	document.getElementById("mortagepowerstation").innerHTML = players[player].powerStation.mortage;
-
-	fields[11].isMortage = "tak";
-
-	updatePlayerMoney(player, fields[11].mortage);
-	showRoundMainData(player);
-
-	buttonDisabled("buttonmortagepowerstation");
-	buttonEnabled("buttonmortageremovepowerstation");
-}
-
-function mortageRemovePowerStation () {
-	let player = activePlayer;
-	players[player].powerStation.mortage = "nie";
-	document.getElementById("mortagepowerstation").innerHTML = players[player].powerStation.mortage;
-
-	fields[11].isMortage = "nie";
-
-	updatePlayerMoney(player, -fields[11].mortageRemove);
-	showRoundMainData(player);
-
-	buttonEnabled("buttonmortagepowerstation");
-	buttonDisabled("buttonmortageremovepowerstation");
+	buttonDisabled("buttonbuywaterworks");
+	buttonDisabled("buttonbuywaterworks");
+	buttonEnabled("buttonsellwaterworks");
+	buttonEnabled("buttonmortagewaterworks");
 }
