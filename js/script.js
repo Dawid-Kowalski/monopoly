@@ -1061,8 +1061,8 @@ function drawInventoryBuldings(player){
 		buttonWaterworksMortageAction.classList.add("btn", "btn-danger");
 		buttonWaterworksMortageAction.disabled = true;
 	}
-//przenieść funkcje
-//	buttonWaterworksMortageAction.onclick = mortageWaterworks;;
+
+	buttonWaterworksMortageAction.onclick = mortageWaterworks;;
 	buttonWaterworksMortageAction.innerHTML = "zastaw";
 	tdWaterworksMortageAction.appendChild(buttonWaterworksMortageAction);
 
@@ -1176,4 +1176,18 @@ function sellWaterworks () {
 	buttonDisabled("buttonsellwaterworks");
 	buttonDisabled("buttonmortagewaterworks");
 	buttonDisabled("buttonmortageremovewaterworks");
+}
+
+function mortageWaterworks () {
+	let player = activePlayer;
+	players[player].waterworks.mortage = "tak";
+	document.getElementById("mortagewaterworks").innerHTML = players[player].waterworks.mortage;
+
+	fields[27].isMortage = "tak";
+
+	updatePlayerMoney(player, fields[27].mortage);
+	showRoundMainData(player);
+
+	buttonDisabled("buttonmortagewaterworks");
+	buttonEnabled("buttonmortageremovewaterworks");
 }
