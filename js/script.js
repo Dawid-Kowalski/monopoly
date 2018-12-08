@@ -89,7 +89,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 12;
+	players[player].position = 28;
 
 	return players[player].position;
 }
@@ -167,9 +167,6 @@ function checkPlayerField(player) {
 		//id pola koleje na ktorym stoi gracz
 		let field = fields[players[player].position - 1].idRailways;
 
-		buttonEnabled("buttonbuyrailways"+field);
-		buttonEnabled("buttonsellrailways"+field);
-
 		payForRailways(player);
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
@@ -195,9 +192,6 @@ function checkPlayerField(player) {
 		hideInfoPanels (true, true, true, false, true);
 		showPowerStationInfos(player);
 
-		buttonEnabled("buttonbuypowerstation");
-		buttonEnabled("buttonsellpowerstation");
-
 		payForPowerstation(player);
 	}
 
@@ -209,8 +203,7 @@ function checkPlayerField(player) {
 		hideInfoPanels (true, true, true, true, false);
 		showWaterworksInfos(player);
 
-		buttonEnabled("buttonbuywaterworks");
-		buttonEnabled("buttonsellwaterworks");
+		payForWaterworks(player);
 	}
 
 	if(fields[players[player].position - 1].type == "go to prison") {
@@ -1256,3 +1249,38 @@ function payForPowerstation(player) {
 	}
 }
 
+function payForWaterworks(player) {
+	let toPay = 0;
+
+	if(fields[players[player].position - 1].property != "nie" && fields[players[player].position - 1].isMortage != "tak"){
+		if(players[fields[players[player].position - 1].propertyId].powerStationAndWaterworks == 1){
+			let sumDice = parseInt(document.getElementById("sum-dice").innerHTML);
+			toPay = sumDice * 10;
+		}
+		if(players[fields[players[player].position - 1].propertyId].powerStationAndWaterworks == 2){
+			let sumDice = parseInt(document.getElementById("sum-dice").innerHTML);
+			toPay = sumDice * 10 * 2;
+		}
+	}
+
+	if(fields[players[player].position - 1].property != "nie"){
+		alert("jesteś na polu: " + fields[players[player].position - 1].name + "\n" +
+				"które posiada właściciela: " + fields[players[player].position - 1].property + "\n" +
+				"właściciel posiada elektrownie: " + players[fields[players[player].position - 1].propertyId].powerStation.have + "\n" +
+				"właściciel posiada wodociągi: " + players[fields[players[player].position - 1].propertyId].waterworks.have + "\n" +
+			    "pole jest zastawione: " + fields[players[player].position - 1].isMortage + "\n" +
+				"do zapłacenia: " + toPay);
+
+		updatePlayerMoney(player, -toPay);
+		//właściciel otrzymuje
+		updatePlayerMoney(fields[players[player].position - 1].propertyId, +toPay);
+
+		showRoundMainData(player);
+		buttonEnabled("next-player");
+
+	} else {
+		alert("Jeżeli nie chcesz kupić wodociągów za podaną cenę każdy z graczy może ją kupić po licytacji użyjcie przycisku sprzedaj wybierając cenę i gracza");
+		buttonEnabled("buttonbuywaterworks");
+		buttonEnabled("buttonsellwaterworks");
+	}
+}
