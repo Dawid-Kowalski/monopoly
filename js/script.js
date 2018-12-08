@@ -89,7 +89,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	//players[player].position = 28;
+	players[player].position = 12;
 
 	return players[player].position;
 }
@@ -197,6 +197,8 @@ function checkPlayerField(player) {
 
 		buttonEnabled("buttonbuypowerstation");
 		buttonEnabled("buttonsellpowerstation");
+
+		payForPowerstation(player);
 	}
 
 	if(fields[players[player].position - 1].type == "free parking") {
@@ -1214,4 +1216,43 @@ function payForRailways(player) {
 			buttonEnabled("buttonbuyrailways"+field);
 			buttonEnabled("buttonsellrailways"+field);
 	}
-} 
+}
+
+
+function payForPowerstation(player) {
+	let toPay = 0;
+
+	//płatności uzależnione od ilości oczek
+	if(fields[players[player].position - 1].property != "nie" && fields[players[player].position - 1].isMortage != "tak"){
+		if(players[fields[players[player].position - 1].propertyId].powerStationAndWaterworks == 1){
+			let sumDice = parseInt(document.getElementById("sum-dice").innerHTML);
+			toPay = sumDice * 10;
+		}
+
+		if(players[fields[players[player].position - 1].propertyId].powerStationAndWaterworks == 2){
+			let sumDice = parseInt(document.getElementById("sum-dice").innerHTML);
+			toPay = sumDice * 10 * 2;
+		}
+	}
+
+	if(fields[players[player].position - 1].property != "nie"){
+		alert("jesteś na polu: " + fields[players[player].position - 1].name + "\n" +
+				"które posiada właściciela: " + fields[players[player].position - 1].property + "\n" +
+				"właściciel posiada elektrownie: " + players[fields[players[player].position - 1].propertyId].powerStation.have + "\n" +
+				"właściciel posiada wodociągi: " + players[fields[players[player].position - 1].propertyId].waterworks.have + "\n" +
+			    "pole jest zastawione: " + fields[players[player].position - 1].isMortage + "\n" +
+				"do zapłacenia: " + toPay);
+
+		updatePlayerMoney(player, -toPay);
+		//właściciel otrzymuje
+		updatePlayerMoney(fields[players[player].position - 1].propertyId, +toPay);
+
+		showRoundMainData(player);
+		buttonEnabled("next-player");
+	} else {
+		alert("Jeżeli nie chcesz kupić elektrowni za podaną cenę każdy z graczy może ją kupić po licytacji użyjcie przycisku sprzedaj wybierając cenę i gracza");
+		buttonEnabled("buttonbuypowerstation");
+		buttonEnabled("buttonsellpowerstation");
+	}
+}
+
