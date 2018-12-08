@@ -89,7 +89,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 28;
+	//players[player].position = 28;
 
 	return players[player].position;
 }
@@ -136,13 +136,7 @@ function checkPlayerField(player) {
 		hideInfoPanels (false, true, true, true, true);
 		showCityInfos(player);
 
-		alert("Jeżeli nie chcesz kupić nieruchomości za podaną cenę każdy z graczy może ją kupić po licytacji użyjcie przycisku sprzedaj wybierając cenę i gracza");
-
-		//id pola miasto na ktorym stoi gracz
-		let field = fields[players[player].position - 1].idCity;
-
-		buttonEnabled("buttonbuycity"+field);
-		buttonEnabled("buttonsellcity"+field);
+		payForCity(player);
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
 		return;
@@ -1204,4 +1198,61 @@ function mortageRemoveWaterworks () {
 
 	buttonEnabled("buttonmortagewaterworks");
 	buttonDisabled("buttonmortageremovewaterworks");
+}
+
+function payForCity(player) {
+	let toPay = 0;
+
+	//wylicenie płatności według ilości hoteli i domków
+	if(fields[players[player].position - 1].property != "nie" && fields[players[player].position - 1].isMortage != "tak"){
+		
+		if(fields[players[player].position - 1].house == 0 && fields[players[player].position - 1].hotel == 0){
+			toPay = fields[players[player].position - 1].payNoHouse;
+		}
+			
+		if(fields[players[player].position - 1].house == 1 && fields[players[player].position - 1].hotel == 0){
+			toPay = fields[players[player].position - 1].pay1house;
+		}
+
+		if(fields[players[player].position - 1].house == 2 && fields[players[player].position - 1].hotel == 0){
+			toPay = fields[players[player].position - 1].pay2house;
+		}
+
+		if(fields[players[player].position - 1].house == 3 && fields[players[player].position - 1].hotel == 0){
+			toPay = fields[players[player].position - 1].pay3house;
+		}
+
+		if(fields[players[player].position - 1].house == 4 && fields[players[player].position - 1].hotel == 0){
+			toPay = fields[players[player].position - 1].pay4house;
+		}
+
+		if(fields[players[player].position - 1].house == 0 && fields[players[player].position - 1].hotel == 1){
+			toPay = fields[players[player].position - 1].pay1hotel;
+		}
+	}
+
+	//id pola miasto na ktorym stoi gracz
+	let field = fields[players[player].position - 1].idCity;
+
+	// jeżeli pole ma właściciela
+	if(fields[players[player].position - 1].property != "nie"){
+		alert("jesteś na polu: " + fields[players[player].position - 1].name +"\n" +
+				"miasto posiada właściciela: " + fields[players[player].position - 1].property +"\n" +
+			    "pole jest zastawione: " + fields[players[player].position - 1].isMortage +"\n" +
+				"ilość domków: " + fields[players[player].position - 1].house +"\n" +
+				"ilość hoteli: " + fields[players[player].position - 1].hotel +"\n" +
+				"do zapłacenia: " + toPay);
+
+		updatePlayerMoney(player, -toPay);
+		//właściciel otrzymuje
+		updatePlayerMoney(fields[players[player].position - 1].propertyId, +toPay);
+		
+		showRoundMainData(player);
+		buttonEnabled("next-player");
+	//pole do kupienia
+	} else {
+		alert("Jeżeli nie chcesz kupić nieruchomości za podaną cenę każdy z graczy może ją kupić po licytacji użyjcie przycisku sprzedaj wybierając cenę i gracza");
+		buttonEnabled("buttonbuycity"+field);
+		buttonEnabled("buttonsellcity"+field);
+	}
 }
