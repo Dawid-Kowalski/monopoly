@@ -170,6 +170,8 @@ function checkPlayerField(player) {
 		buttonEnabled("buttonbuyrailways"+field);
 		buttonEnabled("buttonsellrailways"+field);
 
+		payForRailways(player);
+
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
 		return;
 	}
@@ -1172,3 +1174,44 @@ function payForCity(player) {
 		buttonEnabled("buttonsellcity"+field);
 	}
 }
+
+function payForRailways(player) {
+	let toPay = 0;
+
+	if(fields[players[player].position - 1].property != "nie" && fields[players[player].position - 1].isMortage != "tak"){
+		if(players[fields[players[player].position - 1].propertyId].railwaysAll == 1){
+			toPay = fields[players[player].position - 1].pay1line;
+		}
+		if(players[fields[players[player].position - 1].propertyId].railwaysAll == 2){
+			toPay = fields[players[player].position - 1].pay2line;
+		}
+		if(players[fields[players[player].position - 1].propertyId].railwaysAll == 3){
+			toPay = fields[players[player].position - 1].pay3line;
+		}
+		if(players[fields[players[player].position - 1].propertyId].railwaysAll == 4){
+			toPay = fields[players[player].position - 1].pay4line;
+		}
+	}
+
+	//id pola miasto na ktorym stoi gracz
+	let field = fields[players[player].position - 1].idRailways;
+
+	if(fields[players[player].position - 1].property != "nie"){
+		alert("jesteś na polu: " + fields[players[player].position - 1].name + "\n" +
+				"koleje posiada właściciela: " + fields[players[player].position - 1].property + "\n" +
+			    "pole jest zastawione: " + fields[players[player].position - 1].isMortage + "\n" +
+			    "właściciel posiada: " + players[fields[players[player].position - 1].propertyId].railwaysAll + " linie" + "\n" +
+				"do zapłacenia: " + toPay);
+
+		updatePlayerMoney(player, -toPay);
+		//właściciel otrzymuje
+		updatePlayerMoney(fields[players[player].position - 1].propertyId, +toPay);
+
+		showRoundMainData(player);
+		buttonEnabled("next-player");
+	} else {
+			alert("Jeżeli nie chcesz kupić koleji za podaną cenę każdy z graczy może ją kupić po licytacji użyjcie przycisku sprzedaj wybierając cenę i gracza");
+			buttonEnabled("buttonbuyrailways"+field);
+			buttonEnabled("buttonsellrailways"+field);
+	}
+} 
