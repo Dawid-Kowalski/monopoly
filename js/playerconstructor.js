@@ -1,6 +1,7 @@
 function Player () {
 	this.id = 0;
 	this.status = "on";
+	this.blockRounds = 0;
 	this.name = "brak";
 	this.money = 1000;
 	this.position = 40;
@@ -9,12 +10,12 @@ function Player () {
 	this.color = "black";
 	this.goFromPrisonBlue = "niedostępne";
 	this.goFromPrisonRed = "niedostępne";
-	this.houseAll = 2;
-	this.hotelAll = 2;
+	this.houseAll = 0;
+	this.hotelAll = 0;
 	this.railwaysAll = 0;
 	this.powerStationAndWaterworks = 0;
-	this.greeceCity = 2;
-	this.greeceComplete = "tak";
+	this.greeceCity = 0;
+	this.greeceComplete = "nie";
 	this.italyCity = 0;
 	this.italyComplete = "nie";
 	this.spainCity = 0;
@@ -26,22 +27,22 @@ function Player () {
 	this.swedenCity = 0;
 	this.swedenComplete = "nie";
 	this.rfnCity = 0;
-	this.rfnComplete = "tak";	
+	this.rfnComplete = "nie";	
 	this.austriaCity = 0;
 	this.austriaComplete = "nie";
 	this.city = [
 				{
 					idField: 0,
 					have: "nie",	
-					house: 1,
-					hotel: 1,
+					house: 0,
+					hotel: 0,
 					mortage: "nie"
 				},
 				{
 					idField: 2,
 					have: "nie",	
-					house: 1,
-					hotel: 1,
+					house: 0,
+					hotel: 0,
 					mortage: "nie"
 				},
 				{

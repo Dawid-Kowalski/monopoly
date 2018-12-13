@@ -22,6 +22,16 @@ function prepaerPlayers() {
 	showPlayerFields();
 	createPlayers();
 
+	//do testów
+	players[0].name = "1";
+	players[1].name = "2";
+	players[2].name = "3";
+
+	players[0].city[0].have = "tak";
+	players[1].city[1].have = "tak";
+	players[2].city[2].have = "tak";
+
+
 	return players;
 }
 
@@ -54,31 +64,65 @@ function nextPlayer() {
 		activePlayer = 0;
 	}
 
-	console.log("gracz" + activePlayer);
+	if(players[activePlayer].blockRounds > 0) {
+		alert("gracz jest w wiezieniu przez " +  players[activePlayer].blockRounds + " kolejki- nie może podejmować akcji");
+		players[activePlayer].blockRounds--;
+		buttonDisabled("throw-dice");
 
-	drawBoard();
-	showRoundMainData(activePlayer);
+		//rysowanie inwentarza nieruchomości
+		drawBoard();
+		showRoundMainData(activePlayer);
 
-	drawInventoryCity(activePlayer);
-	addCityNamePlayerInventory();
-	addCityInfoPlayerInventory(activePlayer);
-	addByerCityPlayerInventory();
+		drawInventoryCity(activePlayer);
+		addCityNamePlayerInventory();
+		addCityInfoPlayerInventory(activePlayer);
+		addByerCityPlayerInventory();
 
-	drawInventoryRailways(activePlayer);
-	addRailwaysNamePlayerInventory();
-	addRailwaysInfoPlayerInventory(activePlayer);
-	addByerRailwaysPlayerInventory();
+		let cityTable = document.getElementById("city-table");
+		let citysInventoryButtons = cityTable.querySelectorAll("button");
 
-	drawInventoryBuldings(activePlayer);
-	addBuldingsInfoPlayerInventory(activePlayer);
-	addByerPowerstationPlayerInventory();
-	addByerWaterworksPlayerInventory();
+		//deaktywacja przycisków
+		for (let i=0; i< citysInventoryButtons.length; i++ ){
+			console.log("weszło");
+			citysInventoryButtons[i].disabled = true;
+			citysInventoryButtons[i].classList.remove("btn", "btn-success");
+			citysInventoryButtons[i].classList.add("btn", "btn-danger");
+			console.log(citysInventoryButtons[i]);
+		}
 
-	for(let i = 0; i<players.length; i++) {
-		drawPlayerPosition(i);
-	}
+		for(let i = 0; i<players.length; i++) {
+			drawPlayerPosition(i);
+		}
 
-	return activePlayer;
+	} else {
+		buttonEnabled("throw-dice");
+
+		console.log("gracz" + activePlayer);
+
+		drawBoard();
+		showRoundMainData(activePlayer);
+
+		drawInventoryCity(activePlayer);
+		addCityNamePlayerInventory();
+		addCityInfoPlayerInventory(activePlayer);
+		addByerCityPlayerInventory();
+
+		drawInventoryRailways(activePlayer);
+		addRailwaysNamePlayerInventory();
+		addRailwaysInfoPlayerInventory(activePlayer);
+		addByerRailwaysPlayerInventory();
+
+		drawInventoryBuldings(activePlayer);
+		addBuldingsInfoPlayerInventory(activePlayer);
+		addByerPowerstationPlayerInventory();
+		addByerWaterworksPlayerInventory();
+
+		for(let i = 0; i<players.length; i++) {
+			drawPlayerPosition(i);
+		}
+
+		return activePlayer;
+	} 
 }
 
 function updatePlayerPosition (player) {
@@ -89,7 +133,7 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 28;
+	players[player].position = 30;
 
 	return players[player].position;
 }
@@ -209,9 +253,22 @@ function checkPlayerField(player) {
 	if(fields[players[player].position - 1].type == "go to prison") {
 		hideInfoPanels (true, true, true, true, true);
 		players[player].position = 10;
+		players[player].blockRounds = 2;
+
 		drawBoard();
+
 		for(let i = 0; i<players.length; i++) {
 			drawPlayerPosition(i);
+		}
+
+		let cityTable = document.getElementById("city-table");
+		let citysInventoryButtons = cityTable.querySelectorAll("button");
+
+		//deaktywacja przycisków
+		for (let i=0; i< citysInventoryButtons.length; i++ ){
+			citysInventoryButtons[i].disabled = true;
+			citysInventoryButtons[i].classList.remove("btn", "btn-success");
+			citysInventoryButtons[i].classList.add("btn", "btn-danger");
 		}
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
