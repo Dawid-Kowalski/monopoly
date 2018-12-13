@@ -34,9 +34,16 @@ function payForCity(player) {
 
 	// jeżeli pole ma właściciela
 	if(fields[players[player].position - 1].property != "nie"){
+
+		//wlaściciel w więzieniu - nie otrzymuje pieniędzy
+		if(players[fields[players[player].position - 1].propertyId].blockRounds > 0) {
+			toPay = 0;
+		}
+
 		alert("jesteś na polu: " + fields[players[player].position - 1].name +"\n" +
 				"miasto posiada właściciela: " + fields[players[player].position - 1].property +"\n" +
 			    "pole jest zastawione: " + fields[players[player].position - 1].isMortage +"\n" +
+			    "wlasciciel jest w wiezieniu: " + players[fields[players[player].position - 1].propertyId].inPrison +"\n" +
 				"ilość domków: " + fields[players[player].position - 1].house +"\n" +
 				"ilość hoteli: " + fields[players[player].position - 1].hotel +"\n" +
 				"do zapłacenia: " + toPay);
@@ -73,6 +80,11 @@ function payForRailways(player) {
 		}
 	}
 
+	//wlaściciel w więzieniu - nie otrzymuje pieniędzy
+	if(players[fields[players[player].position - 1].propertyId].blockRounds > 0) {
+		toPay = 0;
+	}
+
 	//id pola miasto na ktorym stoi gracz
 	let field = fields[players[player].position - 1].idRailways;
 
@@ -80,6 +92,7 @@ function payForRailways(player) {
 		alert("jesteś na polu: " + fields[players[player].position - 1].name + "\n" +
 				"koleje posiada właściciela: " + fields[players[player].position - 1].property + "\n" +
 			    "pole jest zastawione: " + fields[players[player].position - 1].isMortage + "\n" +
+			    "wlasciciel jest w wiezieniu: " + players[fields[players[player].position - 1].propertyId].inPrison +"\n" +
 			    "właściciel posiada: " + players[fields[players[player].position - 1].propertyId].railwaysAll + " linie" + "\n" +
 				"do zapłacenia: " + toPay);
 
@@ -113,12 +126,18 @@ function payForPowerstation(player) {
 		}
 	}
 
+	//wlaściciel w więzieniu - nie otrzymuje pieniędzy
+	if(players[fields[players[player].position - 1].propertyId].blockRounds > 0) {
+		toPay = 0;
+	}
+
 	if(fields[players[player].position - 1].property != "nie"){
 		alert("jesteś na polu: " + fields[players[player].position - 1].name + "\n" +
 				"które posiada właściciela: " + fields[players[player].position - 1].property + "\n" +
 				"właściciel posiada elektrownie: " + players[fields[players[player].position - 1].propertyId].powerStation.have + "\n" +
 				"właściciel posiada wodociągi: " + players[fields[players[player].position - 1].propertyId].waterworks.have + "\n" +
 			    "pole jest zastawione: " + fields[players[player].position - 1].isMortage + "\n" +
+			    "wlasciciel jest w wiezieniu: " + players[fields[players[player].position - 1].propertyId].inPrison +"\n" +
 				"do zapłacenia: " + toPay);
 
 		updatePlayerMoney(player, -toPay);
@@ -148,12 +167,18 @@ function payForWaterworks(player) {
 		}
 	}
 
+	//wlaściciel w więzieniu - nie otrzymuje pieniędzy
+	if(players[fields[players[player].position - 1].propertyId].blockRounds > 0) {
+		toPay = 0;
+	}
+
 	if(fields[players[player].position - 1].property != "nie"){
 		alert("jesteś na polu: " + fields[players[player].position - 1].name + "\n" +
 				"które posiada właściciela: " + fields[players[player].position - 1].property + "\n" +
 				"właściciel posiada elektrownie: " + players[fields[players[player].position - 1].propertyId].powerStation.have + "\n" +
 				"właściciel posiada wodociągi: " + players[fields[players[player].position - 1].propertyId].waterworks.have + "\n" +
 			    "pole jest zastawione: " + fields[players[player].position - 1].isMortage + "\n" +
+			    "wlasciciel jest w wiezieniu: " + players[fields[players[player].position - 1].propertyId].inPrison +"\n" +
 				"do zapłacenia: " + toPay);
 
 		updatePlayerMoney(player, -toPay);

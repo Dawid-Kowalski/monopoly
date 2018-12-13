@@ -1,6 +1,7 @@
 function Player () {
 	this.id = 0;
 	this.status = "on";
+	this.inPrison = "nie";
 	this.blockRounds = 0;
 	this.name = "brak";
 	this.money = 1000;

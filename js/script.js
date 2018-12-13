@@ -28,16 +28,40 @@ function prepaerPlayers() {
 	players[2].name = "3";
 
 	players[0].city[0].have = "tak";
-	players[1].city[1].have = "tak";
-	players[2].city[2].have = "tak";
+	fields[0].property = "tak";
+	fields[0].propertyId = 0;
+
+	players[0].city[1].have = "tak";
+	fields[2].property = "tak";
+	fields[2].propertyId = 0;
+
+	players[0].city[2].have = "tak";
+	fields[5].property = "tak";
+	fields[5].propertyId = 0;
+
+	players[0].city[3].have = "tak";
+	fields[7].property = "tak";
+	fields[7].propertyId = 0;
+
+	players[0].city[4].have = "tak";
+	fields[8].property = "tak";
+	fields[8].propertyId = 0;
 
 	players[0].railways[0].have = "tak";
-	players[1].railways[1].have = "tak";
-	players[2].railways[2].have = "tak";
+	fields[4].property = "tak";
+	fields[4].propertyId = 0;
+
+	players[0].railways[1].have = "tak";
+	fields[14].property = "tak";
+	fields[14].propertyId = 0;
 
 	players[0].powerStation.have = "tak";
-	players[1].waterworks.have = "tak";
+	fields[11].property = "tak";
+	fields[11].propertyId = 0;
 
+	players[0].waterworks.have = "tak";
+	fields[27].property = "tak";
+	fields[27].propertyId = 0;
 
 	return players;
 }
@@ -130,6 +154,7 @@ function nextPlayer() {
 		}
 
 	} else {
+		players[activePlayer].inPrison = "nie";
 		buttonEnabled("throw-dice");
 
 		drawBoard();
@@ -166,7 +191,9 @@ function updatePlayerPosition (player) {
 	}
 
 	//do testów
-	players[player].position = 30;
+	if(player==0){
+		players[player].position = 30;
+	}
 
 	return players[player].position;
 }
@@ -287,6 +314,7 @@ function checkPlayerField(player) {
 		hideInfoPanels (true, true, true, true, true);
 		players[player].position = 10;
 		players[player].blockRounds = 2;
+		players[player].inPrison = "tak";
 
 		drawBoard();
 
