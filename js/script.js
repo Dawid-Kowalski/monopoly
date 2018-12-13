@@ -31,6 +31,13 @@ function prepaerPlayers() {
 	players[1].city[1].have = "tak";
 	players[2].city[2].have = "tak";
 
+	players[0].railways[0].have = "tak";
+	players[1].railways[1].have = "tak";
+	players[2].railways[2].have = "tak";
+
+	players[0].powerStation.have = "tak";
+	players[1].waterworks.have = "tak";
+
 
 	return players;
 }
@@ -69,25 +76,53 @@ function nextPlayer() {
 		players[activePlayer].blockRounds--;
 		buttonDisabled("throw-dice");
 
-		//rysowanie inwentarza nieruchomości
 		drawBoard();
 		showRoundMainData(activePlayer);
 
+//najpierw tworzenie
 		drawInventoryCity(activePlayer);
 		addCityNamePlayerInventory();
 		addCityInfoPlayerInventory(activePlayer);
 		addByerCityPlayerInventory();
 
+		drawInventoryRailways(activePlayer);
+		addRailwaysNamePlayerInventory();
+		addRailwaysInfoPlayerInventory(activePlayer);
+		addByerRailwaysPlayerInventory();
+
+		drawInventoryBuldings(activePlayer);
+		addBuldingsInfoPlayerInventory(activePlayer);
+		addByerPowerstationPlayerInventory();
+		addByerWaterworksPlayerInventory();
+//póżniej pobieranie
 		let cityTable = document.getElementById("city-table");
 		let citysInventoryButtons = cityTable.querySelectorAll("button");
 
-		//deaktywacja przycisków
+		let railwaysTable = document.getElementById("railways-table");
+		let railwaysInventoryButtons = railwaysTable.querySelectorAll("button");
+
+		let buldingsTable = document.getElementById("buldings-table");
+		let buldingsInventoryButtons = buldingsTable.querySelectorAll("button");
+
+		//deaktywacja przycisków miast
 		for (let i=0; i< citysInventoryButtons.length; i++ ){
-			console.log("weszło");
 			citysInventoryButtons[i].disabled = true;
 			citysInventoryButtons[i].classList.remove("btn", "btn-success");
 			citysInventoryButtons[i].classList.add("btn", "btn-danger");
-			console.log(citysInventoryButtons[i]);
+		}
+
+		//deaktywacja przycisków koleji
+		for (let i=0; i< railwaysInventoryButtons.length; i++ ){
+			railwaysInventoryButtons[i].disabled = true;
+			railwaysInventoryButtons[i].classList.remove("btn", "btn-success");
+			railwaysInventoryButtons[i].classList.add("btn", "btn-danger");
+		}
+
+		//deaktywacja przycisków budynków
+		for (let i=0; i< buldingsInventoryButtons.length; i++ ){
+			buldingsInventoryButtons[i].disabled = true;
+			buldingsInventoryButtons[i].classList.remove("btn", "btn-success");
+			buldingsInventoryButtons[i].classList.add("btn", "btn-danger");
 		}
 
 		for(let i = 0; i<players.length; i++) {
@@ -96,8 +131,6 @@ function nextPlayer() {
 
 	} else {
 		buttonEnabled("throw-dice");
-
-		console.log("gracz" + activePlayer);
 
 		drawBoard();
 		showRoundMainData(activePlayer);
@@ -264,11 +297,31 @@ function checkPlayerField(player) {
 		let cityTable = document.getElementById("city-table");
 		let citysInventoryButtons = cityTable.querySelectorAll("button");
 
-		//deaktywacja przycisków
+		let railwaysTable = document.getElementById("railways-table");
+		let railwaysInventoryButtons = railwaysTable.querySelectorAll("button");
+
+		let buldingsTable = document.getElementById("buldings-table");
+		let buldingsInventoryButtons = buldingsTable.querySelectorAll("button");
+
+		//deaktywacja przycisków miast
 		for (let i=0; i< citysInventoryButtons.length; i++ ){
 			citysInventoryButtons[i].disabled = true;
 			citysInventoryButtons[i].classList.remove("btn", "btn-success");
 			citysInventoryButtons[i].classList.add("btn", "btn-danger");
+		}
+
+		//deaktywacja przycisków koleji
+		for (let i=0; i< railwaysInventoryButtons.length; i++ ){
+			railwaysInventoryButtons[i].disabled = true;
+			railwaysInventoryButtons[i].classList.remove("btn", "btn-success");
+			railwaysInventoryButtons[i].classList.add("btn", "btn-danger");
+		}
+
+		//deaktywacja przycisków budynków
+		for (let i=0; i< buldingsInventoryButtons.length; i++ ){
+			buldingsInventoryButtons[i].disabled = true;
+			buldingsInventoryButtons[i].classList.remove("btn", "btn-success");
+			buldingsInventoryButtons[i].classList.add("btn", "btn-danger");
 		}
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
