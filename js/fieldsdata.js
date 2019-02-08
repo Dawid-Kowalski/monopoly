@@ -125,7 +125,7 @@ let fields = [
 		maxXpos: lS,
 		minYpos: lS + 2*sS,
 		maxYpos: ch - lS - 6*sS,
-		name: "szansa 2"
+		name: "szansa czerwona"
 	},
 	{
 		id: 8,
@@ -441,7 +441,7 @@ let fields = [
 		maxXpos: 2*lS + 9*sS,
 		minYpos: lS + 1*sS,
 		maxYpos: lS + 2*sS,
-		name: "szansa 2"
+		name: "szansa czerwona"
 	},
 	{
 		id: 23,
@@ -739,7 +739,7 @@ let fields = [
 		maxXpos: cw - lS - 5*sS,
 		minYpos: lS + 9*sS,
 		maxYpos: 2*lS + 9*sS,
-		name: "szansa 2"
+		name: "szansa czerwona"
 	},
 	{
 		id: 37,

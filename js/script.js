@@ -192,12 +192,12 @@ function updatePlayerPosition (player) {
 	if(players[player].position > 40){
 		players[player].position -= 40;
 	}
-/*
+
 	//do testów
 	if(player==0){
-		players[player].position = 30;
+		players[player].position = 7;
 	}
-*/
+
 	return players[player].position;
 }
 
@@ -240,7 +240,7 @@ function updatePlayerMoney(player, money) {
 function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "city"){
-		hideInfoPanels (true, true, true, true);
+		hideInfoPanels (true, true, true);
 
 		payForCity(player);
 
@@ -257,11 +257,16 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "blue chance") {
-		console.log("odkrywasz szanse");
-		hideInfoPanels (false, true, true, true);
+
+		hideInfoPanels (true, true, true);
 		blueCard = blueChance.shift();
 		blueChance.push(blueCard);
-		document.getElementById('chance-text').innerHTML = blueCard.text;
+
+		prepearDiceMessage(firstDice, secondDice, sumDice);
+		prepearFieldNameInfoMessage(player);
+
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + blueCard.text);
+
 		blueCardEffect();
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue card effect
@@ -269,13 +274,13 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "paid parking") {
-		hideInfoPanels (true, true, true, true);
+		hideInfoPanels (true, true, true);
 		updatePlayerMoney(player, -400);
 		showRoundMainData(player);
 	}
 
 	if(fields[players[player].position - 1].type == "railways") {
-		hideInfoPanels (true, false, true, true);
+		hideInfoPanels (false, true, true);
 		showRailwaysInfos(player);
 
 		//id pola koleje na ktorym stoi gracz
@@ -288,10 +293,15 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "red chance") {
-		hideInfoPanels (false, true, true, true);
+		hideInfoPanels (true, true, true);
 		redCard = redChance.shift();
 		redChance.push(redCard);
-		document.getElementById('chance-text').innerHTML = redCard.text;
+
+		prepearDiceMessage(firstDice, secondDice, sumDice);
+		prepearFieldNameInfoMessage(player);
+
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + redCard.text);
+		
 		redCardEffect();
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez red card effect
@@ -299,29 +309,29 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "prison visit") {
-		hideInfoPanels (true, true, true, true);
+		hideInfoPanels (true, true, true);
 	}
 
 	if(fields[players[player].position - 1].type == "power station") {
-		hideInfoPanels (true, true, false, true);
+		hideInfoPanels (true, false, true);
 		showPowerStationInfos(player);
 
 		payForPowerstation(player);
 	}
 
 	if(fields[players[player].position - 1].type == "free parking") {
-		hideInfoPanels (true, true, true, true);
+		hideInfoPanels (true, true, true);
 	}
 
 	if(fields[players[player].position - 1].type == "waterworks") {
-		hideInfoPanels (true, true, true, false);
+		hideInfoPanels (true, true, false);
 		showWaterworksInfos(player);
 
 		payForWaterworks(player);
 	}
 
 	if(fields[players[player].position - 1].type == "go to prison") {
-		hideInfoPanels (true, true, true, true);
+		hideInfoPanels (true, true, true);
 		players[player].position = 10;
 		players[player].blockRounds = 2;
 		players[player].inPrison = "tak";
@@ -367,13 +377,13 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "tax to pay") {
-		hideInfoPanels (true, true, true, true);
+		hideInfoPanels (true, true, true);
 		updatePlayerMoney(player, -200);
 		showRoundMainData(player);
 	}
 
 	if(fields[players[player].position - 1].type == "start") {
-		hideInfoPanels (true, true, true, true);
+		hideInfoPanels (true, true, true);
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
 		return;
