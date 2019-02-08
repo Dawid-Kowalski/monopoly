@@ -34,6 +34,8 @@ let waterWorksCostsMessage = "koszty wodociagow";
 
 let waterWorksPayAmountMessage = "Opłaty za postój: 10 x ilość wyrzuconych oczek, jeżeli gracz posiada również elektrownie oplata jest podwójna";
 
+let goToPrisonMessage = "Idziesz do wiezienia";
+
 
 function prepearDiceMessage(firstDice, secondDice, sumDice) {
 	diceMessage = "Ilość oczek na 1 kostce: " + firstDice +'\n' + "Ilość oczek na 2 kostce: " + secondDice +'\n' + "Suma: " + sumDice + "\n";
