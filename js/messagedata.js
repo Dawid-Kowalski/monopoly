@@ -40,6 +40,8 @@ let taxToPayMessage = "Płacisz podatek od wzbogacenia w wysokosci 200$";
 
 let startMessage = "Jesteś na polu startowym po przejściu przez start otrzymasz 400$";
 
+let payForCityOwnerMessage = "informacje o właścicielu";
+
 
 function prepearDiceMessage(firstDice, secondDice, sumDice) {
 	diceMessage = "Ilość oczek na 1 kostce: " + firstDice +'\n' + "Ilość oczek na 2 kostce: " + secondDice +'\n' + "Suma: " + sumDice + "\n";
@@ -120,5 +122,12 @@ function prepearWaterWorksCostsMessage(player) {
 	waterWorksCostsMessage = 	"Koszty zakupu: " + fields[players[player].position - 1].cost + "\n" +
 								"Wpływy z zastawienia: " + fields[players[player].position - 1].mortage + "\n" +
 								"Koszty wykupienia hipoteki: " + fields[players[player].position - 1].mortageRemove + "\n"
+								;
+}
+
+function prepaerPayForCityOwnerMessage(ownerInPrison, howManyLines, toPay) {
+	payForCityOwnerMessage =	"Właściciel jest w więzieniu: " + ownerInPrison + "\n" +
+								"Właściciel posiada: " + howManyLines + " linie" + "\n" +
+								"Do zapłacenia: " + toPay + "\n"
 								;
 }

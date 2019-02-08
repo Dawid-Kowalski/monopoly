@@ -62,6 +62,13 @@ function payForCity(player) {
 }
 
 function payForRailways(player) {
+
+	prepearDiceMessage(firstDice, secondDice, sumDice);
+	prepearFieldNameInfoMessage(player);
+	prepearMainRailwaysMessage(player);
+	prepearRailwaysCostsMessage(player);
+	prepearRailwaysPayAmountMessage(player);
+
 	let toPay = 0;
 
 	if(fields[players[player].position - 1].property != "nie" && fields[players[player].position - 1].isMortage != "tak"){
@@ -79,21 +86,21 @@ function payForRailways(player) {
 		}
 	}
 
-	//wlaściciel w więzieniu - nie otrzymuje pieniędzy
-	if(players[fields[players[player].position - 1].propertyId].blockRounds > 0) {
-		toPay = 0;
-	}
-
-	//id pola miasto na ktorym stoi gracz
 	let field = fields[players[player].position - 1].idRailways;
 
 	if(fields[players[player].position - 1].property != "nie"){
-		alert("jesteś na polu: " + fields[players[player].position - 1].name + "\n" +
-				"koleje posiada właściciela: " + fields[players[player].position - 1].property + "\n" +
-			    "pole jest zastawione: " + fields[players[player].position - 1].isMortage + "\n" +
-			    "wlasciciel jest w wiezieniu: " + players[fields[players[player].position - 1].propertyId].inPrison +"\n" +
-			    "właściciel posiada: " + players[fields[players[player].position - 1].propertyId].railwaysAll + " linie" + "\n" +
-				"do zapłacenia: " + toPay);
+
+		//wlaściciel w więzieniu - nie otrzymuje pieniędzy
+		if(players[fields[players[player].position - 1].propertyId].blockRounds > 0) {
+			toPay = 0;
+		}
+
+		let ownerInPrison = players[fields[players[player].position - 1].propertyId].inPrison;
+		let howManyLines = players[fields[players[player].position - 1].propertyId].railwaysAll;
+
+		prepaerPayForCityOwnerMessage(ownerInPrison, howManyLines, toPay);
+
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainRailwaysMessage + "\n" + payForCityOwnerMessage);
 
 		updatePlayerMoney(player, -toPay);
 		//właściciel otrzymuje
@@ -102,9 +109,9 @@ function payForRailways(player) {
 		showRoundMainData(player);
 		buttonEnabled("next-player");
 	} else {
-			alert("Jeżeli nie chcesz kupić koleji za podaną cenę każdy z graczy może ją kupić po licytacji użyjcie przycisku sprzedaj wybierając cenę i gracza");
-			buttonEnabled("buttonbuyrailways"+field);
-			buttonEnabled("buttonsellrailways"+field);
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainRailwaysMessage + "\n" + railwaysCostsMessage + "\n" + railwaysPayAmountMessage + "\n" + freeFieldMessage);
+		buttonEnabled("buttonbuyrailways"+field);
+		buttonEnabled("buttonsellrailways"+field);
 	}
 }
 
