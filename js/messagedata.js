@@ -10,6 +10,8 @@ let cityCostsMessage = "koszty miasta";
 
 let cityPayAmountMessage = "wysokości opłat";
 
+let paidParkingMessage = "Płacisz opłatę za parking w wysokosci 400$";
+
 
 
 

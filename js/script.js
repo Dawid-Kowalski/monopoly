@@ -195,7 +195,7 @@ function updatePlayerPosition (player) {
 
 	//do testów
 	if(player==0){
-		players[player].position = 7;
+		players[player].position = 4;
 	}
 
 	return players[player].position;
@@ -277,6 +277,11 @@ function checkPlayerField(player) {
 		hideInfoPanels (true, true, true);
 		updatePlayerMoney(player, -400);
 		showRoundMainData(player);
+
+		prepearDiceMessage(firstDice, secondDice, sumDice);
+		prepearFieldNameInfoMessage(player);
+
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + paidParkingMessage);
 	}
 
 	if(fields[players[player].position - 1].type == "railways") {
