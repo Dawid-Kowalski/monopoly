@@ -14,6 +14,7 @@ let cityTable = document.getElementById("city-table");
 let railwaysTable = document.getElementById("railways-table");
 let buldingsTable = document.getElementById("buldings-table");
 
+buttonDisabled("start-game");
 
 function prepaerPlayers() {
 
@@ -21,47 +22,6 @@ function prepaerPlayers() {
 
 	showPlayerFields();
 	createPlayers();
-
-	//do testów
-	players[0].name = "1";
-	players[1].name = "2";
-	players[2].name = "3";
-
-	players[0].city[0].have = "tak";
-	fields[0].property = "tak";
-	fields[0].propertyId = 0;
-
-	players[0].city[1].have = "tak";
-	fields[2].property = "tak";
-	fields[2].propertyId = 0;
-
-	players[0].city[2].have = "tak";
-	fields[5].property = "tak";
-	fields[5].propertyId = 0;
-
-	players[0].city[3].have = "tak";
-	fields[7].property = "tak";
-	fields[7].propertyId = 0;
-
-	players[0].city[4].have = "tak";
-	fields[8].property = "tak";
-	fields[8].propertyId = 0;
-
-	players[0].railways[0].have = "tak";
-	fields[4].property = "tak";
-	fields[4].propertyId = 0;
-
-	players[0].railways[1].have = "tak";
-	fields[14].property = "tak";
-	fields[14].propertyId = 0;
-
-	players[0].powerStation.have = "tak";
-	fields[11].property = "tak";
-	fields[11].propertyId = 0;
-
-	players[0].waterworks.have = "tak";
-	fields[27].property = "tak";
-	fields[27].propertyId = 0;
 
 	return players;
 }
@@ -84,6 +44,50 @@ function showRoundMainData(player) {
 	document.getElementById("player-name").innerHTML = players[player].name;
 	document.getElementById("player-money").innerHTML = players[player].money;
 	document.getElementById("player-position").innerHTML = players[player].position;
+}
+
+function startGame() {
+
+	if(players.length == 2) {
+		players[0].color = document.getElementById("player1-color").value;
+		players[1].color = document.getElementById("player2-color").value
+
+		players[0].name = document.getElementById("player1-name").value;
+		players[1].name = document.getElementById("player2-name").value;
+	}
+
+	if(players.length == 3) {
+		players[0].color = document.getElementById("player1-color").value;
+		players[1].color = document.getElementById("player2-color").value;
+		players[2].color = document.getElementById("player3-color").value;
+
+		players[0].name = document.getElementById("player1-name").value;
+		players[1].name = document.getElementById("player2-name").value;
+		players[2].name = document.getElementById("player3-name").value;
+	}
+
+	if(players.length == 4) {
+		players[0].color = document.getElementById("player1-color").value;
+		players[1].color = document.getElementById("player2-color").value;
+		players[2].color = document.getElementById("player3-color").value;
+		players[3].color = document.getElementById("player4-color").value;
+
+		players[0].name = document.getElementById("player1-name").value;
+		players[1].name = document.getElementById("player2-name").value;
+		players[2].name = document.getElementById("player3-name").value;
+		players[3].name = document.getElementById("player4-name").value;
+	}
+
+
+	for(let i = 0; i<players.length; i++) {
+		drawPlayerPosition(i);
+	}
+
+	buttonDisabled("start-game");
+	buttonDisabled("next-player");
+	document.getElementById("number-of-players").disabled = true;
+
+	showRoundMainData(activePlayer);
 }
 
 function nextPlayer() {
@@ -189,12 +193,12 @@ function updatePlayerPosition (player) {
 	if(players[player].position > 40){
 		players[player].position -= 40;
 	}
-
+/*
 	//do testów
 	if(player==0){
 		players[player].position = 30;
 	}
-
+*/
 	return players[player].position;
 }
 

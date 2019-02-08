@@ -1,5 +1,7 @@
 function createPlayers () {
 
+	players = [];
+
 //każdy gracz w tablicy musi mieć unikalne id//
 	let playerId = 1;
 

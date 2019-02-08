@@ -10,23 +10,71 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-8">
-					<h4>plansza</h4>
 					<canvas id="canvas"></canvas>
 				</div>
 				<div class="col-md-4">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
-					  <li class="nav-item">
-					    <a class="nav-link active" id="colors-tab" data-toggle="tab" href="#colors" role="tab" aria-controls="colors" aria-selected="true">Kolory</a>
-					  </li>
-					  <li class="nav-item">
-					    <a class="nav-link" id="countrys-tab" data-toggle="tab" href="#countrys" role="tab" aria-controls="countrys" aria-selected="false">Państwa</a>
-					  </li>
-					  <li class="nav-item">
-					    <a class="nav-link" id="citys-tab" data-toggle="tab" href="#citys" role="tab" aria-controls="citys" aria-selected="false">Miasta</a>
-					  </li>
+						<li class="nav-item">
+					    	<a class="nav-link active" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="true">Ustawienia</a>
+					  	</li>
+					  	<li class="nav-item">
+					    	<a class="nav-link" id="colors-tab" data-toggle="tab" href="#colors" role="tab" aria-controls="colors" aria-selected="false">Kolory</a>
+					  	</li>
+					  	<li class="nav-item">
+					    	<a class="nav-link" id="countrys-tab" data-toggle="tab" href="#countrys" role="tab" aria-controls="countrys" aria-selected="false">Państwa</a>
+					  	</li>
+					  	<li class="nav-item">
+					    	<a class="nav-link" id="citys-tab" data-toggle="tab" href="#citys" role="tab" aria-controls="citys" aria-selected="false">Miasta</a>
+					  	</li>
 					</ul>
 					<div class="tab-content" id="myTabContent">
-					  <div class="tab-pane fade show active" id="colors" role="tabpanel" aria-labelledby="home-tab">
+
+					  <div class="tab-pane fade show active" id="settings" role="tabpanel" aria-labelledby="home-tab">
+					  	<div class="block">
+							<div>
+								<label>Ilość graczy</label>
+								<br>
+								<select id="number-of-players" onchange="prepaerPlayers();">
+									<option value="0">wybierz</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+								</select>
+								<div>
+									<label id="player1-name-label" hidden>imię 1 gracza:</label>
+									<input id="player1-name" type="hidden" value="pierwszy" onchange="changePlayersName(1);">
+									<label id="player1-color-label" hidden>kolor pionka 1 gracza:</label>
+									<input id="player1-color" type="hidden" value="#0000FF" onchange="changePlayerColor(1);">
+								</div>
+								<div>
+									<label id="player2-name-label" hidden>imię 2 gracza:</label>
+									<input id="player2-name" type="hidden" value="drugi" onchange="changePlayersName(2);">
+									<label id="player2-color-label" hidden>kolor pionka 2 gracza:</label>
+									<input id="player2-color" type="hidden" value="#FF0000" onchange="changePlayerColor(2);">
+								</div>
+								<div>
+									<label id="player3-name-label" hidden>imię 3 gracza:</label>
+									<input id="player3-name" type="hidden" value="trzeci" onchange="changePlayersName(3);">
+									<label id="player3-color-label" hidden>kolor pionka 3 gracza:</label>
+									<input id="player3-color" type="hidden" value="#008000" onchange="changePlayerColor(3);">
+								</div>		
+								<div>				
+									<label id="player4-name-label" hidden>imię 4 gracza:</label>
+									<input id="player4-name" type="hidden" value="czwarty" onchange="changePlayersName(4);">
+									<label id="player4-color-label" hidden>kolor pionka 4 gracza:</label>
+									<input id="player4-color" type="hidden" value="#FFFF00" onchange="changePlayerColor(4);">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="text-center">
+										<button id="start-game" type="button" class="btn btn-success" onclick="startGame();">start gry</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					  </div>
+					  <div class="tab-pane fade" id="colors" role="tabpanel" aria-labelledby="home-tab">
 					  	<div class="block">
 						  	<label>kolor tła:</label>
 							<input id="fieldcolor" type="color" value="#98FB98" onchange="changeSettings();">
@@ -122,43 +170,6 @@
 							</div>
 						</div>
 					  </div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div>
-						<label>Ilość graczy</label>
-						<br>
-						<select id="number-of-players" onchange="prepaerPlayers();">
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-						</select>
-						<div>
-							<label>imię 1 gracza:</label>
-							<input id="player1-name" type="text" value="pierwszy" onchange="changePlayersName(1);">
-							<label>kolor pionka 1 gracza:</label>
-							<input id="player1-color" type="color" value="#0000FF" onchange="changePlayerColor(1);">
-						</div>
-						<div>
-							<label>imię 2 gracza:</label>
-							<input id="player2-name" type="text" value="drugi" onchange="changePlayersName(2);">
-							<label>kolor pionka 2 gracza:</label>
-							<input id="player2-color" type="color" value="#FF0000" onchange="changePlayerColor(2);">
-						</div>
-						<div>
-							<label id="player3-name-label" hidden>imię 3 gracza:</label>
-							<input id="player3-name" type="hidden" value="trzeci" onchange="changePlayersName(3);">
-							<label id="player3-color-label" hidden>kolor pionka 3 gracza:</label>
-							<input id="player3-color" type="hidden" value="#008000" onchange="changePlayerColor(3);">
-						</div>		
-						<div>				
-							<label id="player4-name-label" hidden>imię 4 gracza:</label>
-							<input id="player4-name" type="hidden" value="czwarty" onchange="changePlayersName(4);">
-							<label id="player4-color-label" hidden>kolor pionka 4 gracza:</label>
-							<input id="player4-color" type="hidden" value="#FFFF00" onchange="changePlayerColor(4);">
-						</div>
 					</div>
 				</div>
 			</div>
