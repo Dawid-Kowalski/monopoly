@@ -28,6 +28,12 @@ let powerStationPayAmountMessage = "Opłaty za postój: 10 x ilość wyrzuconych
 
 let freeParkingMessage = "Parkujesz bezpłatnie";
 
+let mainWaterWorksMessage = "informacje o wodociagach";
+
+let waterWorksCostsMessage = "koszty wodociagow";
+
+let waterWorksPayAmountMessage = "Opłaty za postój: 10 x ilość wyrzuconych oczek, jeżeli gracz posiada również elektrownie oplata jest podwójna";
+
 
 function prepearDiceMessage(firstDice, secondDice, sumDice) {
 	diceMessage = "Ilość oczek na 1 kostce: " + firstDice +'\n' + "Ilość oczek na 2 kostce: " + secondDice +'\n' + "Suma: " + sumDice + "\n";
@@ -93,6 +99,19 @@ function prepearMainPowerStationMessage(player) {
 
 function prepearPowerStationCostsMessage(player) {
 	powerStationCostsMessage = 	"Koszty zakupu: " + fields[players[player].position - 1].cost + "\n" +
+								"Wpływy z zastawienia: " + fields[players[player].position - 1].mortage + "\n" +
+								"Koszty wykupienia hipoteki: " + fields[players[player].position - 1].mortageRemove + "\n"
+								;
+}
+
+function prepearMainWaterWorksMessage(player) {
+	mainWaterWorksMessage = 	"Pole posiada właściciela: " + fields[players[player].position - 1].property + "\n" +
+								"Czy pole jest zastawione: " + fields[players[player].position - 1].isMortage + "\n"
+								;
+}
+
+function prepearWaterWorksCostsMessage(player) {
+	waterWorksCostsMessage = 	"Koszty zakupu: " + fields[players[player].position - 1].cost + "\n" +
 								"Wpływy z zastawienia: " + fields[players[player].position - 1].mortage + "\n" +
 								"Koszty wykupienia hipoteki: " + fields[players[player].position - 1].mortageRemove + "\n"
 								;

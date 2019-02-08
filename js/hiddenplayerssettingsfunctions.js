@@ -44,12 +44,3 @@ function hidePlayersSettings (label, inputText, labelColor, inputColor, ishidden
 			document.getElementById(inputColor).type = "color";
 		}
 }
-
-function hideInfoPanels (isWaterworks) {
-
-	if(isWaterworks) {
-		document.getElementById("waterworks-info-panel").hidden = isWaterworks;
-	} else {
-		document.getElementById("waterworks-info-panel").hidden = false;
-	}
-}
