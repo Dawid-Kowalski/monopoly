@@ -8,7 +8,7 @@ let mainCityMessage = "informacje o miescie";
 
 let cityCostsMessage = "koszty miasta";
 
-let cityPayAmountMessage = "wysokości opłat miastao";
+let cityPayAmountMessage = "wysokości opłat miasto";
 
 let paidParkingMessage = "Płacisz opłatę za parking w wysokosci 400$";
 
@@ -20,6 +20,11 @@ let railwaysPayAmountMessage = "wysokości opłat kolej";
 
 let prisonVisitMessage = "Odwiedzasz wiezienie";
 
+let mainPowerStationMessage = "informacje o elektrowni";
+
+let powerStationCostsMessage = "koszty elektrowni";
+
+let powerStationPayAmountMessage = "Opłaty za postój: 10 x ilość wyrzuconych oczek, jeżeli gracz posiada również wodociągi oplata jest podwójna";
 
 
 function prepearDiceMessage(firstDice, secondDice, sumDice) {
@@ -75,5 +80,18 @@ function prepearRailwaysPayAmountMessage(player) {
 								"Opłaty za 2 linie: " + fields[players[player].position - 1].pay2line + "\n" +
 								"Opłaty za 3 linie: " + fields[players[player].position - 1].pay3line + "\n" +
 								"Opłaty za 4 linie: " + fields[players[player].position - 1].pay4line + "\n"
+								;
+}
+
+function prepearMainPowerStationMessage(player) {
+	mainPowerStationMessage = 	"Pole posiada właściciela: " + fields[players[player].position - 1].property + "\n" +
+								"Czy pole jest zastawione: " + fields[players[player].position - 1].isMortage + "\n"
+								;
+}
+
+function prepearPowerStationCostsMessage(player) {
+	powerStationCostsMessage = 	"Koszty zakupu: " + fields[players[player].position - 1].cost + "\n" +
+								"Wpływy z zastawienia: " + fields[players[player].position - 1].mortage + "\n" +
+								"Koszty wykupienia hipoteki: " + fields[players[player].position - 1].mortageRemove + "\n"
 								;
 }

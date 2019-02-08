@@ -45,13 +45,7 @@ function hidePlayersSettings (label, inputText, labelColor, inputColor, ishidden
 		}
 }
 
-function hideInfoPanels (isPowerstation, isWaterworks) {
-
-	if(isPowerstation) {
-		document.getElementById("powerstation-info-panel").hidden = isPowerstation;
-	} else {
-		document.getElementById("powerstation-info-panel").hidden = false;
-	}
+function hideInfoPanels (isWaterworks) {
 
 	if(isWaterworks) {
 		document.getElementById("waterworks-info-panel").hidden = isWaterworks;

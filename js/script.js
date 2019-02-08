@@ -195,7 +195,7 @@ function updatePlayerPosition (player) {
 
 	//do testów
 	if(player==0){
-		players[player].position = 10;
+		players[player].position = 12;
 	}
 
 	return players[player].position;
@@ -240,7 +240,7 @@ function updatePlayerMoney(player, money) {
 function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "city"){
-		hideInfoPanels (true, true);
+		hideInfoPanels (true);
 
 		payForCity(player);
 
@@ -258,7 +258,7 @@ function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "blue chance") {
 
-		hideInfoPanels (true, true);
+		hideInfoPanels (true);
 		blueCard = blueChance.shift();
 		blueChance.push(blueCard);
 
@@ -274,7 +274,7 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "paid parking") {
-		hideInfoPanels (true, true);
+		hideInfoPanels (true);
 		updatePlayerMoney(player, -400);
 		showRoundMainData(player);
 
@@ -285,7 +285,7 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "railways") {
-		hideInfoPanels (true, true);
+		hideInfoPanels (true);
 
 		//id pola koleje na ktorym stoi gracz
 		//let field = fields[players[player].position - 1].idRailways;
@@ -305,7 +305,7 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "red chance") {
-		hideInfoPanels (true, true);
+		hideInfoPanels (true);
 		redCard = redChance.shift();
 		redChance.push(redCard);
 
@@ -321,7 +321,7 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "prison visit") {
-		hideInfoPanels (true, true);
+		hideInfoPanels (true);
 
 		prepearDiceMessage(firstDice, secondDice, sumDice);
 		prepearFieldNameInfoMessage(player);
@@ -330,25 +330,31 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "power station") {
-		hideInfoPanels (false, true);
-		showPowerStationInfos(player);
+		hideInfoPanels (true);
 
-		payForPowerstation(player);
+		//payForPowerstation(player);
+
+		prepearDiceMessage(firstDice, secondDice, sumDice);
+		prepearFieldNameInfoMessage(player);
+		prepearMainPowerStationMessage(player);
+		prepearPowerStationCostsMessage(player);
+
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainPowerStationMessage + "\n" + powerStationCostsMessage + "\n" + powerStationPayAmountMessage + "\n" + freeFieldMessage);
 	}
 
 	if(fields[players[player].position - 1].type == "free parking") {
-		hideInfoPanels (true, true);
+		hideInfoPanels (true);
 	}
 
 	if(fields[players[player].position - 1].type == "waterworks") {
-		hideInfoPanels (true, false);
+		hideInfoPanels (false);
 		showWaterworksInfos(player);
 
 		payForWaterworks(player);
 	}
 
 	if(fields[players[player].position - 1].type == "go to prison") {
-		hideInfoPanels (true, true);
+		hideInfoPanels (true);
 		players[player].position = 10;
 		players[player].blockRounds = 2;
 		players[player].inPrison = "tak";
@@ -394,25 +400,17 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "tax to pay") {
-		hideInfoPanels (true, true);
+		hideInfoPanels (true);
 		updatePlayerMoney(player, -200);
 		showRoundMainData(player);
 	}
 
 	if(fields[players[player].position - 1].type == "start") {
-		hideInfoPanels (true, true);
+		hideInfoPanels (true);
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
 		return;
 	}
-}
-
-function showPowerStationInfos(player) {
-		document.getElementById('field-powerstation-property').innerHTML = fields[players[player].position - 1].property;
-		document.getElementById('is-mortage-powerstation').innerHTML = fields[players[player].position - 1].isMortage;
-		document.getElementById('cost-powerstation').innerHTML = fields[players[player].position - 1].cost;
-		document.getElementById('mortage-powerstation-price').innerHTML = fields[players[player].position - 1].mortage;
-		document.getElementById('mortage-remove-powerstation').innerHTML = fields[players[player].position - 1].mortageRemove;
 }
 
 function showWaterworksInfos(player) {
