@@ -195,7 +195,7 @@ function updatePlayerPosition (player) {
 
 	//do testów
 	if(player==0){
-		players[player].position = 38;
+		players[player].position = 40;
 	}
 
 	return players[player].position;
@@ -421,6 +421,11 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "start") {
+
+		prepearDiceMessage(firstDice, secondDice, sumDice);
+		prepearFieldNameInfoMessage(player);
+
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + startMessage);
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
 		return;
