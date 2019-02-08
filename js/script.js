@@ -195,7 +195,7 @@ function updatePlayerPosition (player) {
 
 	//do testów
 	if(player==0){
-		players[player].position = 5;
+		players[player].position = 10;
 	}
 
 	return players[player].position;
@@ -322,6 +322,11 @@ function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "prison visit") {
 		hideInfoPanels (true, true);
+
+		prepearDiceMessage(firstDice, secondDice, sumDice);
+		prepearFieldNameInfoMessage(player);
+
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + prisonVisitMessage);
 	}
 
 	if(fields[players[player].position - 1].type == "power station") {

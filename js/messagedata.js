@@ -18,6 +18,8 @@ let railwaysCostsMessage = "koszty koleji";
 
 let railwaysPayAmountMessage = "wysokości opłat kolej";
 
+let prisonVisitMessage = "Odwiedzasz wiezienie";
+
 
 
 function prepearDiceMessage(firstDice, secondDice, sumDice) {
