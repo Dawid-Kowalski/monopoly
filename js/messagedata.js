@@ -36,6 +36,8 @@ let waterWorksPayAmountMessage = "Opłaty za postój: 10 x ilość wyrzuconych o
 
 let goToPrisonMessage = "Idziesz do wiezienia";
 
+let taxToPayMessage = "Płacisz podatek od wzbogacenia w wysokosci 200$";
+
 
 function prepearDiceMessage(firstDice, secondDice, sumDice) {
 	diceMessage = "Ilość oczek na 1 kostce: " + firstDice +'\n' + "Ilość oczek na 2 kostce: " + secondDice +'\n' + "Suma: " + sumDice + "\n";

@@ -195,7 +195,7 @@ function updatePlayerPosition (player) {
 
 	//do testów
 	if(player==0){
-		players[player].position = 30;
+		players[player].position = 38;
 	}
 
 	return players[player].position;
@@ -413,6 +413,11 @@ function checkPlayerField(player) {
 
 		updatePlayerMoney(player, -200);
 		showRoundMainData(player);
+
+		prepearDiceMessage(firstDice, secondDice, sumDice);
+		prepearFieldNameInfoMessage(player);
+
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + taxToPayMessage);	
 	}
 
 	if(fields[players[player].position - 1].type == "start") {
