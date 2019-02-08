@@ -45,13 +45,7 @@ function hidePlayersSettings (label, inputText, labelColor, inputColor, ishidden
 		}
 }
 
-function hideInfoPanels (isCity, isChance, isRailways, isPowerstation, isWaterworks) {
-	
-	if(isCity) {
-		document.getElementById("city-info-panel").hidden = isCity;
-	} else {
-		document.getElementById("city-info-panel").hidden = false;
-	}
+function hideInfoPanels (isChance, isRailways, isPowerstation, isWaterworks) {
 
 	if(isChance) {
 		document.getElementById("card-info-panel").hidden = isChance;

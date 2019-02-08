@@ -43,7 +43,6 @@ function changePlayerColor(id) {
 function showRoundMainData(player) {
 	document.getElementById("player-name").innerHTML = players[player].name;
 	document.getElementById("player-money").innerHTML = players[player].money;
-	document.getElementById("player-position").innerHTML = players[player].position;
 }
 
 function startGame() {
@@ -241,10 +240,17 @@ function updatePlayerMoney(player, money) {
 function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "city"){
-		hideInfoPanels (false, true, true, true, true);
-		showCityInfos(player);
+		hideInfoPanels (true, true, true, true);
 
 		payForCity(player);
+
+		prepearDiceMessage(firstDice, secondDice, sumDice);
+		prepearFieldNameInfoMessage(player);
+		prepearMainCityMessage(player);
+		prepearCityCostsMessage(player);
+		prepearPayAmountMessage(player);
+
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainCityMessage + "\n"+ cityCostsMessage + "\n" + cityPayAmountMessage + "\n" + freeFieldMessage);
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
 		return;
@@ -252,7 +258,7 @@ function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "blue chance") {
 		console.log("odkrywasz szanse");
-		hideInfoPanels (true, false, true, true, true);
+		hideInfoPanels (false, true, true, true);
 		blueCard = blueChance.shift();
 		blueChance.push(blueCard);
 		document.getElementById('chance-text').innerHTML = blueCard.text;
@@ -263,13 +269,13 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "paid parking") {
-		hideInfoPanels (true, true, true, true, true);
+		hideInfoPanels (true, true, true, true);
 		updatePlayerMoney(player, -400);
 		showRoundMainData(player);
 	}
 
 	if(fields[players[player].position - 1].type == "railways") {
-		hideInfoPanels (true, true, false, true, true);
+		hideInfoPanels (true, false, true, true);
 		showRailwaysInfos(player);
 
 		//id pola koleje na ktorym stoi gracz
@@ -282,7 +288,7 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "red chance") {
-		hideInfoPanels (true, false, true, true, true);
+		hideInfoPanels (false, true, true, true);
 		redCard = redChance.shift();
 		redChance.push(redCard);
 		document.getElementById('chance-text').innerHTML = redCard.text;
@@ -293,29 +299,29 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "prison visit") {
-		hideInfoPanels (true, true, true, true, true);
+		hideInfoPanels (true, true, true, true);
 	}
 
 	if(fields[players[player].position - 1].type == "power station") {
-		hideInfoPanels (true, true, true, false, true);
+		hideInfoPanels (true, true, false, true);
 		showPowerStationInfos(player);
 
 		payForPowerstation(player);
 	}
 
 	if(fields[players[player].position - 1].type == "free parking") {
-		hideInfoPanels (true, true, true, true, true);
+		hideInfoPanels (true, true, true, true);
 	}
 
 	if(fields[players[player].position - 1].type == "waterworks") {
-		hideInfoPanels (true, true, true, true, false);
+		hideInfoPanels (true, true, true, false);
 		showWaterworksInfos(player);
 
 		payForWaterworks(player);
 	}
 
 	if(fields[players[player].position - 1].type == "go to prison") {
-		hideInfoPanels (true, true, true, true, true);
+		hideInfoPanels (true, true, true, true);
 		players[player].position = 10;
 		players[player].blockRounds = 2;
 		players[player].inPrison = "tak";
@@ -361,36 +367,17 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "tax to pay") {
-		hideInfoPanels (true, true, true, true, true);
+		hideInfoPanels (true, true, true, true);
 		updatePlayerMoney(player, -200);
 		showRoundMainData(player);
 	}
 
 	if(fields[players[player].position - 1].type == "start") {
-		hideInfoPanels (true, true, true, true, true);
+		hideInfoPanels (true, true, true, true);
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
 		return;
 	}
-}
-
-function showCityInfos(player) {
-		document.getElementById('field-city-name-position').innerHTML = fields[players[player].position - 1].name;
-		document.getElementById('field-property').innerHTML = fields[players[player].position - 1].property;
-		document.getElementById('is-mortage').innerHTML = fields[players[player].position - 1].isMortage;
-		document.getElementById('house').innerHTML = fields[players[player].position - 1].house;
-		document.getElementById('hotel').innerHTML = fields[players[player].position - 1].hotel;
-		document.getElementById('cost').innerHTML = fields[players[player].position - 1].cost;
-		document.getElementById('cost-house').innerHTML = fields[players[player].position - 1].cost1house;
-		document.getElementById('cost-hotel').innerHTML = fields[players[player].position - 1].cost1hotel;
-		document.getElementById('mortage').innerHTML = fields[players[player].position - 1].mortage;
-		document.getElementById('mortage-remove').innerHTML = fields[players[player].position - 1].mortageRemove;
-		document.getElementById('pay-no-house').innerHTML = fields[players[player].position - 1].payNoHouse;
-		document.getElementById('pay-1-house').innerHTML = fields[players[player].position - 1].pay1house;
-		document.getElementById('pay-2-house').innerHTML = fields[players[player].position - 1].pay2house;
-		document.getElementById('pay-3-house').innerHTML = fields[players[player].position - 1].pay3house;
-		document.getElementById('pay-4-house').innerHTML = fields[players[player].position - 1].pay4house;
-		document.getElementById('pay-1-hotel').innerHTML = fields[players[player].position - 1].pay1hotel;
 }
 
 function showRailwaysInfos(player) {

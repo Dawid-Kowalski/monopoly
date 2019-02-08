@@ -56,7 +56,6 @@ function payForCity(player) {
 		buttonEnabled("next-player");
 	//pole do kupienia
 	} else {
-		alert("Jeżeli nie chcesz kupić nieruchomości za podaną cenę każdy z graczy może ją kupić po licytacji użyjcie przycisku sprzedaj wybierając cenę i gracza");
 		buttonEnabled("buttonbuycity"+field);
 		buttonEnabled("buttonsellcity"+field);
 	}
