@@ -26,6 +26,8 @@ let powerStationCostsMessage = "koszty elektrowni";
 
 let powerStationPayAmountMessage = "Opłaty za postój: 10 x ilość wyrzuconych oczek, jeżeli gracz posiada również wodociągi oplata jest podwójna";
 
+let freeParkingMessage = "Parkujesz bezpłatnie";
+
 
 function prepearDiceMessage(firstDice, secondDice, sumDice) {
 	diceMessage = "Ilość oczek na 1 kostce: " + firstDice +'\n' + "Ilość oczek na 2 kostce: " + secondDice +'\n' + "Suma: " + sumDice + "\n";

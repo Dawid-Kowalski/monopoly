@@ -195,7 +195,7 @@ function updatePlayerPosition (player) {
 
 	//do testów
 	if(player==0){
-		players[player].position = 12;
+		players[player].position = 20;
 	}
 
 	return players[player].position;
@@ -344,6 +344,12 @@ function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "free parking") {
 		hideInfoPanels (true);
+
+		prepearDiceMessage(firstDice, secondDice, sumDice);
+		prepearFieldNameInfoMessage(player);
+
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + freeParkingMessage);	
+
 	}
 
 	if(fields[players[player].position - 1].type == "waterworks") {
