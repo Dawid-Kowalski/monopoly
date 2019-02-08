@@ -195,7 +195,7 @@ function updatePlayerPosition (player) {
 
 	//do testów
 	if(player==0){
-		players[player].position = 4;
+		players[player].position = 5;
 	}
 
 	return players[player].position;
@@ -240,7 +240,7 @@ function updatePlayerMoney(player, money) {
 function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "city"){
-		hideInfoPanels (true, true, true);
+		hideInfoPanels (true, true);
 
 		payForCity(player);
 
@@ -248,7 +248,7 @@ function checkPlayerField(player) {
 		prepearFieldNameInfoMessage(player);
 		prepearMainCityMessage(player);
 		prepearCityCostsMessage(player);
-		prepearPayAmountMessage(player);
+		prepearCityPayAmountMessage(player);
 
 		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainCityMessage + "\n"+ cityCostsMessage + "\n" + cityPayAmountMessage + "\n" + freeFieldMessage);
 
@@ -258,7 +258,7 @@ function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "blue chance") {
 
-		hideInfoPanels (true, true, true);
+		hideInfoPanels (true, true);
 		blueCard = blueChance.shift();
 		blueChance.push(blueCard);
 
@@ -274,7 +274,7 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "paid parking") {
-		hideInfoPanels (true, true, true);
+		hideInfoPanels (true, true);
 		updatePlayerMoney(player, -400);
 		showRoundMainData(player);
 
@@ -285,20 +285,27 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "railways") {
-		hideInfoPanels (false, true, true);
-		showRailwaysInfos(player);
+		hideInfoPanels (true, true);
 
 		//id pola koleje na ktorym stoi gracz
-		let field = fields[players[player].position - 1].idRailways;
+		//let field = fields[players[player].position - 1].idRailways;
 
-		payForRailways(player);
+		//payForRailways(player);
+
+		prepearDiceMessage(firstDice, secondDice, sumDice);
+		prepearFieldNameInfoMessage(player);
+		prepearMainRailwaysMessage(player);
+		prepearRailwaysCostsMessage(player);
+		prepearRailwaysPayAmountMessage(player);
+
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainRailwaysMessage + "\n" + railwaysCostsMessage + "\n" + railwaysPayAmountMessage + "\n" + freeFieldMessage);
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
 		return;
 	}
 
 	if(fields[players[player].position - 1].type == "red chance") {
-		hideInfoPanels (true, true, true);
+		hideInfoPanels (true, true);
 		redCard = redChance.shift();
 		redChance.push(redCard);
 
@@ -314,29 +321,29 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "prison visit") {
-		hideInfoPanels (true, true, true);
+		hideInfoPanels (true, true);
 	}
 
 	if(fields[players[player].position - 1].type == "power station") {
-		hideInfoPanels (true, false, true);
+		hideInfoPanels (false, true);
 		showPowerStationInfos(player);
 
 		payForPowerstation(player);
 	}
 
 	if(fields[players[player].position - 1].type == "free parking") {
-		hideInfoPanels (true, true, true);
+		hideInfoPanels (true, true);
 	}
 
 	if(fields[players[player].position - 1].type == "waterworks") {
-		hideInfoPanels (true, true, false);
+		hideInfoPanels (true, false);
 		showWaterworksInfos(player);
 
 		payForWaterworks(player);
 	}
 
 	if(fields[players[player].position - 1].type == "go to prison") {
-		hideInfoPanels (true, true, true);
+		hideInfoPanels (true, true);
 		players[player].position = 10;
 		players[player].blockRounds = 2;
 		players[player].inPrison = "tak";
@@ -382,30 +389,17 @@ function checkPlayerField(player) {
 	}
 
 	if(fields[players[player].position - 1].type == "tax to pay") {
-		hideInfoPanels (true, true, true);
+		hideInfoPanels (true, true);
 		updatePlayerMoney(player, -200);
 		showRoundMainData(player);
 	}
 
 	if(fields[players[player].position - 1].type == "start") {
-		hideInfoPanels (true, true, true);
+		hideInfoPanels (true, true);
 
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
 		return;
 	}
-}
-
-function showRailwaysInfos(player) {
-		document.getElementById('field-railways-name-position').innerHTML = fields[players[player].position - 1].name;
-		document.getElementById('field-railways-property').innerHTML = fields[players[player].position - 1].property;
-		document.getElementById('is-mortage-railways').innerHTML = fields[players[player].position - 1].isMortage;
-		document.getElementById('cost-railways').innerHTML = fields[players[player].position - 1].cost;
-		document.getElementById('mortage-railways').innerHTML = fields[players[player].position - 1].mortage;
-		document.getElementById('mortage-remove-railways').innerHTML = fields[players[player].position - 1].mortageRemove;
-		document.getElementById('pay-1-line').innerHTML = fields[players[player].position - 1].pay1line;
-		document.getElementById('pay-2-line').innerHTML = fields[players[player].position - 1].pay2line;
-		document.getElementById('pay-3-line').innerHTML = fields[players[player].position - 1].pay3line;
-		document.getElementById('pay-4-line').innerHTML = fields[players[player].position - 1].pay4line;
 }
 
 function showPowerStationInfos(player) {

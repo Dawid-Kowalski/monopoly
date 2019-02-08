@@ -45,13 +45,7 @@ function hidePlayersSettings (label, inputText, labelColor, inputColor, ishidden
 		}
 }
 
-function hideInfoPanels (isRailways, isPowerstation, isWaterworks) {
-
-	if(isRailways) {
-		document.getElementById("railways-info-panel").hidden = isRailways;
-	} else {
-		document.getElementById("railways-info-panel").hidden = false;
-	}
+function hideInfoPanels (isPowerstation, isWaterworks) {
 
 	if(isPowerstation) {
 		document.getElementById("powerstation-info-panel").hidden = isPowerstation;

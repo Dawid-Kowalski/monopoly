@@ -8,14 +8,15 @@ let mainCityMessage = "informacje o miescie";
 
 let cityCostsMessage = "koszty miasta";
 
-let cityPayAmountMessage = "wysokości opłat";
+let cityPayAmountMessage = "wysokości opłat miastao";
 
 let paidParkingMessage = "Płacisz opłatę za parking w wysokosci 400$";
 
+let mainRailwaysMessage = "informacje o koleji";
 
+let railwaysCostsMessage = "koszty koleji";
 
-
-
+let railwaysPayAmountMessage = "wysokości opłat kolej";
 
 
 
@@ -44,7 +45,7 @@ function prepearCityCostsMessage(player) {
 						;
 }
 
-function prepearPayAmountMessage(player) {
+function prepearCityPayAmountMessage(player) {
 	cityPayAmountMessage = 	"Opłaty za teren niezabudowany: " + fields[players[player].position - 1].payNoHouse + "\n" +
 							"Opłaty za teren z 1 domkiem: " + fields[players[player].position - 1].pay1house + "\n" +
 							"Opłaty za teren z 2 domkami: " + fields[players[player].position - 1].pay2house + "\n" +
@@ -52,4 +53,25 @@ function prepearPayAmountMessage(player) {
 							"Opłaty za teren z 4 domkami: " + fields[players[player].position - 1].pay4house + "\n" +
 							"Opłaty za teren z 1 hotelem: " + fields[players[player].position - 1].pay1hotel + "\n"
 						;
+}
+
+function prepearMainRailwaysMessage(player) {
+	mainRailwaysMessage = 	"Pole posiada właściciela: " + fields[players[player].position - 1].property + "\n" +
+							"Czy pole jest zastawione: " + fields[players[player].position - 1].isMortage + "\n"
+							;
+}
+
+function prepearRailwaysCostsMessage(player) {
+	railwaysCostsMessage = 	"Koszty zakupu: " + fields[players[player].position - 1].cost + "\n" +
+							"Wpływy z zastawienia: " + fields[players[player].position - 1].mortage + "\n" +
+							"Koszty wykupienia hipoteki: " + fields[players[player].position - 1].mortageRemove + "\n"
+							;
+}
+
+function prepearRailwaysPayAmountMessage(player) {
+	railwaysPayAmountMessage = 	"Opłaty za 1 linie: " + fields[players[player].position - 1].pay1line + "\n" +
+								"Opłaty za 2 linie: " + fields[players[player].position - 1].pay2line + "\n" +
+								"Opłaty za 3 linie: " + fields[players[player].position - 1].pay3line + "\n" +
+								"Opłaty za 4 linie: " + fields[players[player].position - 1].pay4line + "\n"
+								;
 }
