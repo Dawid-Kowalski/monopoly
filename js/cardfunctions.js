@@ -81,8 +81,17 @@ function blueCardEffect() {
 				if(newCard == false){
 					updatePlayerMoney(activePlayer, -20);
 					showRoundMainData(activePlayer);
+				} else {
+					redCard = redChance.shift();
+					redChance.push(redCard);
+
+					prepearDiceMessage(firstDice, secondDice, sumDice);
+					prepearFieldNameInfoMessage(activePlayer);
+
+					alert(redCard.text);
+		
+					redCardEffect();
 				}
-// dorobić ciągnięcie z czerwonej talii
 				break;
 			case 13:
 				// renta //
@@ -90,9 +99,8 @@ function blueCardEffect() {
 				break;
 			case 14:
 				// karta wychodzisz z wiezienia //
-				players[activePlayer].goFromPrisonBlue = "dostępna"; 
-// dorobić panel
-//				document.getElementById("gofromprisonblue").innerHTML = players[player].goFromPrisonBlue;
+				players[activePlayer].goFromPrisonBlue = "dostępna";
+				buttonEnabled("go-from-prison-blue");	
 				break;
 			case 15:
 				// rabat //
@@ -147,9 +155,8 @@ function redCardEffect() {
 				break;
 			case 9:
 				// karta wychodzisz z wiezienia //
-				players[activePlayer].goFromPrisonRed = "dostępna"; 
-// dorobić panel
-//				document.getElementById("gofromprisonblue").innerHTML = players[player].goFromPrisonBlue;
+				players[activePlayer].goFromPrisonRed = "dostępna";
+				buttonEnabled("go-from-prison-red");
 				break;
 			case 10:
 				// idziesz do więzienia //

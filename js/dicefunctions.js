@@ -26,6 +26,7 @@ function throwDice(){
 	addByerPowerstationPlayerInventory();
 	addByerWaterworksPlayerInventory();
 
+	drawCardsInventory(activePlayer);
 
 	drawBoard();
 	setTimeout(drawAllPawns, 0);

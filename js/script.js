@@ -170,6 +170,8 @@ function nextPlayer() {
 			buldingsInventoryButtons[i].classList.add("btn", "btn-danger");
 		}
 
+		drawCardsInventory(activePlayer);
+
 		setTimeout(drawAllPawns, 0);
 
 	} else {
@@ -194,6 +196,8 @@ function nextPlayer() {
 		addByerPowerstationPlayerInventory();
 		addByerWaterworksPlayerInventory();
 
+		drawCardsInventory(activePlayer)
+
 		setTimeout(drawAllPawns, 0);
 
 		return activePlayer;
@@ -206,12 +210,12 @@ function updatePlayerPosition (player) {
 	if(players[player].position > 40){
 		players[player].position -= 40;
 	}
-/*
+
 	//do testów
-	if(player==0){
-		players[player].position = 7;
+	if(player>=0){
+		players[player].position = 2;
 	}
-*/
+
 	return players[player].position;
 }
 
@@ -1251,6 +1255,19 @@ function addByerWaterworksPlayerInventory() {
 		let waterworks = "waterworksopt"+i;
 		document.getElementById(waterworks).innerHTML = players[i-1].name;
 		document.getElementById(waterworks).value = i-1;
+	}
+}
+
+function drawCardsInventory(player) {
+	if(players[player].goFromPrisonBlue == "dostępna") {
+		buttonEnabled("go-from-prison-blue");
+	} else {
+		buttonDisabled("go-from-prison-blue");
+	}
+	if(players[player].goFromPrisonRed == "dostępna") {
+		buttonEnabled("go-from-prison-red");
+	} else {
+		buttonDisabled("go-from-prison-red");
 	}
 }
 
