@@ -15,6 +15,8 @@ let railwaysTable = document.getElementById("railways-table");
 let buldingsTable = document.getElementById("buldings-table");
 
 buttonDisabled("start-game");
+buttonDisabled("throw-dice");
+buttonDisabled("next-player");
 
 function prepaerPlayers() {
 
@@ -90,14 +92,19 @@ function startGame() {
 		drawPlayerPosition(i);
 	}
 
+	document.getElementById("game-panel").hidden = false;
+
 	buttonDisabled("start-game");
 	buttonDisabled("next-player");
+	buttonEnabled("throw-dice");
 	document.getElementById("number-of-players").disabled = true;
 
 	showRoundMainData(activePlayer);
 }
 
 function nextPlayer() {
+
+	buttonDisabled("next-player");
 
 	if(activePlayer<(players.length)-1) {
 		activePlayer++;

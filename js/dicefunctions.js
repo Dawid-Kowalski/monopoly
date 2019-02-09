@@ -31,6 +31,9 @@ function throwDice(){
 	setTimeout(drawAllPawns, 0);
 
 	checkPlayerField(activePlayer);
+
+	buttonDisabled("throw-dice");
+	buttonEnabled("next-player");
 }
 
 	function drawAllPawns() {
