@@ -7,7 +7,7 @@ let fields = [
 		maxXpos: lS,
 		minYpos: lS + 8*sS,
 		maxYpos: ch - lS,
-		country: "greece",
+		country: "Greece",
 		name: "saloniki",
 		property: "nie",
 		propertyId: -1,
