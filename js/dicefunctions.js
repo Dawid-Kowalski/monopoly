@@ -26,10 +26,15 @@ function throwDice(){
 	addByerPowerstationPlayerInventory();
 	addByerWaterworksPlayerInventory();
 
+
 	drawBoard();
-	for(let i = 0; i<players.length; i++) {
-		drawPlayerPosition(i);
-	}
+	setTimeout(drawAllPawns, 0);
 
 	checkPlayerField(activePlayer);
 }
+
+	function drawAllPawns() {
+		for(let i = 0; i<players.length; i++) {
+			drawPlayerPosition(i);
+		}
+	}

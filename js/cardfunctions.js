@@ -23,12 +23,7 @@ function blueCardEffect() {
 			case 1:
 				// powrót na start //
 				players[activePlayer].position = 40;
-				drawBoard();
-					for(let i = 0; i<players.length; i++) {
-					drawPlayerPosition(i);
-				}
 				checkPlayerField(activePlayer);
-				hideInfoPanels(true, false, true, true, true);
 				break;
 			case 2:
 				// pomyłka banku //
@@ -37,12 +32,7 @@ function blueCardEffect() {
 			case 3:
 				// idziesz do więzienia //
 				players[activePlayer].position = 10;
-				drawBoard();
-				for(let i = 0; i<players.length; i++) {
-					drawPlayerPosition(i);
-				}
 				checkPlayerField(activePlayer);
-				hideInfoPanels(true, false, true, true, true);
 				break;
 			case 4:
 				// urodziny //
@@ -83,12 +73,7 @@ function blueCardEffect() {
 			case 11:
 				// do wiednia //
 				players[activePlayer].position = 39;
-				drawBoard();
-				for(let i = 0; i<players.length; i++) {
-					drawPlayerPosition(i);
-				}
 				checkPlayerField(activePlayer);
-				hideInfoPanels(false, false, true, true, true);
 				break;
 			case 12:
 				// nowa szansa //
@@ -127,12 +112,7 @@ function redCardEffect() {
 			case 1:
 				// do madrytu //
 				players[activePlayer].position = 14;
-				drawBoard();
-					for(let i = 0; i<players.length; i++) {
-					drawPlayerPosition(i);
-				}
 				checkPlayerField(activePlayer);
-				hideInfoPanels(false, false, true, true, true);
 				break;
 			case 2:
 				// procenty //
@@ -141,12 +121,7 @@ function redCardEffect() {
 			case 3:
 				// idziesz do koleji wschodnich //
 				players[activePlayer].position = 35;
-				drawBoard();
-				for(let i = 0; i<players.length; i++) {
-					drawPlayerPosition(i);
-				}
 				checkPlayerField(activePlayer);
-				hideInfoPanels(true, false, false, true, true);
 				break;
 			case 4:
 				// odsetki //
@@ -155,12 +130,7 @@ function redCardEffect() {
 			case 5:
 				// do brukseli //
 				players[activePlayer].position = 23;
-				drawBoard();
-					for(let i = 0; i<players.length; i++) {
-					drawPlayerPosition(i);
-				}
 				checkPlayerField(activePlayer);
-				hideInfoPanels(false, false, true, true, true);
 				break;
 			case 6:
 				// picie w pracy //
@@ -169,12 +139,7 @@ function redCardEffect() {
 			case 7:
 				// do neapolu //
 				players[activePlayer].position = 6;
-				drawBoard();
-					for(let i = 0; i<players.length; i++) {
-					drawPlayerPosition(i);
-				}
 				checkPlayerField(activePlayer);
-				hideInfoPanels(false, false, true, true, true);
 				break;
 			case 8:
 				// opłata za szkołe //
@@ -189,12 +154,7 @@ function redCardEffect() {
 			case 10:
 				// idziesz do więzienia //
 				players[activePlayer].position = 10;
-				drawBoard();
-				for(let i = 0; i<players.length; i++) {
-					drawPlayerPosition(i);
-				}
 				checkPlayerField(activePlayer);
-				hideInfoPanels(true, false, true, true, true);
 				break;
 			case 11:
 				// krzyżówka //
@@ -203,12 +163,7 @@ function redCardEffect() {
 			case 12:
 				// na start //
 				players[activePlayer].position = 40;
-				drawBoard();
-					for(let i = 0; i<players.length; i++) {
-					drawPlayerPosition(i);
-				}
 				checkPlayerField(activePlayer);
-				hideInfoPanels(true, false, true, true, true);
 				break;
 			case 13:
 				// remont domów //
@@ -218,12 +173,7 @@ function redCardEffect() {
 			case 14:
 				// cofnięcie o 3 pola //
 				players[activePlayer].position = players[activePlayer].position - 3;
-				drawBoard();
-				for(let i = 0; i<players.length; i++) {
-					drawPlayerPosition(i);
-				}
-				checkPlayerField(activePlayer);
-				hideInfoPanels(true, false, true, true, true);			
+				checkPlayerField(activePlayer);	
 				break;
 			case 15:
 				// modernizacja //

@@ -160,9 +160,7 @@ function nextPlayer() {
 			buldingsInventoryButtons[i].classList.add("btn", "btn-danger");
 		}
 
-		for(let i = 0; i<players.length; i++) {
-			drawPlayerPosition(i);
-		}
+		setTimeout(drawAllPawns, 0);
 
 	} else {
 		players[activePlayer].inPrison = "nie";
@@ -186,9 +184,7 @@ function nextPlayer() {
 		addByerPowerstationPlayerInventory();
 		addByerWaterworksPlayerInventory();
 
-		for(let i = 0; i<players.length; i++) {
-			drawPlayerPosition(i);
-		}
+		setTimeout(drawAllPawns, 0);
 
 		return activePlayer;
 	} 
@@ -200,12 +196,12 @@ function updatePlayerPosition (player) {
 	if(players[player].position > 40){
 		players[player].position -= 40;
 	}
-
+/*
 	//do testów
 	if(player==0){
-		players[player].position = 5;
+		players[player].position = 7;
 	}
-
+*/
 	return players[player].position;
 }
 
@@ -368,9 +364,7 @@ function checkPlayerField(player) {
 
 		drawBoard();
 
-		for(let i = 0; i<players.length; i++) {
-			drawPlayerPosition(i);
-		}
+		setTimeout(drawAllPawns, 0);
 
 		let cityTable = document.getElementById("city-table");
 		let citysInventoryButtons = cityTable.querySelectorAll("button");
