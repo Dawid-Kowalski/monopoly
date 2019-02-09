@@ -210,12 +210,12 @@ function updatePlayerPosition (player) {
 	if(players[player].position > 40){
 		players[player].position -= 40;
 	}
-
+/*
 	//do testów
 	if(player>=0){
 		players[player].position = 2;
 	}
-
+*/
 	return players[player].position;
 }
 
@@ -1281,4 +1281,11 @@ function buttonEnabled(buttonId) {
 	document.getElementById(buttonId).disabled = false;
 	document.getElementById(buttonId).classList.remove("btn", "btn-danger");
 	document.getElementById(buttonId).classList.add("btn", "btn-success");
+}
+
+function goFromPrisonBlue() {
+	players[activePlayer].goFromPrisonBlue = "niedostępne";
+	players[activePlayer].inPrison = "nie";
+	players[activePlayer].blockRounds = 0;
+	buttonDisabled("go-from-prison-blue");
 }

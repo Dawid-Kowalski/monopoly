@@ -9,8 +9,8 @@ function Player () {
 	this.pawnXposition = 0;
 	this.pawnYposition = 0;
 	this.color = "black";
-	this.goFromPrisonBlue = "niedostępne";
-	this.goFromPrisonRed = "niedostępne";
+	this.goFromPrisonBlue = "dostępna"; // do testów
+	this.goFromPrisonRed = "dostępna"; // do testów
 	this.houseAll = 0;
 	this.hotelAll = 0;
 	this.railwaysAll = 0;
