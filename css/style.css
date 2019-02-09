@@ -1,1 +1,6 @@
 .block input { display: block; }
+
+canvas {
+  width: 100%;
+  height: auto;
+}

@@ -17,6 +17,9 @@ let buldingsTable = document.getElementById("buldings-table");
 buttonDisabled("start-game");
 buttonDisabled("throw-dice");
 buttonDisabled("next-player");
+buttonDisabled("go-from-prison-blue");
+buttonDisabled("go-from-prison-red");
+
 
 function prepaerPlayers() {
 

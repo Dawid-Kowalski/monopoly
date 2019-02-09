@@ -10,7 +10,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-8">
-					<canvas id="canvas"></canvas>
+					<canvas id="canvas" class='img-responsive'></canvas>
 				</div>
 				<div class="col-md-4">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -172,7 +172,7 @@
 					  </div>
 					</div>
 				</div>
-			</div>
+			</div> 
 			<div id="game-panel" hidden>
 				<div class="row">
 					<div class="col-md-12">
@@ -188,7 +188,7 @@
 					<h3>pieniądze:</h3>
 					<h3 id="player-money">...</h3>
 				</div>
-				<div>
+				<div class="table-responsive">
 					<h3 class="text-center">Nieruchomości:</h3>
 					<table id="city-table" class="table table-bordered table-striped text-center">
 						<thead>
@@ -211,6 +211,8 @@
 							</tr>
 						</thead>
 					</table>
+				</div>
+				<div class="table-responsive">
 					<h3 class="text-center">Koleje</h3>
 					<table id="railways-table" class="table table-bordered table-striped text-center">
 						<thead>
@@ -226,6 +228,8 @@
 							</tr>
 						</thead>
 					</table>
+				</div>
+				<div class="table-responsive">
 					<h3 class="text-center">Elektrownia i wodociągi</h3>
 					<table id="buldings-table" class="table table-bordered table-striped text-center">
 						<thead>
@@ -241,22 +245,24 @@
 							</tr>
 						</thead>
 					</table>
+				</div>
+				<div class="table-responsive">
 					<h3 class="text-center">Dodatkowe karty</h3>
 					<table class="table table-bordered table-striped text-center">
 						<tr>
 							<td>Id</td>
 							<td>Nazwa</td>
-							<td>Posiada</td>
+							<td></td>
 						</tr>
 						<tr>
 							<td>1</td>
 							<td>wychodzisz wolny w więzienia niebieska</td>
-							<td id="go-from-prison-blue"></td>
+							<td><button id="go-from-prison-blue" type="button" class="btn btn-success">wykorzystaj</button></td>
 						</tr>
 						<tr>
 							<td>2</td>
 							<td>wychodzisz wolny w więzienia czerwona</td>
-							<td id="go-from-prison-red"></td>
+							<td><button id="go-from-prison-red" type="button" class="btn btn-success">wykorzystaj</button></td>
 						</tr>
 					</table>
 				</div>
