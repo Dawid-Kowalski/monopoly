@@ -40,7 +40,9 @@ let taxToPayMessage = "Płacisz podatek od wzbogacenia w wysokosci 200$";
 
 let startMessage = "Jesteś na polu startowym po przejściu przez start otrzymasz 400$";
 
-let payForCityOwnerMessage = "informacje o właścicielu";
+let payCityOwnerMessage = "informacje o właścicielu, miasta";
+
+let payForRailwaysOwnerMessage = "informacje o właścicielu, koleje";
 
 
 function prepearDiceMessage(firstDice, secondDice, sumDice) {
@@ -125,8 +127,16 @@ function prepearWaterWorksCostsMessage(player) {
 								;
 }
 
-function prepaerPayForCityOwnerMessage(ownerInPrison, howManyLines, toPay) {
+function prepaerPayForCityOwnerMessage(ownerInPrison, howManyHouses, howManyHotels, toPay) {
 	payForCityOwnerMessage =	"Właściciel jest w więzieniu: " + ownerInPrison + "\n" +
+								"Właściciel posiada: " + howManyHouses + " domków w tym mieście" + "\n" +
+								"Właściciel posiada: " + howManyHotels + " hoteli w tym mieście" + "\n" +
+								"Do zapłacenia: " + toPay + "\n"
+								;
+}
+
+function prepaerPayForRailwaysOwnerMessage(ownerInPrison, howManyLines, toPay) {
+	payForRailwaysOwnerMessage =	"Właściciel jest w więzieniu: " + ownerInPrison + "\n" +
 								"Właściciel posiada: " + howManyLines + " linie" + "\n" +
 								"Do zapłacenia: " + toPay + "\n"
 								;

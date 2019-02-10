@@ -101,6 +101,17 @@ function startGame() {
 	buttonDisabled("next-player");
 	buttonEnabled("throw-dice");
 	document.getElementById("number-of-players").disabled = true;
+	
+	document.getElementById("player1-name").disabled = true;
+	document.getElementById("player2-name").disabled = true;
+	document.getElementById("player3-name").disabled = true;
+	document.getElementById("player4-name").disabled = true;
+
+	document.getElementById("player1-color").disabled = true;
+	document.getElementById("player2-color").disabled = true;
+	document.getElementById("player3-color").disabled = true;
+	document.getElementById("player4-color").disabled = true;
+	
 
 	showRoundMainData(activePlayer);
 }
@@ -120,6 +131,7 @@ function nextPlayer() {
 		alert("gracz jest w wiezieniu przez " +  players[activePlayer].blockRounds + " kolejki- nie może podejmować akcji");
 		players[activePlayer].blockRounds--;
 		buttonDisabled("throw-dice");
+		buttonEnabled("next-player");
 
 		drawBoard();
 		showRoundMainData(activePlayer);
@@ -261,14 +273,6 @@ function checkPlayerField(player) {
 
 		payForCity(player);
 
-		prepearDiceMessage(firstDice, secondDice, sumDice);
-		prepearFieldNameInfoMessage(player);
-		prepearMainCityMessage(player);
-		prepearCityCostsMessage(player);
-		prepearCityPayAmountMessage(player);
-
-		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainCityMessage + "\n"+ cityCostsMessage + "\n" + cityPayAmountMessage + "\n" + freeFieldMessage);
-
 		//zapobiega odpaleniu nizszych if po zmienie pozycji przez blue lub red card effect
 		return;
 	}
@@ -375,10 +379,6 @@ function checkPlayerField(player) {
 		players[player].position = 10;
 		players[player].blockRounds = 2;
 		players[player].inPrison = "tak";
-
-		drawBoard();
-
-		setTimeout(drawAllPawns, 0);
 
 		let cityTable = document.getElementById("city-table");
 		let citysInventoryButtons = cityTable.querySelectorAll("button");

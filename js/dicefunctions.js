@@ -37,8 +37,8 @@ function throwDice(){
 	buttonEnabled("next-player");
 }
 
-	function drawAllPawns() {
-		for(let i = 0; i<players.length; i++) {
-			drawPlayerPosition(i);
-		}
+function drawAllPawns() {
+	for(let i = 0; i<players.length; i++) {
+		drawPlayerPosition(i);
 	}
+}

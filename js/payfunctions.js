@@ -1,4 +1,11 @@
 function payForCity(player) {
+
+	prepearDiceMessage(firstDice, secondDice, sumDice);
+	prepearFieldNameInfoMessage(player);
+	prepearMainCityMessage(player);
+	prepearCityCostsMessage(player);
+	prepearCityPayAmountMessage(player);
+
 	let toPay = 0;
 
 	//wylicenie płatności według ilości hoteli i domków
@@ -40,13 +47,13 @@ function payForCity(player) {
 			toPay = 0;
 		}
 
-		alert("jesteś na polu: " + fields[players[player].position - 1].name +"\n" +
-				"miasto posiada właściciela: " + fields[players[player].position - 1].property +"\n" +
-			    "pole jest zastawione: " + fields[players[player].position - 1].isMortage +"\n" +
-			    "wlasciciel jest w wiezieniu: " + players[fields[players[player].position - 1].propertyId].inPrison +"\n" +
-				"ilość domków: " + fields[players[player].position - 1].house +"\n" +
-				"ilość hoteli: " + fields[players[player].position - 1].hotel +"\n" +
-				"do zapłacenia: " + toPay);
+		let ownerInPrison = players[fields[players[player].position - 1].propertyId].inPrison;
+		let howManyHouses = fields[players[player].position - 1].house;
+		let howManyHotels = fields[players[player].position - 1].hotel;
+
+		prepaerPayForCityOwnerMessage(ownerInPrison, howManyHouses, howManyHotels, toPay);
+
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainRailwaysMessage + "\n" + payForCityOwnerMessage);
 
 		updatePlayerMoney(player, -toPay);
 		//właściciel otrzymuje
@@ -56,6 +63,7 @@ function payForCity(player) {
 		buttonEnabled("next-player");
 	//pole do kupienia
 	} else {
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainCityMessage + "\n"+ cityCostsMessage + "\n" + cityPayAmountMessage + "\n" + freeFieldMessage);
 		buttonEnabled("buttonbuycity"+field);
 		buttonEnabled("buttonsellcity"+field);
 	}
@@ -98,9 +106,9 @@ function payForRailways(player) {
 		let ownerInPrison = players[fields[players[player].position - 1].propertyId].inPrison;
 		let howManyLines = players[fields[players[player].position - 1].propertyId].railwaysAll;
 
-		prepaerPayForCityOwnerMessage(ownerInPrison, howManyLines, toPay);
+		prepaerPayForRailwaysOwnerMessage(ownerInPrison, howManyLines, toPay);
 
-		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainRailwaysMessage + "\n" + payForCityOwnerMessage);
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainRailwaysMessage + "\n" + payForRailwaysOwnerMessage);
 
 		updatePlayerMoney(player, -toPay);
 		//właściciel otrzymuje
