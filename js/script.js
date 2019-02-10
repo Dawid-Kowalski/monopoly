@@ -814,7 +814,6 @@ function drawInventoryRailways(player) {
 		tdRailwaysName.innerHTML = " ";
 		trRailways.appendChild(tdRailwaysName);
 
-
 		let tdRailwaysRailwaysInfo = document.createElement("td");
 		trRailways.appendChild(tdRailwaysRailwaysInfo);
 
@@ -1008,6 +1007,27 @@ function drawInventoryBuldings(player){
 	tdPowerStationName.id = "powerstation";
 	tdPowerStationName.innerHTML = "elektrownia";
 	tr2Buldings.appendChild(tdPowerStationName);
+
+
+
+
+
+		let tdPowerStationInfoPowerStation = document.createElement("td");
+		tr2Buldings.appendChild(tdPowerStationInfoPowerStation);
+
+		let buttonPowerStationInfoPowerStation = document.createElement("button");
+		buttonPowerStationInfoPowerStation.id = "buttoninfopowerstation";
+		buttonPowerStationInfoPowerStation.type = "button";
+		buttonPowerStationInfoPowerStation.onclick = function () {infoPowerStation();};
+		buttonPowerStationInfoPowerStation.classList.add("btn", "btn-info");
+		buttonPowerStationInfoPowerStation.innerHTML = "info";
+		tdPowerStationInfoPowerStation.appendChild(buttonPowerStationInfoPowerStation);
+
+
+
+
+
+
 
 	let tdPowerStationHave = document.createElement("td");
 	tdPowerStationHave.id = "havepowerstation";
@@ -1352,5 +1372,14 @@ function infoRailways(railways) {
 			"opłaty za 2 linie: " + fields[idField].pay2line + "\n" + 
 			"opłaty za 3 linie: " + fields[idField].pay3line + "\n" + 
 			"opłaty za 4 linie: " + fields[idField].pay4line + "\n"
+		);
+}
+
+function infoPowerStation() {
+	alert( 	"informacje o : " + fields[11].name + "\n" + 
+			"koszt zakupu: " + fields[11].cost + "\n" + 
+			"zysk z zastawienia: " + fields[11].mortage + "\n" +
+			"koszt usunięcia hipoteki: " + fields[11].mortageRemove + "\n" + 
+			"opłaty: 10x ilość wyrzuconych oczek, jeżeli gracz posiada również wodociągi opłata jest podwójna"
 		);
 }
