@@ -20,6 +20,9 @@ buttonDisabled("next-player");
 buttonDisabled("go-from-prison-blue");
 buttonDisabled("go-from-prison-red");
 
+let firstRound = "tak";
+let firstRoundCounter = 0;
+
 
 function prepaerPlayers() {
 
@@ -51,6 +54,8 @@ function showRoundMainData(player) {
 }
 
 function startGame() {
+
+	playersInGame = players.length;
 
 	if(players.length == 2) {
 		players[0].color = document.getElementById("player1-color").value;
@@ -222,15 +227,25 @@ function nextPlayer() {
 function updatePlayerPosition (player) {
 	players[player].position = players[player].position + sumDice;
 
+
 	if(players[player].position > 40){
 		players[player].position -= 40;
+		if(firstRound != "tak") {
+			updatePlayerMoney(player, 400);
+		}
 	}
 
+	firstRoundCounter++;
+	
+	if(firstRoundCounter >= players.length) {
+		firstRound = "nie";
+	}
+/*
 	//do testów
 	if(player>=0){
-		players[player].position = 28;
+		players[player].position = 7;
 	}
-
+*/
 	return players[player].position;
 }
 
@@ -465,6 +480,17 @@ function drawInventoryCity(player) {
 		tdCityCityName.innerHTML = " ";
 		trCity.appendChild(tdCityCityName);
 
+		let tdCityCityInfo = document.createElement("td");
+		trCity.appendChild(tdCityCityInfo);
+
+		let buttonCityInfoCity = document.createElement("button");
+		buttonCityInfoCity.id = "buttoninfocity"+i;
+		buttonCityInfoCity.type = "button";
+		buttonCityInfoCity.onclick = function () {infoCity(i);};
+		buttonCityInfoCity.classList.add("btn", "btn-info");
+		buttonCityInfoCity.innerHTML = "info";
+		tdCityCityInfo.appendChild(buttonCityInfoCity);
+
 		let tdCityHave = document.createElement("td");
 		tdCityHave.id = "haveid" + i;
 		tdCityHave.innerHTML = " ";
@@ -679,10 +705,10 @@ function addCityInfoPlayerInventory(player) {
 function addCityNamePlayerInventory(player) {
 
 	document.getElementById("countryid1").innerHTML = changeLettersInInventory(greece);
-	document.getElementById("cityid1").innerHTML = changeLettersInInventory(saloniki);
+	document.getElementById("cityid1").innerHTML = changeLettersInInventory(ateny);
 
 	document.getElementById("countryid2").innerHTML = changeLettersInInventory(greece);
-	document.getElementById("cityid2").innerHTML = changeLettersInInventory(ateny);
+	document.getElementById("cityid2").innerHTML = changeLettersInInventory(saloniki);
 
 	document.getElementById("countryid3").innerHTML = changeLettersInInventory(italy);
 	document.getElementById("cityid3").innerHTML = changeLettersInInventory(neapol);
@@ -743,11 +769,6 @@ function addCityNamePlayerInventory(player) {
 
 	document.getElementById("countryid22").innerHTML = changeLettersInInventory(austria);
 	document.getElementById("cityid22").innerHTML = changeLettersInInventory(wieden);
-}
-
-function changeLettersInInventory(name) {
-	let newName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-	return newName;
 }
 
 function addByerCityPlayerInventory(){
@@ -1279,4 +1300,30 @@ function goFromPrisonBlue() {
 	players[activePlayer].inPrison = "nie";
 	players[activePlayer].blockRounds = 0;
 	buttonDisabled("go-from-prison-blue");
+}
+
+function goFromPrisonRed() {
+	players[activePlayer].goFromPrisonRed = "niedostępne";
+	players[activePlayer].inPrison = "nie";
+	players[activePlayer].blockRounds = 0;
+	buttonDisabled("go-from-prison-red");
+}
+
+function infoCity(city) {
+
+	let idField = players[activePlayer].city[city-1].idField;
+
+	alert(	"informacje o mieście: " + changeLettersInInventory(fields[idField].name) + "\n" +
+			"koszt zakupu: " + fields[idField].cost + "\n" +
+			"zysk z zastawienia: " + fields[idField].mortage + "\n" +
+			"koszt usunięcia hipoteki: " + fields[idField].mortageRemove + "\n" + 
+			"koszt zakupu 1 domku: " + fields[idField].cost1house + "\n" + 
+			"koszt zakupu 1 hotelu: " + fields[idField].cost1hotel + "\n" + 
+			"opłaty za teren niezabudowany: " + fields[idField].payNoHouse + "\n" + 
+			"opłaty za teren z 1 domkiem: " + fields[idField].pay1house + "\n" + 
+			"opłaty za teren z 2 domkami: " + fields[idField].pay2house + "\n" + 
+			"opłaty za teren z 3 domkami: " + fields[idField].pay3house + "\n" + 
+			"opłaty za teren z 4 domkami: " + fields[idField].pay4house + "\n" + 
+			"opłaty za teren z 1 hotelem: " + fields[idField].pay1hotel + "\n"
+		);
 }

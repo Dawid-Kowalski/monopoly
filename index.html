@@ -122,9 +122,9 @@
 					  	<div class="row">
 						    <div class="col-md-6">
 								<label>nazwa miasto 1 państwo 1:</label>
-								<input id="city1name" type="text" value="SALONIKI" onchange="changeSettings();">
+								<input id="city1name" type="text" value="ATENY" onchange="changeSettings();">
 								<label>nazwa miasto 2 państwo 1:</label>
-								<input id="city2name" type="text" value="ATENY" onchange="changeSettings();">
+								<input id="city2name" type="text" value="SALONIKI" onchange="changeSettings();">
 								<label>nazwa miasto 1 państwo 2:</label>
 								<input id="city3name" type="text" value="NEAPOL" onchange="changeSettings();">
 								<label>nazwa miasto 2 państwo 2:</label>
@@ -196,6 +196,7 @@
 								<td>Id</td>
 								<td>Państwo</td>
 								<td>Miasto</td>
+								<td>Info</td>
 								<td>Posiada</td>
 								<td>Ilość domków</td>
 								<td>Ilość hoteli</td>
@@ -262,7 +263,7 @@
 						<tr>
 							<td>2</td>
 							<td>wychodzisz wolny w więzienia czerwona</td>
-							<td><button id="go-from-prison-red" type="button" class="btn btn-success">wykorzystaj</button></td>
+							<td><button id="go-from-prison-red" type="button" class="btn btn-success" onclick="goFromPrisonRed();">wykorzystaj</button></td>
 						</tr>
 					</table>
 				</div>
@@ -273,6 +274,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="js/canvasdata.js"></script>
 		<script type="text/javascript" src="js/playerdata.js"></script>
+		<script type="text/javascript" src="js/changelettersfunction.js"></script>
 		<script type="text/javascript" src="js/bluecarddata.js"></script>
 		<script type="text/javascript" src="js/redcarddata.js"></script>
 		<script type="text/javascript" src="js/fieldsdata.js"></script>

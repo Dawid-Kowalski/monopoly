@@ -41,7 +41,7 @@ let blueChance = [
 	},
 	{
 		id:11,
-		text: "Wracasz do Wiednia."
+		text: "Wracasz do " + changeLettersInInventory(wieden) + "."
 	},
 	{
 		id:12,

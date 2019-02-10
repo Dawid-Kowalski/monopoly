@@ -32,6 +32,38 @@ function blueCardEffect() {
 			case 3:
 				// idziesz do więzienia //
 				players[activePlayer].position = 10;
+				players[activePlayer].blockRounds = 2;
+				players[activePlayer].inPrison = "tak";
+
+				let cityTable = document.getElementById("city-table");
+				let citysInventoryButtons = cityTable.querySelectorAll("button");
+
+				let railwaysTable = document.getElementById("railways-table");
+				let railwaysInventoryButtons = railwaysTable.querySelectorAll("button");
+
+				let buldingsTable = document.getElementById("buldings-table");
+				let buldingsInventoryButtons = buldingsTable.querySelectorAll("button");
+
+				//deaktywacja przycisków miast
+				for (let i=0; i< citysInventoryButtons.length; i++ ){
+					citysInventoryButtons[i].disabled = true;
+					citysInventoryButtons[i].classList.remove("btn", "btn-success");
+					citysInventoryButtons[i].classList.add("btn", "btn-danger");
+				}
+
+				//deaktywacja przycisków koleji
+				for (let i=0; i< railwaysInventoryButtons.length; i++ ){
+					railwaysInventoryButtons[i].disabled = true;
+					railwaysInventoryButtons[i].classList.remove("btn", "btn-success");
+					railwaysInventoryButtons[i].classList.add("btn", "btn-danger");
+				}
+
+				//deaktywacja przycisków budynków
+				for (let i=0; i< buldingsInventoryButtons.length; i++ ){
+					buldingsInventoryButtons[i].disabled = true;
+					buldingsInventoryButtons[i].classList.remove("btn", "btn-success");
+					buldingsInventoryButtons[i].classList.add("btn", "btn-danger");
+				}
 				checkPlayerField(activePlayer);
 				break;
 			case 4:
@@ -159,8 +191,39 @@ function redCardEffect() {
 				buttonEnabled("go-from-prison-red");
 				break;
 			case 10:
-				// idziesz do więzienia //
 				players[activePlayer].position = 10;
+				players[activePlayer].blockRounds = 2;
+				players[activePlayer].inPrison = "tak";
+
+				let cityTable = document.getElementById("city-table");
+				let citysInventoryButtons = cityTable.querySelectorAll("button");
+
+				let railwaysTable = document.getElementById("railways-table");
+				let railwaysInventoryButtons = railwaysTable.querySelectorAll("button");
+
+				let buldingsTable = document.getElementById("buldings-table");
+				let buldingsInventoryButtons = buldingsTable.querySelectorAll("button");
+
+				//deaktywacja przycisków miast
+				for (let i=0; i< citysInventoryButtons.length; i++ ){
+					citysInventoryButtons[i].disabled = true;
+					citysInventoryButtons[i].classList.remove("btn", "btn-success");
+					citysInventoryButtons[i].classList.add("btn", "btn-danger");
+				}
+
+				//deaktywacja przycisków koleji
+				for (let i=0; i< railwaysInventoryButtons.length; i++ ){
+					railwaysInventoryButtons[i].disabled = true;
+					railwaysInventoryButtons[i].classList.remove("btn", "btn-success");
+					railwaysInventoryButtons[i].classList.add("btn", "btn-danger");
+				}
+
+				//deaktywacja przycisków budynków
+				for (let i=0; i< buldingsInventoryButtons.length; i++ ){
+					buldingsInventoryButtons[i].disabled = true;
+					buldingsInventoryButtons[i].classList.remove("btn", "btn-success");
+					buldingsInventoryButtons[i].classList.add("btn", "btn-danger");
+				}
 				checkPlayerField(activePlayer);
 				break;
 			case 11:

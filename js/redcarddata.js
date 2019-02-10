@@ -1,7 +1,7 @@
 let redChance = [
 	{
 		id:1,
-		text: "Wracasz do Madrytu"
+		text: "Wracasz do " + changeLettersInInventory(madryt) + "."
 	},
 	{
 		id:2,
@@ -17,7 +17,7 @@ let redChance = [
 	},
 	{
 		id:5,
-		text: "Wracasz do Brukseli. Jeżeli przechodzisz przez 'start' otrzymujesz 400$."
+		text: "Wracasz do " + changeLettersInInventory(bruksela) + "."
 	},
 	{
 		id:6,
@@ -25,7 +25,7 @@ let redChance = [
 	},	
 	{
 		id:7,
-		text: "Idziesz do neapolu. Jeżeli przechodzisz przez 'start' otrzymujesz 400$."
+		text: "Idziesz do "+ changeLettersInInventory(neapol) + " . Jeżeli przechodzisz przez 'start' otrzymujesz 400$."
 	},
 	{
 		id:8,
