@@ -110,6 +110,10 @@ function startGame() {
 	document.getElementById("player2-color").disabled = true;
 	document.getElementById("player3-color").disabled = true;
 	document.getElementById("player4-color").disabled = true;
+
+	document.getElementById("colors-tab").disabled = true;
+	document.getElementById("countrys-tab").disabled = true;
+	document.getElementById("citys-tab").disabled = true;
 	
 
 	showRoundMainData(activePlayer);
