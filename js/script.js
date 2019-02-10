@@ -236,7 +236,7 @@ function updatePlayerPosition (player) {
 	}
 
 	firstRoundCounter++;
-	
+
 	if(firstRoundCounter >= players.length) {
 		firstRound = "nie";
 	}
@@ -814,6 +814,18 @@ function drawInventoryRailways(player) {
 		tdRailwaysName.innerHTML = " ";
 		trRailways.appendChild(tdRailwaysName);
 
+
+		let tdRailwaysRailwaysInfo = document.createElement("td");
+		trRailways.appendChild(tdRailwaysRailwaysInfo);
+
+		let buttonRailwaysInfoRailways = document.createElement("button");
+		buttonRailwaysInfoRailways.id = "buttoninforailways"+i;
+		buttonRailwaysInfoRailways.type = "button";
+		buttonRailwaysInfoRailways.onclick = function () {infoRailways(i);};
+		buttonRailwaysInfoRailways.classList.add("btn", "btn-info");
+		buttonRailwaysInfoRailways.innerHTML = "info";
+		tdRailwaysRailwaysInfo.appendChild(buttonRailwaysInfoRailways);
+
 		let tdRailwaysHave = document.createElement("td");
 		tdRailwaysHave.id = "haverailways" + i;
 		tdRailwaysHave.innerHTML = " ";
@@ -1325,5 +1337,20 @@ function infoCity(city) {
 			"opłaty za teren z 3 domkami: " + fields[idField].pay3house + "\n" + 
 			"opłaty za teren z 4 domkami: " + fields[idField].pay4house + "\n" + 
 			"opłaty za teren z 1 hotelem: " + fields[idField].pay1hotel + "\n"
+		);
+}
+
+function infoRailways(railways) {
+
+	let idField = players[activePlayer].railways[railways-1].idField;
+
+	alert( "informacja o koleji: " + fields[idField].name + "\n" +
+			"koszt zakupu: " + fields[idField].cost + "\n" +
+			"zysk z zastawienia: " + fields[idField].mortage + "\n" +
+			"koszt usunięcia hipoteki: " + fields[idField].mortageRemove + "\n" + 
+			"opłaty za 1 linie: " + fields[idField].pay1line + "\n" + 
+			"opłaty za 2 linie: " + fields[idField].pay2line + "\n" + 
+			"opłaty za 3 linie: " + fields[idField].pay3line + "\n" + 
+			"opłaty za 4 linie: " + fields[idField].pay4line + "\n"
 		);
 }

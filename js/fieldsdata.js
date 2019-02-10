@@ -80,8 +80,8 @@ let fields = [
 		minYpos: lS + 4*sS,
 		maxYpos: ch - lS - 4*sS,
 		name: "koleje południowe",
-		property: "nie", //testy
-		propertyId: -1, //testy
+		property: "nie",
+		propertyId: -1,
 		isMortage: "nie",
 		cost: 400,
 		pay1line: 50,
@@ -297,8 +297,8 @@ let fields = [
 		minYpos: 0,
 		maxYpos: lS,
 		name: "koleje zachodnie",
-		property: "nie", //testy
-		propertyId: -1, //testy
+		property: "nie",
+		propertyId: -1, 
 		isMortage: "nie",
 		cost: 400,
 		pay1line: 50,
@@ -506,8 +506,8 @@ let fields = [
 		minYpos: lS + 4*sS,
 		maxYpos: lS + 5*sS,
 		name: "koleje północne",
-		property: "nie", //testy
-		propertyId: -1, //testy
+		property: "nie",
+		propertyId: -1,
 		isMortage: "nie",
 		cost: 400,
 		pay1line: 50,
