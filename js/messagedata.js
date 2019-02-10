@@ -40,7 +40,7 @@ let taxToPayMessage = "Płacisz podatek od wzbogacenia w wysokosci 200$";
 
 let startMessage = "Jesteś na polu startowym po przejściu przez start otrzymasz 400$";
 
-let payCityOwnerMessage = "informacje o właścicielu, miasta";
+let payForCityOwnerMessage = "informacje o właścicielu, miasta";
 
 let payForRailwaysOwnerMessage = "informacje o właścicielu, koleje";
 
@@ -137,7 +137,14 @@ function prepaerPayForCityOwnerMessage(ownerInPrison, howManyHouses, howManyHote
 
 function prepaerPayForRailwaysOwnerMessage(ownerInPrison, howManyLines, toPay) {
 	payForRailwaysOwnerMessage =	"Właściciel jest w więzieniu: " + ownerInPrison + "\n" +
-								"Właściciel posiada: " + howManyLines + " linie" + "\n" +
-								"Do zapłacenia: " + toPay + "\n"
-								;
+									"Właściciel posiada: " + howManyLines + " linie" + "\n" +
+									"Do zapłacenia: " + toPay + "\n"
+									;
+}
+
+function prepaerPayForPowerStationOwnerMessage(ownerInPrison, hasWaterworks, toPay) {
+	payForPowerStationOwnerMessage =	"Właściciel jest w więzieniu: " + ownerInPrison + "\n" +
+										"Właściciel posiada wodociągi: " + hasWaterworks + "\n" +
+										"Do zapłacenia: " + toPay + "\n"
+										;
 }

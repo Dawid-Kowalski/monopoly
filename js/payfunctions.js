@@ -53,7 +53,7 @@ function payForCity(player) {
 
 		prepaerPayForCityOwnerMessage(ownerInPrison, howManyHouses, howManyHotels, toPay);
 
-		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainRailwaysMessage + "\n" + payForCityOwnerMessage);
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainCityMessage + "\n" + payForCityOwnerMessage);
 
 		updatePlayerMoney(player, -toPay);
 		//właściciel otrzymuje
@@ -125,34 +125,38 @@ function payForRailways(player) {
 
 
 function payForPowerstation(player) {
+
+	prepearDiceMessage(firstDice, secondDice, sumDice);
+	prepearFieldNameInfoMessage(player);
+	prepearMainPowerStationMessage(player);
+	prepearPowerStationCostsMessage(player);
+
 	let toPay = 0;
 
 	//płatności uzależnione od ilości oczek
 	if(fields[players[player].position - 1].property != "nie" && fields[players[player].position - 1].isMortage != "tak"){
 		if(players[fields[players[player].position - 1].propertyId].powerStationAndWaterworks == 1){
-			let sumDice = parseInt(document.getElementById("sum-dice").innerHTML);
 			toPay = sumDice * 10;
 		}
 
 		if(players[fields[players[player].position - 1].propertyId].powerStationAndWaterworks == 2){
-			let sumDice = parseInt(document.getElementById("sum-dice").innerHTML);
 			toPay = sumDice * 10 * 2;
 		}
 	}
 
-	//wlaściciel w więzieniu - nie otrzymuje pieniędzy
-	if(players[fields[players[player].position - 1].propertyId].blockRounds > 0) {
-		toPay = 0;
-	}
-
 	if(fields[players[player].position - 1].property != "nie"){
-		alert("jesteś na polu: " + fields[players[player].position - 1].name + "\n" +
-				"które posiada właściciela: " + fields[players[player].position - 1].property + "\n" +
-				"właściciel posiada elektrownie: " + players[fields[players[player].position - 1].propertyId].powerStation.have + "\n" +
-				"właściciel posiada wodociągi: " + players[fields[players[player].position - 1].propertyId].waterworks.have + "\n" +
-			    "pole jest zastawione: " + fields[players[player].position - 1].isMortage + "\n" +
-			    "wlasciciel jest w wiezieniu: " + players[fields[players[player].position - 1].propertyId].inPrison +"\n" +
-				"do zapłacenia: " + toPay);
+
+		//wlaściciel w więzieniu - nie otrzymuje pieniędzy
+		if(players[fields[players[player].position - 1].propertyId].blockRounds > 0) {
+			toPay = 0;
+		}
+
+		let ownerInPrison = players[fields[players[player].position - 1].propertyId].inPrison;
+		let hasWaterworks = players[fields[players[player].position - 1].propertyId].waterworks.have;
+
+		prepaerPayForPowerStationOwnerMessage(ownerInPrison, hasWaterworks, toPay);
+
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainPowerStationMessage + "\n" + payForPowerStationOwnerMessage);
 
 		updatePlayerMoney(player, -toPay);
 		//właściciel otrzymuje
@@ -161,7 +165,7 @@ function payForPowerstation(player) {
 		showRoundMainData(player);
 		buttonEnabled("next-player");
 	} else {
-		alert("Jeżeli nie chcesz kupić elektrowni za podaną cenę każdy z graczy może ją kupić po licytacji użyjcie przycisku sprzedaj wybierając cenę i gracza");
+		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainPowerStationMessage + "\n" + powerStationCostsMessage + "\n" + powerStationPayAmountMessage + "\n" + freeFieldMessage);
 		buttonEnabled("buttonbuypowerstation");
 		buttonEnabled("buttonsellpowerstation");
 	}

@@ -68,7 +68,6 @@ function startGame() {
 		players[0].name = document.getElementById("player1-name").value;
 		players[1].name = document.getElementById("player2-name").value;
 		players[2].name = document.getElementById("player3-name").value;
-
 /*
 		//do testów
 		players[1].railways[0].have = "tak";
@@ -133,7 +132,6 @@ function nextPlayer() {
 		buttonDisabled("throw-dice");
 		buttonEnabled("next-player");
 
-		drawBoard();
 		showRoundMainData(activePlayer);
 
 //najpierw tworzenie
@@ -184,13 +182,13 @@ function nextPlayer() {
 
 		drawCardsInventory(activePlayer);
 
-		setTimeout(drawAllPawns, 0);
+		drawBoard();
+		setTimeout(drawAllPawns, 100);
 
 	} else {
 		players[activePlayer].inPrison = "nie";
 		buttonEnabled("throw-dice");
 
-		drawBoard();
 		showRoundMainData(activePlayer);
 
 		drawInventoryCity(activePlayer);
@@ -210,7 +208,8 @@ function nextPlayer() {
 
 		drawCardsInventory(activePlayer)
 
-		setTimeout(drawAllPawns, 0);
+		drawBoard();
+		setTimeout(drawAllPawns, 100);
 
 		return activePlayer;
 	} 
@@ -222,12 +221,12 @@ function updatePlayerPosition (player) {
 	if(players[player].position > 40){
 		players[player].position -= 40;
 	}
-/*
+
 	//do testów
 	if(player>=0){
-		players[player].position = 2;
+		players[player].position = 12;
 	}
-*/
+
 	return players[player].position;
 }
 
@@ -338,14 +337,8 @@ function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "power station") {
 
-		//payForPowerstation(player);
+		payForPowerstation(player);
 
-		prepearDiceMessage(firstDice, secondDice, sumDice);
-		prepearFieldNameInfoMessage(player);
-		prepearMainPowerStationMessage(player);
-		prepearPowerStationCostsMessage(player);
-
-		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainPowerStationMessage + "\n" + powerStationCostsMessage + "\n" + powerStationPayAmountMessage + "\n" + freeFieldMessage);
 	}
 
 	if(fields[players[player].position - 1].type == "free parking") {
