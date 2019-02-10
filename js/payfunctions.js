@@ -64,6 +64,9 @@ function payForCity(player) {
 	//pole do kupienia
 	} else {
 		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainCityMessage + "\n"+ cityCostsMessage + "\n" + cityPayAmountMessage + "\n" + freeFieldMessage);
+		(function(){
+			document.getElementById("cityid"+fields[players[player].position - 1].idCity).scrollIntoView();
+		})();
 		buttonEnabled("buttonbuycity"+field);
 		buttonEnabled("buttonsellcity"+field);
 	}
@@ -118,6 +121,9 @@ function payForRailways(player) {
 		buttonEnabled("next-player");
 	} else {
 		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainRailwaysMessage + "\n" + railwaysCostsMessage + "\n" + railwaysPayAmountMessage + "\n" + freeFieldMessage);
+		(function(){
+			document.getElementById("railwaysid"+fields[players[player].position - 1].idRailways).scrollIntoView();
+		})();
 		buttonEnabled("buttonbuyrailways"+field);
 		buttonEnabled("buttonsellrailways"+field);
 	}
@@ -166,6 +172,9 @@ function payForPowerstation(player) {
 		buttonEnabled("next-player");
 	} else {
 		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainPowerStationMessage + "\n" + powerStationCostsMessage + "\n" + powerStationPayAmountMessage + "\n" + freeFieldMessage);
+		(function(){
+			document.getElementById("powerstation").scrollIntoView();
+		})();
 		buttonEnabled("buttonbuypowerstation");
 		buttonEnabled("buttonsellpowerstation");
 	}
@@ -212,6 +221,9 @@ function payForWaterworks(player) {
 
 	} else {
 		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainWaterWorksMessage  + "\n" + waterWorksCostsMessage + "\n" + waterWorksPayAmountMessage + "\n" + freeFieldMessage);
+		(function(){
+			document.getElementById("waterworks").scrollIntoView();
+		})();
 		buttonEnabled("buttonbuywaterworks");
 		buttonEnabled("buttonsellwaterworks");
 	}

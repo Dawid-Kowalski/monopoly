@@ -23,7 +23,6 @@ buttonDisabled("go-from-prison-red");
 let firstRound = "tak";
 let firstRoundCounter = 0;
 
-
 function prepaerPlayers() {
 
 	numberOfPlayers = parseInt(document.getElementById("number-of-players").value);
