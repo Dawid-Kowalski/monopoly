@@ -1002,32 +1002,21 @@ function drawInventoryBuldings(player){
 	tdPowerStationId.innerHTML = 1;
 	tr2Buldings.appendChild(tdPowerStationId);
 
-
 	let tdPowerStationName = document.createElement("td");
 	tdPowerStationName.id = "powerstation";
 	tdPowerStationName.innerHTML = "elektrownia";
 	tr2Buldings.appendChild(tdPowerStationName);
 
+	let tdPowerStationInfoPowerStation = document.createElement("td");
+	tr2Buldings.appendChild(tdPowerStationInfoPowerStation);
 
-
-
-
-		let tdPowerStationInfoPowerStation = document.createElement("td");
-		tr2Buldings.appendChild(tdPowerStationInfoPowerStation);
-
-		let buttonPowerStationInfoPowerStation = document.createElement("button");
-		buttonPowerStationInfoPowerStation.id = "buttoninfopowerstation";
-		buttonPowerStationInfoPowerStation.type = "button";
-		buttonPowerStationInfoPowerStation.onclick = function () {infoPowerStation();};
-		buttonPowerStationInfoPowerStation.classList.add("btn", "btn-info");
-		buttonPowerStationInfoPowerStation.innerHTML = "info";
-		tdPowerStationInfoPowerStation.appendChild(buttonPowerStationInfoPowerStation);
-
-
-
-
-
-
+	let buttonPowerStationInfoPowerStation = document.createElement("button");
+	buttonPowerStationInfoPowerStation.id = "buttoninfopowerstation";
+	buttonPowerStationInfoPowerStation.type = "button";
+	buttonPowerStationInfoPowerStation.onclick = function () {infoPowerStation();};
+	buttonPowerStationInfoPowerStation.classList.add("btn", "btn-info");
+	buttonPowerStationInfoPowerStation.innerHTML = "info";
+	tdPowerStationInfoPowerStation.appendChild(buttonPowerStationInfoPowerStation);
 
 	let tdPowerStationHave = document.createElement("td");
 	tdPowerStationHave.id = "havepowerstation";
@@ -1158,6 +1147,17 @@ function drawInventoryBuldings(player){
 	tdWaterworksName.id = "waterworks";
 	tdWaterworksName.innerHTML = "wodociągi";
 	trBuldings.appendChild(tdWaterworksName);
+
+	let tdWaterWorksInfoWaterWorks = document.createElement("td");
+	trBuldings.appendChild(tdWaterWorksInfoWaterWorks);
+
+	let buttonWaterWorksInfoWaterWorks = document.createElement("button");
+	buttonWaterWorksInfoWaterWorks.id = "buttoninfowaterworks";
+	buttonWaterWorksInfoWaterWorks.type = "button";
+	buttonWaterWorksInfoWaterWorks.onclick = function () {infoWaterWorks();};
+	buttonWaterWorksInfoWaterWorks.classList.add("btn", "btn-info");
+	buttonWaterWorksInfoWaterWorks.innerHTML = "info";
+	tdWaterWorksInfoWaterWorks.appendChild(buttonWaterWorksInfoWaterWorks);
 
 	let tdWaterworksHave = document.createElement("td");
 	tdWaterworksHave.id = "havewaterworks";
@@ -1381,5 +1381,14 @@ function infoPowerStation() {
 			"zysk z zastawienia: " + fields[11].mortage + "\n" +
 			"koszt usunięcia hipoteki: " + fields[11].mortageRemove + "\n" + 
 			"opłaty: 10x ilość wyrzuconych oczek, jeżeli gracz posiada również wodociągi opłata jest podwójna"
+		);
+}
+
+function infoWaterWorks() {
+	alert( 	"informacje o : " + fields[27].name + "\n" + 
+			"koszt zakupu: " + fields[27].cost + "\n" + 
+			"zysk z zastawienia: " + fields[27].mortage + "\n" +
+			"koszt usunięcia hipoteki: " + fields[27].mortageRemove + "\n" + 
+			"opłaty: 10x ilość wyrzuconych oczek, jeżeli gracz posiada również elektrownie opłata jest podwójna"
 		);
 }
