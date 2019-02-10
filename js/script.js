@@ -224,7 +224,7 @@ function updatePlayerPosition (player) {
 
 	//do testów
 	if(player>=0){
-		players[player].position = 12;
+		players[player].position = 28;
 	}
 
 	return players[player].position;
@@ -352,14 +352,8 @@ function checkPlayerField(player) {
 
 	if(fields[players[player].position - 1].type == "waterworks") {
 
-		//payForWaterworks(player);
+		payForWaterworks(player);
 
-		prepearDiceMessage(firstDice, secondDice, sumDice);
-		prepearFieldNameInfoMessage(player);
-		prepearMainWaterWorksMessage(player);
-		prepearWaterWorksCostsMessage(player);
-
-		alert(diceMessage + "\n" + fieldNameInfoMessage + "\n" + mainWaterWorksMessage  + "\n" + waterWorksCostsMessage + "\n" + waterWorksPayAmountMessage + "\n" + freeFieldMessage);
 	}
 
 	if(fields[players[player].position - 1].type == "go to prison") {

@@ -44,6 +44,10 @@ let payForCityOwnerMessage = "informacje o właścicielu, miasta";
 
 let payForRailwaysOwnerMessage = "informacje o właścicielu, koleje";
 
+let payForPowerStationOwnerMessage = "informacje o właścicielu, elektrownia";
+
+let payForWaterWorksOwnerMessage = "informacje o właścicielu, wodociagi";
+
 
 function prepearDiceMessage(firstDice, secondDice, sumDice) {
 	diceMessage = "Ilość oczek na 1 kostce: " + firstDice +'\n' + "Ilość oczek na 2 kostce: " + secondDice +'\n' + "Suma: " + sumDice + "\n";
@@ -145,6 +149,13 @@ function prepaerPayForRailwaysOwnerMessage(ownerInPrison, howManyLines, toPay) {
 function prepaerPayForPowerStationOwnerMessage(ownerInPrison, hasWaterworks, toPay) {
 	payForPowerStationOwnerMessage =	"Właściciel jest w więzieniu: " + ownerInPrison + "\n" +
 										"Właściciel posiada wodociągi: " + hasWaterworks + "\n" +
+										"Do zapłacenia: " + toPay + "\n"
+										;
+}
+
+function prepaerPayForWaterWorksOwnerMessage(ownerInPrison, hasPowerStation, toPay) {
+	payForWaterWorksOwnerMessage =		"Właściciel jest w więzieniu: " + ownerInPrison + "\n" +
+										"Właściciel posiada elektrownie: " + hasPowerStation+ "\n" +
 										"Do zapłacenia: " + toPay + "\n"
 										;
 }
